@@ -1,3 +1,18 @@
+<?php
+include 'koneksi.php';
+$query_visi = "SELECT isi FROM visimisi WHERE nama = 'visi' LIMIT 1";
+$query_misi = "SELECT isi FROM visimisi WHERE nama = 'misi' LIMIT 1";
+
+$result_visi = pg_query($koneksi, $query_visi);
+$result_misi = pg_query($koneksi, $query_misi);
+
+$data_visi = pg_fetch_assoc($result_visi);
+$data_misi = pg_fetch_assoc($result_misi);
+$isi_visi = $data_visi['isi'] ?? "Visi belum tersedia di database.";
+$isi_misi = $data_misi['isi'] ?? "Misi belum tersedia di database.";
+$batas_karakter = 300;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,10 +61,20 @@
         <div class="row align-items-center h-100">
             <div class="col-lg-4 text-center text-lg-start">
                 <a href="index.html">
-                    <h1 class="display-5 text-primary m-0">Charitize</h1>
+                    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
+                        <div class="row align-items-center h-100">
+                            <div class="col-lg-4 text-center text-lg-start">
+                                <a href="index.html">
+                                    <img class="img-fluid" 
+                                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                                        alt="Logo"
+                                        style="max-width: 100px; margin-left: -100px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </a>
             </div>
-
         </div>
     </div>
     <!-- Topbar End -->
@@ -101,12 +126,12 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <div class="carousel-text">
-                            <h1 class="display-1 text-uppercase mb-3">Together for a Better Tomorrow</h1>
+                            <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
                             <p class="fs-5 mb-5">We believe in creating opportunities and empowering communities through
                                 education, healthcare, and sustainable development.</p>
                             <div class="d-flex">
-                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                                <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
+                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Login</a>
+                                <a class="btn btn-secondary py-3 px-4" href="#!">Register</a>
                             </div>
                         </div>
                     </div>
@@ -117,11 +142,11 @@
                     </div>
                 </div>
             </div>
-            <div class="container py-5">
+            <!-- <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <div class="carousel-text">
-                            <h1 class="display-1 text-uppercase mb-3">Together, We Can End Hunger</h1>
+                            <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
                             <p class="fs-5 mb-5">No one should go to bed hungry. Your support helps us bring smiles,
                                 hope, and a brighter future to those in need.</p>
                             <div class="d-flex mt-4">
@@ -136,100 +161,176 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Carousel End -->
 
-
-    <!-- Video Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Fokus Riset Start -->
+    <section id="fokus-riset" class="py-5 bg-light">
         <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-11">
-                    <div class="h-100 py-5 d-flex align-items-center">
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h3 class="ms-5 mb-0">Together, we can build a world where everyone has the chance to thrive.
-                        </h3>
-                    </div>
-                </div>
-                <div class="d-none d-lg-block col-lg-1">
-                    <div class="h-100 w-100 bg-secondary d-flex align-items-center justify-content-center">
-                        <span class="text-white" style="transform: rotate(-90deg);">Scroll Down</span>
-                    </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold mb-3">Fokus Riset</h2>
+                    <div style="width: 100px; height: 3px; background-color: #FFBC3B; margin: 0 auto 30px;"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Video End -->
 
+            <div class="row justify-content-center g-4">
 
-    <!-- Video Modal Start -->
-    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                            allowscriptaccess="always" allow="autoplay"></iframe>
+                <!-- Intelligent Vision -->
+                <div class="col-auto mx-4">
+                    <div class="d-flex align-items-center position-relative">
+                        <div class="shadow-sm rounded-pill py-3 ps-4 pe-5"
+                            style="background-color: #1A1A37; color: #ffffff; z-index: 1;">
+                            <span class="fw-bold fs-5">Intelligent Vision</span>
+                        </div>
+
+                        <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
+                            style="width: 70px; height: 70px; font-size: 36px; 
+                            position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
+                            z-index: 2; background-color: #FFBC3B">
+                            <i class="lni lni-eye"></i>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Smart System -->
+                <div class="col-auto mx-4">
+                    <div class="d-flex align-items-center position-relative">
+                        <div class="shadow-sm rounded-pill py-3 ps-4 pe-5"
+                            style="background-color: #1A1A37; color: #ffffff; z-index: 1;">
+                            <span class="fw-bold fs-5">Smart System</span>
+                        </div>
+
+                        <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
+                            style="width: 70px; height: 70px; font-size: 36px; 
+                            position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
+                            z-index: 2; background-color: #FFBC3B">
+                            
+                            <!-- Icon Smart System -->
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M8.61288 2.15759C10.4745 1.68444 12.3561 2.30712 13.5784 3.61827C14.5156 3.15767 15.6338 3.06578 16.6928 3.45537C18.4831 4.11402 19.5117 5.92951 19.2442 7.74502C20.4227 8.53784 21.1997 9.88466 21.1997 11.414C21.1997 13.8546 19.2212 15.8331 16.7806 15.8331H16.4983V18.249C16.4983 18.6632 16.8341 18.999 17.2483 18.999H17.7386C17.9667 18.6955 18.3297 18.4992 18.7385 18.4992H18.7485C19.4389 18.4992 19.9985 19.0589 19.9985 19.7492C19.9985 20.4396 19.4389 20.9992 18.7485 20.9992H18.7385C18.3295 20.9992 17.9663 20.8027 17.7383 20.499H17.2483C16.0057 20.499 14.9983 19.4916 14.9983 18.249V15.8331H12.7483V19.7417C13.0576 19.9692 13.2583 20.3358 13.2583 20.7492C13.2583 21.4396 12.6986 21.9992 12.0083 21.9992H11.9983C11.3079 21.9992 10.7483 21.4396 10.7483 20.7492C10.7483 20.3403 10.9447 19.9772 11.2483 19.7491V15.8331H8.99829V18.249C8.99829 19.4916 7.99093 20.499 6.74829 20.499H6.25857C6.03053 20.8027 5.66736 20.9992 5.25829 20.9992H5.24829C4.55793 20.9992 3.99829 20.4396 3.99829 19.7492C3.99829 19.0589 4.55793 18.4992 5.24829 18.4992H5.25829C5.66714 18.4992 6.03014 18.6955 6.2582 18.999H6.74829C7.1625 18.999 7.49829 18.6632 7.49829 18.249V15.8331H7.21593C4.77535 15.8331 2.79688 13.8546 2.79688 11.414C2.79688 9.85313 3.60618 8.48241 4.82582 7.69667C4.51439 5.19526 6.10638 2.79463 8.61288 2.15759Z"
+                                    fill="#343C54" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-    <!-- Video Modal End -->
-
+    </section>
+    <!-- Fokus Riset End -->
 
     <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.2s">
-                    <div class="about-img">
-                        <img class="img-fluid w-100" src="img/about.jpg" alt="Image">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="section-title bg-white text-start text-primary pe-3">About Us</p>
-                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Join Hands, Change the World</h1>
-                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">Every hand extended in kindness brings us closer to
-                        a world free from suffering. Be part of a global movement dedicated to building a future where
-                        equality and compassion thrive.</p>
-                    <div class="row g-4 pt-2">
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="h-100">
-                                <h3>Our Mission</h3>
-                                <p>Our mission is to uplift underprivileged communities by providing resources,
-                                    education, and tools for growth.</p>
-                                <p class="text-dark"><i class="fa fa-check text-primary me-2"></i>No one should go to
-                                    bed hungry.</p>
-                                <p class="text-dark"><i class="fa fa-check text-primary me-2"></i>We spread kindness and
-                                    support.</p>
-                                <p class="text-dark mb-0"><i class="fa fa-check text-primary me-2"></i>We can change
-                                    someone’s life.</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="h-100 bg-primary p-4 text-center">
-                                <p class="fs-5 text-dark">Through your donations, we spread kindness and support to
-                                    children and families.</p>
-                                <a class="btn btn-secondary py-2 px-4" href="#!">Donate Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+
+            <!-- Logo / Image -->
+            <div class="col-lg-6" data-wow-delay="0.2s">
+                <img class="img-fluid" 
+                     src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                     alt="Image"
+                     style="max-width:500px;">
             </div>
-        </div>
-    </div>
-    <!-- About End -->
+
+            <!-- Content -->
+            <div class="col-lg-6">
+
+                <!-- Section Title -->
+                <p class="section-title bg-white text-start text-primary pe-3">
+                    Profil Laboratorium
+                </p>
+
+                <!-- Main Heading -->
+                <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                    Join Hands, Change the World
+                </h1>
+
+                <!-- Description -->
+                <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">
+                    Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di 
+                    bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang 
+                    intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
+                    dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan 
+                    sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini 
+                    mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu 
+                    mengenali, menganalisis, serta merespon lingkungan secara mandiri.
+                </p>
+
+                <!-- Visi & Misi Section -->
+                
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-12">
+                                <div class="about-five-content">
+
+                                    <!-- Subtitle & Title -->
+                                    <h6 class="small-title text-lg">VISI & MISI</h6>
+                                    <h2 class="main-title fw-bold">
+                                        LABORATORIUM INTELLIGENT AND SMART SYSTEM
+                                    </h2>
+
+                                    <!-- Tabs -->
+                                    <div class="about-five-tab">
+                                        <nav style="background-color: #1A1A37;">
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active tab-custom-color" 
+                                                        id="nav-vision-tab"
+                                                        data-bs-toggle="tab" 
+                                                        data-bs-target="#nav-vision" 
+                                                        type="button" 
+                                                        role="tab"
+                                                        aria-controls="nav-vision" 
+                                                        aria-selected="true">
+                                                    Visi
+                                                </button>
+                                                <button class="nav-link tab-custom-color" 
+                                                        id="nav-history-tab" 
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#nav-history" 
+                                                        type="button" 
+                                                        role="tab"
+                                                        aria-controls="nav-history" 
+                                                        aria-selected="false">
+                                                    Misi
+                                                </button>
+                                            </div>
+                                        </nav>
+
+                                        <!-- Tab Content -->
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade show active" 
+                                                 id="nav-vision" 
+                                                 role="tabpanel"
+                                                 aria-labelledby="nav-vision-tab">
+                                                <p><?php echo nl2br($isi_visi); ?></p>
+                                            </div>
+                                            <div class="tab-pane fade" 
+                                                 id="nav-history" 
+                                                 role="tabpanel"
+                                                 aria-labelledby="nav-history-tab">
+                                                <p><?php echo nl2br($isi_misi); ?></p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- End Tabs -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div> <!-- End Content Column -->
+
+        </div> <!-- End Row -->
+    </div> <!-- End Container -->
+</div>
+<!-- About End -->
 
 
     <!-- Service Start -->
