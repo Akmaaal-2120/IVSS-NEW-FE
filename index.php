@@ -43,12 +43,12 @@ $batas_karakter = 300;
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
-        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -123,7 +123,8 @@ $batas_karakter = 300;
                             style="width: 70px; height: 70px; font-size: 36px; 
                             position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
                             z-index: 2; background-color: #FFBC3B">
-                            <i class="lni lni-eye"></i>
+                            <i class="fa-solid fa-eye"></i>
+                            <path fill="#343C54"/>
                         </div>
                     </div>
                 </div>
@@ -205,7 +206,7 @@ $batas_karakter = 300;
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
                 <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-3">VISI & MISI</h1>
+                <h1 class="display-6 mb-3">Visi & Misi</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-12 mb-4">
@@ -313,7 +314,7 @@ $batas_karakter = 300;
                                                     <span>07.00 — 21.00</span>
                                                 </div>
                                                 <div class="d-flex justify-content-between" style="width: 200px;">
-                                                    <span>Sat</span>
+                                                    <span>Sat-Sun</span>
                                                     <span>09.00 — 21.00</span>
                                                 </div>
                                         </div>
@@ -334,7 +335,7 @@ $batas_karakter = 300;
     <div class="container">
         <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
             <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-            <h1 class="display-6 mb-4">FASILITAS LABORATORIUM</h1>
+            <h1 class="display-6 mb-4">Fasilitas Laboratorium</h1>
         </div>
 
         <div class="row g-4 justify-content-center">
@@ -376,7 +377,7 @@ $batas_karakter = 300;
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-4">PERALATAN LABORATORIUM</h1>
+                <h1 class="display-6 mb-4">Peralatan Laboratorium</h1>
             </div>
 
         <?php  
@@ -467,76 +468,40 @@ $batas_karakter = 300;
             <div class="row g-5">
                 <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="service-title">
-                        <h1 class="display-6 mb-4">What We Do for Those in Need.</h1>
-                        <p class="fs-5 mb-0">We work to bring smiles, hope, and a brighter future to those in need.</p>
+                        <h1 class="display-6 mb-4">Kegiatan & Proyek</h1>
+                        
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8 col-xl-9">
                     <div class="row g-5">
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="service-item h-100">
+                            <div class="service-item h-100" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-droplet fa-2x text-secondary"></i>
+                                    <i class="fa fa-solid fa-cloud-meatball fa-2x text-secondary"></i>
                                 </div>
-                                <h3>Pure Water</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
+                                <h3>Sistem Cerdas</h3>
+                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="service-item h-100">
+                            <div class="service-item h-100" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-hospital fa-2x text-secondary"></i>
+                                    <i class="fa fa-solid fa-layer-group fa-2x text-secondary"></i>
                                 </div>
-                                <h3>Health Care</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
+                                <h3>Machine Learning</h3>
+                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering menggunakan dataset nyata.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="service-item h-100">
+                            <div class="service-item h-100"style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-hands-holding-child fa-2x text-secondary"></i>
+                                    <i class="fa fa-regular fa-lightbulb fa-2x text-secondary"></i>
                                 </div>
-                                <h3>Social Care</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="service-item h-100">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-bowl-food fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Healthy Food</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="service-item h-100">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-school-flag fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Primary Education</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="service-item h-100">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-home fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Residence Facilities</h3>
-                                <p class="mb-2">We’re creating programs that address urgent needs while fostering
-                                    long-term solutions for sustainable change.</p>
-                                <a href="#!">Read More</a>
+                                <h3>Visi Komputer</h3>
+                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan mengenali objek.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                     </div>
@@ -556,38 +521,43 @@ $batas_karakter = 300;
                         <div class="row g-0">
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
                                 <div class="text-center bg-primary py-5 px-4 h-100">
-                                    <i class="fa fa-users fa-3x text-secondary mb-3"></i>
-                                    <h1 class="display-5 mb-0" data-toggle="counter-up">500</h1>
-                                    <span class="text-dark">Team Members</span>
+                                    <i class="fa-solid fa-brain fa-3x text-secondary mb-3"></i>
+                                    <h3 class="display-5 mb-0" style="font-size: 24px;">Kecerdasan Artifisial</h3>
+                                    <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin yang dapat
+                                        melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti pengenalan pola, 
+                                        pembelajaran, pemecahan masalah, dan pengambilan keputusan.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="text-center bg-secondary py-5 px-4 h-100">
-                                    <i class="fa fa-award fa-3x text-primary mb-3"></i>
-                                    <h1 class="display-5 text-white mb-0" data-toggle="counter-up">70</h1>
-                                    <span class="text-white">Award Winning</span>
+                                    <i class="fa fa-eye fa-3x text-primary mb-3"></i>
+                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra & Visi Komputer</h3>
+                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada pengembangan algoritma yang 
+                                        memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa diprogram secara eksplisit.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
                                 <div class="text-center bg-secondary py-5 px-4 h-100">
-                                    <i class="fa fa-list-check fa-3x text-primary mb-3"></i>
-                                    <h1 class="display-5 text-white mb-0" data-toggle="counter-up">3000</h1>
-                                    <span class="text-white">Total Projects</span>
+                                    <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
+                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
+                                    <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video menggunakan komputer, termasuk deteksi objek,
+                                        segmentasi, pengenalan pola, dan interpretasi citra untuk aplikasi seperti pengenalan wajah dan kendaraan otomatis.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
                                 <div class="text-center bg-primary py-5 px-4 h-100">
-                                    <i class="fa fa-comments fa-3x text-secondary mb-3"></i>
-                                    <h1 class="display-5 mb-0" data-toggle="counter-up">7000</h1>
-                                    <span class="text-dark">Client's Review</span>
+                                    <i class="fa fa-lightbulb fa-3x text-secondary mb-3"></i>
+                                    <h1 class="display-5 mb-0" style="font-size: 24px;">Sistem Cerdas</h1>
+                                    <span class="text-dark">Pengembangan sistem yang dapat meniru atau melampaui kemampuan kognitif manusia, seperti pengambilan 
+                                        keputusan otomatis, perencanaan, dan pemrosesan informasi dalam konteks aplikasi nyata, seperti robotika dan sistem pakar.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <p class="section-title bg-white text-start text-primary pe-3">Why Us!</p>
-                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Few Reasons Why People Choosing Us!</h1>
+                    <p class="section-title bg-white text-start text-primary pe-3">LAB IVSS</p>
+                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Perkuliahan Terkait</h1>
                     <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">We believe in creating opportunities and empowering
                         communities through education, healthcare, and sustainable development. Your support helps us
                         bring smiles, hope, and a brighter future to those in need.</p>
@@ -606,190 +576,101 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Features End -->
+<div class="container py-5">
 
-    <!-- Donate Start -->
-    <div class="container-fluid donate py-5">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-7 donate-text bg-light py-5 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="d-flex flex-column justify-content-center h-100 p-5 wow fadeIn" data-wow-delay="0.3s">
-                        <h1 class="display-6 mb-4">Let's Donate to Needy People for Better Lives</h1>
-                        <p class="fs-5 mb-0">Through your donations, we spread kindness and support to children,
-                            families, and communities struggling to find stability.</p>
-                    </div>
-                </div>
-                <div class="col-lg-5 donate-form bg-primary py-5 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <div class="h-100 p-5">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1"
-                                            autocomplete="off" checked>
-                                        <label class="btn btn-light" for="btnradio1">$10</label>
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h2 class="fw-bold display-5" style="color: #1A685B;">
+                <i class="fas fa-book-reader me-2"></i> Publikasi Dosen
+            </h2>
+            <div class="mx-auto" style="width: 150px; height: 5px; background-color: #FFAC00; margin-top: 10px;"></div>
+        </div>
+    </div>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2"
-                                            autocomplete="off">
-                                        <label class="btn btn-light" for="btnradio2">$20</label>
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-borderless align-middle rounded-4 overflow-hidden"
+                    style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); border: 1px solid #dee2e6;">
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3"
-                                            autocomplete="off">
-                                        <label class="btn btn-light" for="btnradio3">$30</label>
+                    <thead style="background-color: #1A685B;">
+                        <tr class="text-white text-uppercase small">
+                            <th scope="col" class="py-3 px-4 text-start">Dosen / Peneliti</th>
+                            <th scope="col" class="py-3 text-center">Scopus</th>
+                            <th scope="col" class="py-3 text-center">Google Scholar</th>
+                            <th scope="col" class="py-3 text-center">Sinta</th>
+                        </tr>
+                    </thead>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4"
-                                            autocomplete="off">
-                                        <label class="btn btn-light" for="btnradio4">$40</label>
+                    <tbody>
+                        <?php
+                        // Memastikan $result_dosen ada dan memiliki data (asumsi ini adalah logic PHP)
+                        if (isset($result_dosen) && pg_num_rows($result_dosen) > 0) {
+                            $no = 1;
+                            // Asumsi pg_result_seek diperlukan di sini jika data sudah pernah dibaca
+                            if (isset($result_dosen)) { pg_result_seek($result_dosen, 0); } 
+                            
+                            while ($data_dosen = pg_fetch_assoc($result_dosen)) {
+                                $link_scopus = $data_dosen['scopus'] ?? '#';
+                                $link_scholar = $data_dosen['google_scholar'] ?? '#';
+                                $link_sinta = $data_dosen['sinta'] ?? '#';
+                                
+                                // Kelas untuk tombol Link (Bootstrap classes)
+                                $scopus_class = ($link_scopus === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                                $scholar_class = ($link_scholar === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                                $sinta_class = ($link_sinta === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                        ?>
+                        <tr class="bg-white">
+                            <td class="text-start px-4">
+                                <span class="fw-bold me-2 text-primary"><?php echo $no++; ?>.</span>
+                                <?php echo htmlspecialchars($data_dosen['nama'] ?? 'Nama Dosen Tidak Ada'); ?>
+                            </td>
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5"
-                                            autocomplete="off">
-                                        <label class="btn btn-light" for="btnradio5">$50</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-secondary py-3 w-100" type="submit">Donate Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                            <td class="text-center">
+                                <a href="<?php echo $link_scopus; ?>" target="_blank"
+                                    class="btn btn-sm <?php echo $scopus_class; ?>"
+                                    style="<?php echo ($link_scopus !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                    <i class="fas fa-external-link-alt me-1"></i> Detail
+                                </a>
+                            </td>
+
+                            <td class="text-center">
+                                <a href="<?php echo $link_scholar; ?>" target="_blank"
+                                    class="btn btn-sm <?php echo $scholar_class; ?>"
+                                    style="<?php echo ($link_scholar !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                    <i class="fas fa-external-link-alt me-1"></i> Detail
+                                </a>
+                            </td>
+
+                            <td class="text-center">
+                                <a href="<?php echo $link_sinta; ?>" target="_blank"
+                                    class="btn btn-sm <?php echo $sinta_class; ?>"
+                                    style="<?php echo ($link_sinta !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                    <i class="fas fa-external-link-alt me-1"></i> Detail
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                            }
+                        } else {
+                            echo '<tr><td colspan="4" class="text-center text-muted py-4 small">Data dosen tidak ditemukan di database atau belum ada.</td></tr>';
+                        }
+                        ?>
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
-    <!-- Donate End -->
 
-    <!-- Testimonial Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="testimonial-title">
-                        <h1 class="display-6 mb-4">What People Say About Our Activities.</h1>
-                        <p class="fs-5 mb-0">We work to bring smiles, hope, and a brighter future to those in need.</p>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-8 col-xl-9">
-                    <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.3s">
-                        <div class="testimonial-item">
-                            <div class="row g-5 align-items-center">
-                                <div class="col-md-6">
-                                    <div class="testimonial-img">
-                                        <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="testimonial-text pb-5 pb-md-0">
-                                        <div class="mb-2">
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                        </div>
-                                        <p class="fs-5">Education is the foundation of change. By funding schools,
-                                            scholarships, and training programs, we can help children and adults unlock
-                                            their potential for a better future.</p>
-                                        <div class="d-flex align-items-center">
-                                            <div class="btn-lg-square bg-light text-secondary flex-shrink-0">
-                                                <i class="fa fa-quote-right fa-2x"></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h5 class="mb-0">Alexander Bell</h5>
-                                                <span>CEO, Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <div class="row g-5 align-items-center">
-                                <div class="col-md-6">
-                                    <div class="testimonial-img">
-                                        <img class="img-fluid" src="img/testimonial-2.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="testimonial-text pb-5 pb-md-0">
-                                        <div class="mb-2">
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                        </div>
-                                        <p class="fs-5">Every hand extended in kindness brings us closer to a world free
-                                            from suffering. Be part of a global movement dedicated to building a future
-                                            where equality and compassion thrive.</p>
-                                        <div class="d-flex align-items-center">
-                                            <div class="btn-lg-square bg-light text-secondary flex-shrink-0">
-                                                <i class="fa fa-quote-right fa-2x"></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h5 class="mb-0">Donald Pakura</h5>
-                                                <span>CEO, Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <div class="row g-5 align-items-center">
-                                <div class="col-md-6">
-                                    <div class="testimonial-img">
-                                        <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="testimonial-text pb-5 pb-md-0">
-                                        <div class="mb-2">
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                            <i class="fa fa-star text-primary"></i>
-                                        </div>
-                                        <p class="fs-5">Love and compassion have the power to heal. Through your
-                                            donations and volunteer work, we can spread kindness and support to
-                                            children, families, and communities struggling to find stability.</p>
-                                        <div class="d-flex align-items-center">
-                                            <div class="btn-lg-square bg-light text-secondary flex-shrink-0">
-                                                <i class="fa fa-quote-right fa-2x"></i>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h5 class="mb-0">Boris Johnson</h5>
-                                                <span>CEO, Founder</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
+</div>
 
     <!-- Berita Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white text-center text-primary px-3">BERITA</p>
-                <h1 class="display-6 mb-4">BERITA TERBARU</h1>
+                <h1 class="display-6 mb-4">Berita Terbaru</h1>
             </div>
             
             <div class="row g-4">
