@@ -1,3 +1,32 @@
+<?php
+include 'inc/koneksi.php';
+$query_visi = "SELECT isi FROM visimisi WHERE nama = 'visi' LIMIT 1";
+$query_misi = "SELECT isi FROM visimisi WHERE nama = 'misi' LIMIT 1";
+$query_dosen = "SELECT * FROM dosen";
+$query_peralatan_lab = "SELECT gambar, nama FROM fasilitas 
+                        WHERE nama NOT IN ('Area Mushola', 'AC', 'Whiteboard', 'Locker')";
+$query_fasilitas_umum = "SELECT gambar, nama FROM fasilitas WHERE nama = 'Area Mushola' OR nama = 'AC' OR nama = 'Whiteboard' OR nama = 'Locker'";
+$query_berita_terbaru = "SELECT * FROM berita ORDER BY berita_id DESC LIMIT 3";
+
+
+
+$result_visi = pg_query($koneksi, $query_visi);
+$result_misi = pg_query($koneksi, $query_misi);
+$result_dosen = pg_query($koneksi, $query_dosen);
+$result_peralatan_lab = pg_query($koneksi, $query_peralatan_lab);
+$result_fasilitas_umum = pg_query($koneksi, $query_fasilitas_umum);
+$result_berita_terbaru = pg_query($koneksi, $query_berita_terbaru);
+
+$data_visi = pg_fetch_assoc($result_visi);
+$data_misi = pg_fetch_assoc($result_misi);
+$data_dosen = pg_fetch_assoc($result_dosen);
+$dosen_id_url = $data_dosen['nidn'];
+
+$isi_visi = $data_visi['isi'] ?? "Visi belum tersedia di database.";
+$isi_misi = $data_misi['isi'] ?? "Misi belum tersedia di database.";
+$batas_karakter = 300;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +59,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -46,10 +76,20 @@
         <div class="row align-items-center h-100">
             <div class="col-lg-4 text-center text-lg-start">
                 <a href="index.html">
-                    <h1 class="display-5 text-primary m-0">Charitize</h1>
+                    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
+                        <div class="row align-items-center h-100">
+                            <div class="col-lg-4 text-center text-lg-start">
+                                <a href="index.html">
+                                    <img class="img-fluid" 
+                                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                                        alt="Logo"
+                                        style="max-width: 80px; margin-left: -100px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </a>
             </div>
-
         </div>
     </div>
     <!-- Topbar End -->
@@ -101,12 +141,11 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <div class="carousel-text">
-                            <h1 class="display-1 text-uppercase mb-3">Together for a Better Tomorrow</h1>
-                            <p class="fs-5 mb-5">We believe in creating opportunities and empowering communities through
-                                education, healthcare, and sustainable development.</p>
+                            <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
+                            <p class="fs-5 mb-5">Laboratorium Visi Cerdas dan Sistem Cerdas</p>
                             <div class="d-flex">
-                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                                <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
+                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Login</a>
+                                <a class="btn btn-secondary py-3 px-4" href="#!">Register</a>
                             </div>
                         </div>
                     </div>
@@ -117,111 +156,233 @@
                     </div>
                 </div>
             </div>
-            <div class="container py-5">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="carousel-text">
-                            <h1 class="display-1 text-uppercase mb-3">Together, We Can End Hunger</h1>
-                            <p class="fs-5 mb-5">No one should go to bed hungry. Your support helps us bring smiles,
-                                hope, and a brighter future to those in need.</p>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                                <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="carousel-img">
-                            <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Carousel End -->
 
-
-    <!-- Video Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Fokus Riset Start -->
+    <section id="fokus-riset" class="py-5" style="background-color: #ffac00;">
         <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-11">
-                    <div class="h-100 py-5 d-flex align-items-center">
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h3 class="ms-5 mb-0">Together, we can build a world where everyone has the chance to thrive.
-                        </h3>
-                    </div>
-                </div>
-                <div class="d-none d-lg-block col-lg-1">
-                    <div class="h-100 w-100 bg-secondary d-flex align-items-center justify-content-center">
-                        <span class="text-white" style="transform: rotate(-90deg);">Scroll Down</span>
-                    </div>
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold mb-3">Fokus Riset</h2>
+                    <div style="width: 100px; height: 3px; background-color: #FFBC3B; margin: 0 auto 30px;"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Video End -->
 
+            <div class="row justify-content-center g-4">
 
-    <!-- Video Modal Start -->
-    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                            allowscriptaccess="always" allow="autoplay"></iframe>
+                <!-- Intelligent Vision -->
+                <div class="col-auto mx-4">
+                    <div class="d-flex align-items-center position-relative">
+                        <div class="shadow-sm rounded-pill py-3 ps-4 pe-5"
+                            style="background-color: #1A1A37; color: #ffffff; z-index: 1;">
+                            <span class="fw-bold fs-5">Intelligent Vision</span>
+                        </div>
+
+                        <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
+                            style="width: 70px; height: 70px; font-size: 36px; 
+                            position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
+                            z-index: 2; background-color: #FFBC3B">
+                            <i class="lni lni-eye"></i>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Smart System -->
+                <div class="col-auto mx-4">
+                    <div class="d-flex align-items-center position-relative">
+                        <div class="shadow-sm rounded-pill py-3 ps-4 pe-5"
+                            style="background-color: #1A1A37; color: #ffffff; z-index: 1;">
+                            <span class="fw-bold fs-5">Smart System</span>
+                        </div>
+
+                        <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
+                            style="width: 70px; height: 70px; font-size: 36px; 
+                            position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
+                            z-index: 2; background-color: #FFBC3B">
+                            
+                            <!-- Icon Smart System -->
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M8.61288 2.15759C10.4745 1.68444 12.3561 2.30712 13.5784 3.61827C14.5156 3.15767 15.6338 3.06578 16.6928 3.45537C18.4831 4.11402 19.5117 5.92951 19.2442 7.74502C20.4227 8.53784 21.1997 9.88466 21.1997 11.414C21.1997 13.8546 19.2212 15.8331 16.7806 15.8331H16.4983V18.249C16.4983 18.6632 16.8341 18.999 17.2483 18.999H17.7386C17.9667 18.6955 18.3297 18.4992 18.7385 18.4992H18.7485C19.4389 18.4992 19.9985 19.0589 19.9985 19.7492C19.9985 20.4396 19.4389 20.9992 18.7485 20.9992H18.7385C18.3295 20.9992 17.9663 20.8027 17.7383 20.499H17.2483C16.0057 20.499 14.9983 19.4916 14.9983 18.249V15.8331H12.7483V19.7417C13.0576 19.9692 13.2583 20.3358 13.2583 20.7492C13.2583 21.4396 12.6986 21.9992 12.0083 21.9992H11.9983C11.3079 21.9992 10.7483 21.4396 10.7483 20.7492C10.7483 20.3403 10.9447 19.9772 11.2483 19.7491V15.8331H8.99829V18.249C8.99829 19.4916 7.99093 20.499 6.74829 20.499H6.25857C6.03053 20.8027 5.66736 20.9992 5.25829 20.9992H5.24829C4.55793 20.9992 3.99829 20.4396 3.99829 19.7492C3.99829 19.0589 4.55793 18.4992 5.24829 18.4992H5.25829C5.66714 18.4992 6.03014 18.6955 6.2582 18.999H6.74829C7.1625 18.999 7.49829 18.6632 7.49829 18.249V15.8331H7.21593C4.77535 15.8331 2.79688 13.8546 2.79688 11.414C2.79688 9.85313 3.60618 8.48241 4.82582 7.69667C4.51439 5.19526 6.10638 2.79463 8.61288 2.15759Z"
+                                    fill="#343C54" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-    <!-- Video Modal End -->
-
+    </section>
+    <!-- Fokus Riset End -->
 
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.2s">
-                    <div class="about-img">
-                        <img class="img-fluid w-100" src="img/about.jpg" alt="Image">
+
+                <!-- Logo / Image -->
+                <div class="col-lg-6" data-wow-delay="0.2s">
+                    <img class="img-fluid" 
+                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                        alt="Image"
+                        style="max-width:500px;">
+                </div>
+
+                <!-- Content -->
+                <div class="col-lg-6">
+
+                    <!-- Section Title -->
+                    <p class="section-title bg-white text-start text-primary pe-3">
+                        Profil Laboratorium
+                    </p>
+
+                    <!-- Main Heading -->
+                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                        Laboratorium Visi Cerdas dan Sistem Cerdas
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify;">
+                        Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di 
+                        bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang 
+                        intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
+                        dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan 
+                        sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini 
+                        mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu 
+                        mengenali, menganalisis, serta merespon lingkungan secara mandiri.
+                    </p>
+                </div> <!-- End Content Column -->
+
+            </div> <!-- End Row -->
+        </div> <!-- End Container -->
+    </div>
+    <!-- About End -->
+
+    <!-- Visi Misi Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                <p class="section-title bg-white text-center text-primary px-3">Visi & Misi</p>
+                <h1 class="display-6 mb-3">LABORATORIUM INTELLIGENT AND SMART SYSTEM</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;"> 
+                        <div class="card-body p-4">
+
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-eye fa-lg"></i> 
+                                </span>
+                                Visi
+                            </h3>
+                            
+                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
+
+                            <p class="card-text text-dark">
+                                <?php echo nl2br($isi_visi); ?>
+                            </p>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <p class="section-title bg-white text-start text-primary pe-3">About Us</p>
-                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Join Hands, Change the World</h1>
-                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">Every hand extended in kindness brings us closer to
-                        a world free from suffering. Be part of a global movement dedicated to building a future where
-                        equality and compassion thrive.</p>
-                    <div class="row g-4 pt-2">
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="h-100">
-                                <h3>Our Mission</h3>
-                                <p>Our mission is to uplift underprivileged communities by providing resources,
-                                    education, and tools for growth.</p>
-                                <p class="text-dark"><i class="fa fa-check text-primary me-2"></i>No one should go to
-                                    bed hungry.</p>
-                                <p class="text-dark"><i class="fa fa-check text-primary me-2"></i>We spread kindness and
-                                    support.</p>
-                                <p class="text-dark mb-0"><i class="fa fa-check text-primary me-2"></i>We can change
-                                    someone’s life.</p>
-                            </div>
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;">
+                        <div class="card-body p-4">
+
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-check-circle fa-lg"></i> 
+                                </span>
+                                Misi
+                            </h3>
+                            
+                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
+
+                            <ul class="list-unstyled">
+                                <?php
+                                    $misi_points = explode("\n", trim($isi_misi));
+
+                                    foreach ($misi_points as $point) {
+                                        if (!empty(trim($point))) {
+                                            echo '<li class="mb-3 d-flex align-items-start">';
+                                            // Ikon checklist warna Hijau Tua/Teal
+                                            echo ' <i class="fas fa-check-square me-3 mt-1" style="color: #1a685b; font-size: 1.2em;"></i>'; 
+                                            echo ' <span class="text-dark">' . trim($point) . '</span>';
+                                            echo '</li>';
+                                        }
+                                    }
+                                ?>
+                            </ul>
+
                         </div>
-                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="h-100 bg-primary p-4 text-center">
-                                <p class="fs-5 text-dark">Through your donations, we spread kindness and support to
-                                    children and families.</p>
-                                <a class="btn btn-secondary py-2 px-4" href="#!">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Visi Misi Start -->
+
+    
+    <!-- Banner Start -->
+    <div class="container-fluid banner py-5" style="background-color: #f8f9fa;"> 
+    <div class="container py-4">
+            <div class="banner-inner bg-white rounded-4 shadow-lg p-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="text-center">
+                            
+                            <h2 class="display-5 fw-bold mb-4" style="color: #1a685b;">
+                                SOP dan Layanan
+                            </h2>
+                            
+                            <p class="lead text-muted mb-5">
+                                Informasi standar operasional prosedur dan detail layanan Laboratorium.
+                            </p>
+                            
+                            <div class="row text-start g-4">
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map-marker-alt fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Lokasi</h5>
+                                            <p class="mb-0 text-dark">Gedung Jurusan Teknologi Informasi — Lantai 8 Barat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-envelope fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Surel</h5>
+                                            <p class="mb-0 text-dark">—</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-clock fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Jam Layanan</h5>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Mon-Fri</span>
+                                                    <span>07.00—21.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Sat</span>
+                                                    <span>09.00—21.00</span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -229,7 +390,98 @@
             </div>
         </div>
     </div>
-    <!-- About End -->
+    <!-- Banner End -->
+
+    <!-- Donation Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
+                <h1 class="display-6 mb-4">FASILITAS LABORATORIUM</h1>
+            </div>
+
+            <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
+                
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="1"></button>
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+
+                    <!-- ====================== SLIDE 1 ====================== -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+
+                            <!-- Item 1 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-1.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Food</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Healthy Food</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-2.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Health</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Water Treatment</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-3.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Education</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Education Support</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#donationCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <!-- Donation End -->
 
 
     <!-- Service Start -->
@@ -377,128 +629,6 @@
         </div>
     </div>
     <!-- Features End -->
-
-
-    <!-- Donation Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">Donation</p>
-                <h1 class="display-6 mb-4">Our Donation Causes Around the World</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="85"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">85%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-1.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Food</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Healthy Food</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.13s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="95"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">95%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-2.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Health</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Water Treatment</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">75%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-3.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Education</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Education Support</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Donation End -->
-
-
-    <!-- Banner Start -->
-    <div class="container-fluid banner py-5">
-        <div class="container">
-            <div class="banner-inner bg-light p-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 py-5 text-center">
-                        <h1 class="display-6 wow fadeIn" data-wow-delay="0.3s">Our Door Are Always Open to More People
-                            Who Want to Support Each Others!</h1>
-                        <p class="fs-5 mb-4 wow fadeIn" data-wow-delay="0.5s">Through your donations and volunteer work,
-                            we spread kindness and support to children, families, and communities struggling to find
-                            stability.</p>
-                        <div class="d-flex justify-content-center wow fadeIn" data-wow-delay="0.7s">
-                            <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                            <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner End -->
-
 
     <!-- Event Start -->
     <div class="container-fluid py-5">
