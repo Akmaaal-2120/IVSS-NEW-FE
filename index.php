@@ -1,13 +1,27 @@
 <?php
-include 'koneksi.php';
+include 'inc/koneksi.php';
 $query_visi = "SELECT isi FROM visimisi WHERE nama = 'visi' LIMIT 1";
 $query_misi = "SELECT isi FROM visimisi WHERE nama = 'misi' LIMIT 1";
+$query_dosen = "SELECT * FROM dosen";
+$query_peralatan_lab = "SELECT gambar, nama FROM fasilitas 
+                        WHERE nama NOT IN ('Area Mushola', 'AC', 'Whiteboard', 'Locker')";
+$query_fasilitas_umum = "SELECT gambar, nama FROM fasilitas WHERE nama = 'Area Mushola' OR nama = 'AC' OR nama = 'Whiteboard' OR nama = 'Locker'";
+$query_berita_terbaru = "SELECT * FROM berita ORDER BY berita_id DESC LIMIT 3";
+
+
 
 $result_visi = pg_query($koneksi, $query_visi);
 $result_misi = pg_query($koneksi, $query_misi);
+$result_dosen = pg_query($koneksi, $query_dosen);
+$result_peralatan_lab = pg_query($koneksi, $query_peralatan_lab);
+$result_fasilitas_umum = pg_query($koneksi, $query_fasilitas_umum);
+$result_berita_terbaru = pg_query($koneksi, $query_berita_terbaru);
 
 $data_visi = pg_fetch_assoc($result_visi);
 $data_misi = pg_fetch_assoc($result_misi);
+$data_dosen = pg_fetch_assoc($result_dosen);
+$dosen_id_url = $data_dosen['nidn'];
+
 $isi_visi = $data_visi['isi'] ?? "Visi belum tersedia di database.";
 $isi_misi = $data_misi['isi'] ?? "Misi belum tersedia di database.";
 $batas_karakter = 300;
@@ -45,6 +59,7 @@ $batas_karakter = 300;
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -68,7 +83,7 @@ $batas_karakter = 300;
                                     <img class="img-fluid" 
                                         src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
                                         alt="Logo"
-                                        style="max-width: 100px; margin-left: -100px;">
+                                        style="max-width: 80px; margin-left: -100px;">
                                 </a>
                             </div>
                         </div>
@@ -127,8 +142,7 @@ $batas_karakter = 300;
                     <div class="col-lg-6">
                         <div class="carousel-text">
                             <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
-                            <p class="fs-5 mb-5">We believe in creating opportunities and empowering communities through
-                                education, healthcare, and sustainable development.</p>
+                            <p class="fs-5 mb-5">Laboratorium Visi Cerdas dan Sistem Cerdas</p>
                             <div class="d-flex">
                                 <a class="btn btn-primary py-3 px-4 me-3" href="#!">Login</a>
                                 <a class="btn btn-secondary py-3 px-4" href="#!">Register</a>
@@ -142,32 +156,12 @@ $batas_karakter = 300;
                     </div>
                 </div>
             </div>
-            <!-- <div class="container py-5">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="carousel-text">
-                            <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
-                            <p class="fs-5 mb-5">No one should go to bed hungry. Your support helps us bring smiles,
-                                hope, and a brighter future to those in need.</p>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                                <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="carousel-img">
-                            <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
     <!-- Carousel End -->
 
     <!-- Fokus Riset Start -->
-    <section id="fokus-riset" class="py-5 bg-light">
+    <section id="fokus-riset" class="py-5" style="background-color: #ffac00;">
         <div class="container">
 
             <div class="row">
@@ -226,111 +220,268 @@ $batas_karakter = 300;
     <!-- Fokus Riset End -->
 
     <!-- About Start -->
-<div class="container-fluid py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
 
-            <!-- Logo / Image -->
-            <div class="col-lg-6" data-wow-delay="0.2s">
-                <img class="img-fluid" 
-                     src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
-                     alt="Image"
-                     style="max-width:500px;">
+                <!-- Logo / Image -->
+                <div class="col-lg-6" data-wow-delay="0.2s">
+                    <img class="img-fluid" 
+                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                        alt="Image"
+                        style="max-width:500px;">
+                </div>
+
+                <!-- Content -->
+                <div class="col-lg-6">
+
+                    <!-- Section Title -->
+                    <p class="section-title bg-white text-start text-primary pe-3">
+                        Profil Laboratorium
+                    </p>
+
+                    <!-- Main Heading -->
+                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                        Laboratorium Visi Cerdas dan Sistem Cerdas
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify;">
+                        Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di 
+                        bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang 
+                        intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
+                        dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan 
+                        sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini 
+                        mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu 
+                        mengenali, menganalisis, serta merespon lingkungan secara mandiri.
+                    </p>
+                </div> <!-- End Content Column -->
+
+            </div> <!-- End Row -->
+        </div> <!-- End Container -->
+    </div>
+    <!-- About End -->
+
+    <!-- Visi Misi Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
+                <p class="section-title bg-white text-center text-primary px-3">Visi & Misi</p>
+                <h1 class="display-6 mb-3">LABORATORIUM INTELLIGENT AND SMART SYSTEM</h1>
             </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;"> 
+                        <div class="card-body p-4">
 
-            <!-- Content -->
-            <div class="col-lg-6">
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-eye fa-lg"></i> 
+                                </span>
+                                Visi
+                            </h3>
+                            
+                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
 
-                <!-- Section Title -->
-                <p class="section-title bg-white text-start text-primary pe-3">
-                    Profil Laboratorium
-                </p>
+                            <p class="card-text text-dark">
+                                <?php echo nl2br($isi_visi); ?>
+                            </p>
 
-                <!-- Main Heading -->
-                <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
-                    Join Hands, Change the World
-                </h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;">
+                        <div class="card-body p-4">
 
-                <!-- Description -->
-                <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">
-                    Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di 
-                    bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang 
-                    intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
-                    dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan 
-                    sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini 
-                    mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu 
-                    mengenali, menganalisis, serta merespon lingkungan secara mandiri.
-                </p>
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-check-circle fa-lg"></i> 
+                                </span>
+                                Misi
+                            </h3>
+                            
+                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
 
-                <!-- Visi & Misi Section -->
-                
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 col-12">
-                                <div class="about-five-content">
+                            <ul class="list-unstyled">
+                                <?php
+                                    $misi_points = explode("\n", trim($isi_misi));
 
-                                    <!-- Subtitle & Title -->
-                                    <h6 class="small-title text-lg">VISI & MISI</h6>
-                                    <h2 class="main-title fw-bold">
-                                        LABORATORIUM INTELLIGENT AND SMART SYSTEM
-                                    </h2>
+                                    foreach ($misi_points as $point) {
+                                        if (!empty(trim($point))) {
+                                            echo '<li class="mb-3 d-flex align-items-start">';
+                                            // Ikon checklist warna Hijau Tua/Teal
+                                            echo ' <i class="fas fa-check-square me-3 mt-1" style="color: #1a685b; font-size: 1.2em;"></i>'; 
+                                            echo ' <span class="text-dark">' . trim($point) . '</span>';
+                                            echo '</li>';
+                                        }
+                                    }
+                                ?>
+                            </ul>
 
-                                    <!-- Tabs -->
-                                    <div class="about-five-tab">
-                                        <nav style="background-color: #1A1A37;">
-                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                <button class="nav-link active tab-custom-color" 
-                                                        id="nav-vision-tab"
-                                                        data-bs-toggle="tab" 
-                                                        data-bs-target="#nav-vision" 
-                                                        type="button" 
-                                                        role="tab"
-                                                        aria-controls="nav-vision" 
-                                                        aria-selected="true">
-                                                    Visi
-                                                </button>
-                                                <button class="nav-link tab-custom-color" 
-                                                        id="nav-history-tab" 
-                                                        data-bs-toggle="tab"
-                                                        data-bs-target="#nav-history" 
-                                                        type="button" 
-                                                        role="tab"
-                                                        aria-controls="nav-history" 
-                                                        aria-selected="false">
-                                                    Misi
-                                                </button>
-                                            </div>
-                                        </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Visi Misi Start -->
 
-                                        <!-- Tab Content -->
-                                        <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade show active" 
-                                                 id="nav-vision" 
-                                                 role="tabpanel"
-                                                 aria-labelledby="nav-vision-tab">
-                                                <p><?php echo nl2br($isi_visi); ?></p>
-                                            </div>
-                                            <div class="tab-pane fade" 
-                                                 id="nav-history" 
-                                                 role="tabpanel"
-                                                 aria-labelledby="nav-history-tab">
-                                                <p><?php echo nl2br($isi_misi); ?></p>
-                                            </div>
+    
+    <!-- Banner Start -->
+    <div class="container-fluid banner py-5" style="background-color: #f8f9fa;"> 
+    <div class="container py-4">
+            <div class="banner-inner bg-white rounded-4 shadow-lg p-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 col-xl-8">
+                        <div class="text-center">
+                            
+                            <h2 class="display-5 fw-bold mb-4" style="color: #1a685b;">
+                                SOP dan Layanan
+                            </h2>
+                            
+                            <p class="lead text-muted mb-5">
+                                Informasi standar operasional prosedur dan detail layanan Laboratorium.
+                            </p>
+                            
+                            <div class="row text-start g-4">
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-map-marker-alt fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Lokasi</h5>
+                                            <p class="mb-0 text-dark">Gedung Jurusan Teknologi Informasi — Lantai 8 Barat</p>
                                         </div>
-                                    </div> <!-- End Tabs -->
-
+                                    </div>
                                 </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-envelope fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Surel</h5>
+                                            <p class="mb-0 text-dark">—</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-clock fa-2x me-3" style="color: #ffac00;"></i>
+                                        <div>
+                                            <h5 class="fw-bold" style="color: #1a685b;">Jam Layanan</h5>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Mon-Fri</span>
+                                                    <span>07.00—21.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Sat</span>
+                                                    <span>09.00—21.00</span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
 
+    <!-- Donation Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
+                <h1 class="display-6 mb-4">FASILITAS LABORATORIUM</h1>
+            </div>
 
-            </div> <!-- End Content Column -->
+            <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
+                
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="1"></button>
+                </div>
 
-        </div> <!-- End Row -->
-    </div> <!-- End Container -->
-</div>
-<!-- About End -->
+                <!-- Slides -->
+                <div class="carousel-inner">
+
+                    <!-- ====================== SLIDE 1 ====================== -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+
+                            <!-- Item 1 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-1.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Food</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Healthy Food</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-2.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Health</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Water Treatment</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="col-md-4">
+                                <div class="donation-item d-flex h-100 p-4">
+
+                                    <div class="donation-detail">
+                                        <div class="position-relative mb-4">
+                                            <img class="img-fluid w-100" src="img/donation-3.jpg" alt="">
+                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Education</a>
+                                        </div>
+                                        <a href="#!" class="h3 d-inline-block">Education Support</a>
+                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
+                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#donationCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <!-- Donation End -->
 
 
     <!-- Service Start -->
@@ -478,128 +629,6 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Features End -->
-
-
-    <!-- Donation Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">Donation</p>
-                <h1 class="display-6 mb-4">Our Donation Causes Around the World</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="85"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">85%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-1.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Food</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Healthy Food</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.13s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="95"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">95%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-2.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Health</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Water Treatment</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="donation-item d-flex h-100 p-4">
-                        <div class="donation-progress d-flex flex-column flex-shrink-0 text-center me-4">
-                            <h6 class="mb-0">Raised</h6>
-                            <span class="mb-2">$8000</span>
-                            <div class="progress d-flex align-items-end w-100 h-100 mb-2">
-                                <div class="progress-bar w-100 bg-secondary" role="progressbar" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <span class="fs-4">75%</span>
-                                </div>
-                            </div>
-                            <h6 class="mb-0">Goal</h6>
-                            <span>$10000</span>
-                        </div>
-                        <div class="donation-detail">
-                            <div class="position-relative mb-4">
-                                <img class="img-fluid w-100" src="img/donation-3.jpg" alt="">
-                                <a href="#!"
-                                    class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Education</a>
-                            </div>
-                            <a href="#!" class="h3 d-inline-block">Education Support</a>
-                            <p>Through your donations and volunteer work, we spread kindness and support to children.
-                            </p>
-                            <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate
-                                Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Donation End -->
-
-
-    <!-- Banner Start -->
-    <div class="container-fluid banner py-5">
-        <div class="container">
-            <div class="banner-inner bg-light p-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 py-5 text-center">
-                        <h1 class="display-6 wow fadeIn" data-wow-delay="0.3s">Our Door Are Always Open to More People
-                            Who Want to Support Each Others!</h1>
-                        <p class="fs-5 mb-4 wow fadeIn" data-wow-delay="0.5s">Through your donations and volunteer work,
-                            we spread kindness and support to children, families, and communities struggling to find
-                            stability.</p>
-                        <div class="d-flex justify-content-center wow fadeIn" data-wow-delay="0.7s">
-                            <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
-                            <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner End -->
-
 
     <!-- Event Start -->
     <div class="container-fluid py-5">
