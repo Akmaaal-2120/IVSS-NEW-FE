@@ -1,5 +1,5 @@
 <?php
-include 'inc/koneksi.php';
+include 'koneksi.php';
 $query_visi = "SELECT isi FROM visimisi WHERE nama = 'visi' LIMIT 1";
 $query_misi = "SELECT isi FROM visimisi WHERE nama = 'misi' LIMIT 1";
 $query_dosen = "SELECT * FROM dosen";
@@ -63,76 +63,14 @@ $batas_karakter = 300;
 </head>
 
 <body>
+    <?php include('navbar.php');?>
+
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
     <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
-        <div class="row align-items-center h-100">
-            <div class="col-lg-4 text-center text-lg-start">
-                <a href="index.html">
-                    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
-                        <div class="row align-items-center h-100">
-                            <div class="col-lg-4 text-center text-lg-start">
-                                <a href="index.html">
-                                    <img class="img-fluid" 
-                                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
-                                        alt="Logo"
-                                        style="max-width: 80px; margin-left: -100px;">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <div class="container-fluid bg-secondary px-0 wow fadeIn" data-wow-delay="0.1s">
-        <div class="nav-bar">
-            <nav class="navbar navbar-expand-lg bg-primary navbar-dark px-4 py-lg-0">
-                <h4 class="d-lg-none m-0">Menu</h4>
-                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav me-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="donation.html" class="nav-item nav-link">Donation</a>
-                        <div class="nav-item dropdown">
-                            <a href="#!" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu bg-light m-0">
-                                <a href="event.html" class="dropdown-item">Event</a>
-                                <a href="feature.html" class="dropdown-item">Feature</a>
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                    <div class="d-none d-lg-flex ms-auto">
-                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-dark ms-2" href="#!"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
@@ -266,8 +204,8 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
-                <p class="section-title bg-white text-center text-primary px-3">Visi & Misi</p>
-                <h1 class="display-6 mb-3">LABORATORIUM INTELLIGENT AND SMART SYSTEM</h1>
+                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
+                <h1 class="display-6 mb-3">VISI & MISI</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-12 mb-4">
@@ -326,9 +264,8 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Visi Misi Start -->
-
     
-    <!-- Banner Start -->
+    <!-- SOP & Layanan Start -->
     <div class="container-fluid banner py-5" style="background-color: #f8f9fa;"> 
     <div class="container py-4">
             <div class="banner-inner bg-white rounded-4 shadow-lg p-5 wow fadeIn" data-wow-delay="0.1s">
@@ -373,11 +310,11 @@ $batas_karakter = 300;
                                             <h5 class="fw-bold" style="color: #1a685b;">Jam Layanan</h5>
                                                 <div class="d-flex justify-content-between" style="width: 200px;">
                                                     <span>Mon-Fri</span>
-                                                    <span>07.00—21.00</span>
+                                                    <span>07.00 — 21.00</span>
                                                 </div>
                                                 <div class="d-flex justify-content-between" style="width: 200px;">
                                                     <span>Sat</span>
-                                                    <span>09.00—21.00</span>
+                                                    <span>09.00 — 21.00</span>
                                                 </div>
                                         </div>
                                     </div>
@@ -390,99 +327,139 @@ $batas_karakter = 300;
             </div>
         </div>
     </div>
-    <!-- Banner End -->
+    <!-- SOP & Layanan End -->
 
-    <!-- Donation Start -->
+    <!-- Fasilitas Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
+            <h1 class="display-6 mb-4">FASILITAS LABORATORIUM</h1>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <?php
+            while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) {
+            ?>
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="team-item d-flex h-100 p-4">
+
+                        <div class="team-detail pe-4">
+                            <!-- Foto fasilitas dari database -->
+                            <img class="img-fluid mb-4" 
+                                 src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>" 
+                                 alt="<?php echo $data_fasilitas['nama']; ?>">
+                            <!-- Nama fasilitas -->
+                            <h3><?php echo $data_fasilitas['nama']; ?></h3>
+                        </div>
+
+                        <div class="team-social bg-light d-flex flex-column justify-content-center flex-shrink-0 p-4">
+                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-x-twitter"></i></a>
+                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-youtube"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+<!-- Fasilitas End -->
+
+
+    <!-- Peralatan Start -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-4">FASILITAS LABORATORIUM</h1>
+                <h1 class="display-6 mb-4">PERALATAN LABORATORIUM</h1>
             </div>
 
-            <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
-                
-                <!-- Indicators -->
+        <?php  
+        // === Ambil semua data alat ke array ===
+        $items = [];
+        while ($row = pg_fetch_assoc($result_peralatan_lab)) {
+            $items[] = $row;
+        }
+
+        // Konfigurasi
+        $totalItems = count($items);
+        $perSlide = 3; // 1 slide = 3 item
+        $totalSlides = ceil($totalItems / $perSlide);
+        ?>
+
+        <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+                <!-- Indicators otomatis -->
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
-                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="1"></button>
+                    <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
+                        <button type="button"
+                                data-bs-target="#donationCarousel"
+                                data-bs-slide-to="<?php echo $i; ?>"
+                                class="<?php echo $i === 0 ? 'active' : ''; ?>">
+                        </button>
+                    <?php endfor; ?>
                 </div>
 
-                <!-- Slides -->
+                <!-- Slides Dinamis -->
                 <div class="carousel-inner">
 
-                    <!-- ====================== SLIDE 1 ====================== -->
-                    <div class="carousel-item active">
-                        <div class="row justify-content-center">
+                    <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
+                        <div class="carousel-item <?php echo $i === 0 ? 'active' : ''; ?>">
+                            <div class="row justify-content-center g-4">
 
-                            <!-- Item 1 -->
-                            <div class="col-md-4">
-                                <div class="donation-item d-flex h-100 p-4">
+                                <?php
+                                $start = $i * $perSlide;
+                                $end = min($start + $perSlide, $totalItems);
 
-                                    <div class="donation-detail">
-                                        <div class="position-relative mb-4">
-                                            <img class="img-fluid w-100" src="img/donation-1.jpg" alt="">
-                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Food</a>
+                                for ($j = $start; $j < $end; $j++) :
+                                    $item = $items[$j];
+                                ?>
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <!-- Gambar -->
+                                            <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
+                                                alt="<?php echo $item['nama']; ?>"
+                                                class="card-img-top img-fluid"
+                                                style="height: 200px; object-fit: cover;">
+
+                                            <div class="card-body text-center">
+                                                <span class="badge rounded-pill text-dark px-3 py-2 mb-2" style="background-color: #FFBC3B;">
+                                                    <?php echo $item['kategori'] ?? 'Alat'; ?>
+                                                </span>
+                                                <h5 class="card-title"><?php echo $item['nama']; ?></h5>
+                                                <p class="card-text"><?php echo $item['deskripsi'] ?? ''; ?></p>
+                                                <a href="#!" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Detail</a>
+                                            </div>
                                         </div>
-                                        <a href="#!" class="h3 d-inline-block">Healthy Food</a>
-                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
                                     </div>
+                                <?php endfor; ?>
 
-                                </div>
                             </div>
-
-                            <!-- Item 2 -->
-                            <div class="col-md-4">
-                                <div class="donation-item d-flex h-100 p-4">
-
-                                    <div class="donation-detail">
-                                        <div class="position-relative mb-4">
-                                            <img class="img-fluid w-100" src="img/donation-2.jpg" alt="">
-                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Health</a>
-                                        </div>
-                                        <a href="#!" class="h3 d-inline-block">Water Treatment</a>
-                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!-- Item 3 -->
-                            <div class="col-md-4">
-                                <div class="donation-item d-flex h-100 p-4">
-
-                                    <div class="donation-detail">
-                                        <div class="position-relative mb-4">
-                                            <img class="img-fluid w-100" src="img/donation-3.jpg" alt="">
-                                            <a href="#!" class="btn btn-sm btn-secondary px-3 position-absolute top-0 end-0">Education</a>
-                                        </div>
-                                        <a href="#!" class="h3 d-inline-block">Education Support</a>
-                                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                                        <a href="#!" class="btn btn-primary w-100 py-3"><i class="fa fa-plus me-2"></i>Donate Now</a>
-                                    </div>
-
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
+                    <?php endfor; ?>
+
                 </div>
 
-                <!-- Controls -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#donationCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
                 </button>
 
+                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
-    <!-- Donation End -->
-
+    <!-- Peralatan End -->
 
     <!-- Service Start -->
     <div class="container-fluid py-5">
@@ -744,66 +721,6 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Donate End -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">Our Team</p>
-                <h1 class="display-6 mb-4">Meet Our Dedicated Team Members</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="team-item d-flex h-100 p-4">
-                        <div class="team-detail pe-4">
-                            <img class="img-fluid mb-4" src="img/team-1.jpg" alt="">
-                            <h3>Boris Johnson</h3>
-                            <span>Founder & CEO</span>
-                        </div>
-                        <div class="team-social bg-light d-flex flex-column justify-content-center flex-shrink-0 p-4">
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-x-twitter"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="team-item d-flex h-100 p-4">
-                        <div class="team-detail pe-4">
-                            <img class="img-fluid mb-4" src="img/team-2.jpg" alt="">
-                            <h3>Donald Pakura</h3>
-                            <span>Project Manager</span>
-                        </div>
-                        <div class="team-social bg-light d-flex flex-column justify-content-center flex-shrink-0 p-4">
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-x-twitter"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="team-item d-flex h-100 p-4">
-                        <div class="team-detail pe-4">
-                            <img class="img-fluid mb-4" src="img/team-3.jpg" alt="">
-                            <h3>Alexander Bell</h3>
-                            <span>Volunteer</span>
-                        </div>
-                        <div class="team-social bg-light d-flex flex-column justify-content-center flex-shrink-0 p-4">
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-x-twitter"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
 
     <!-- Testimonial Start -->
     <div class="container-fluid py-5">
