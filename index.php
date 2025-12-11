@@ -607,59 +607,6 @@ $batas_karakter = 300;
     </div>
     <!-- Features End -->
 
-    <!-- Event Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">Events</p>
-                <h1 class="display-6 mb-4">Be a Part of a Global Movement</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="event-item h-100 p-4">
-                        <img class="img-fluid w-100 mb-4" src="img/event-1.jpg" alt="">
-                        <a href="#!" class="h3 d-inline-block">Education Program</a>
-                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                        <div class="bg-light p-4">
-                            <p class="mb-1"><i class="fa fa-clock text-primary me-2"></i>10:00 AM - 18:00 PM</p>
-                            <p class="mb-1"><i class="fa fa-calendar-alt text-primary me-2"></i>Jan 01 - Jan 10</p>
-                            <p class="mb-0"><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York,
-                                USA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="event-item h-100 p-4">
-                        <img class="img-fluid w-100 mb-4" src="img/event-2.jpg" alt="">
-                        <a href="#!" class="h3 d-inline-block">Awareness Program</a>
-                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                        <div class="bg-light p-4">
-                            <p class="mb-1"><i class="fa fa-clock text-primary me-2"></i>10:00 AM - 18:00 PM</p>
-                            <p class="mb-1"><i class="fa fa-calendar-alt text-primary me-2"></i>Jan 01 - Jan 10</p>
-                            <p class="mb-0"><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York,
-                                USA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="event-item h-100 p-4">
-                        <img class="img-fluid w-100 mb-4" src="img/event-3.jpg" alt="">
-                        <a href="#!" class="h3 d-inline-block">Health Care Program</a>
-                        <p>Through your donations and volunteer work, we spread kindness and support to children.</p>
-                        <div class="bg-light p-4">
-                            <p class="mb-1"><i class="fa fa-clock text-primary me-2"></i>10:00 AM - 18:00 PM</p>
-                            <p class="mb-1"><i class="fa fa-calendar-alt text-primary me-2"></i>Jan 01 - Jan 10</p>
-                            <p class="mb-0"><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York,
-                                USA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Event End -->
-
-
     <!-- Donate Start -->
     <div class="container-fluid donate py-5">
         <div class="container">
@@ -837,27 +784,76 @@ $batas_karakter = 300;
     </div>
     <!-- Testimonial End -->
 
-
-    <!-- Newsletter Start -->
-    <div class="container-fluid bg-primary py-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- Berita Start -->
+    <div class="container-fluid py-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 mb-4">Subscribe the Newsletter</h1>
-                    <div class="position-relative w-100 mb-2">
-                        <input class="form-control border-0 w-100 ps-4 pe-5" type="text" placeholder="Enter Your Email"
-                            style="height: 60px;">
-                        <button type="button"
-                            class="btn btn-lg-square shadow-none position-absolute top-0 end-0 mt-2 me-2"><i
-                                class="fa fa-paper-plane text-primary fs-4"></i></button>
-                    </div>
-                    <p class="mb-0">Don't worry, we won't spam you with emails.</p>
-                </div>
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="section-title bg-white text-center text-primary px-3">BERITA</p>
+                <h1 class="display-6 mb-4">BERITA TERBARU</h1>
             </div>
-        </div>
-    </div>
-    <!-- Newsletter End -->
+            
+            <div class="row g-4">
+                <?php
+                $batas_karakter = 150;
 
+                if ($result_berita_terbaru) {
+                    if (isset($result_berita_terbaru)) { pg_result_seek($result_berita_terbaru, 0); }
+                    
+                    while ($data_berita = pg_fetch_assoc($result_berita_terbaru)) {
+                        $berita_id = $data_berita['berita_id']; 
+                        $berita_link = "detailBerita.php?id=" . urlencode($berita_id);
+                        
+                        $tanggal_format = date('d F Y', strtotime($data_berita['tanggal']));
+                        
+                        $isi_lengkap = $data_berita['isi']; 
+                        
+                        if (strlen($isi_lengkap) > $batas_karakter) {
+                            $potongan_isi = substr($isi_lengkap, 0, $batas_karakter);
+                            $potongan_isi = substr($potongan_isi, 0, strrpos($potongan_isi, ' '));
+                            $isi_tampilan = $potongan_isi . '...';
+                            $show_button = true;
+                        } else {
+                            $isi_tampilan = $isi_lengkap;
+                            $show_button = false;
+                        }
+                ?>
+                
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="event-item h-100 p-4">
+                        <img class="img-fluid w-100 mb-4" 
+                            src="admin/assets/img/<?php echo htmlspecialchars($data_berita['gambar']); ?>" 
+                            alt="<?= htmlspecialchars($data_berita['judul']); ?>" 
+                            style="height: 200px; object-fit: cover;"> <a href="<?php echo $berita_link; ?>" class="h3 d-inline-block text-primary">
+                            <?php echo htmlspecialchars($data_berita['judul']); ?>
+                        </a>
+                        
+                        <p style="color: #495057;">
+                            <?php echo htmlspecialchars($isi_tampilan); ?>
+                        </p>
+                        
+                        <div class="bg-light p-4 mt-auto"> <p class="mb-1"><i class="fa fa-calendar-alt text-primary me-2"></i><?php echo $tanggal_format; ?></p>
+                            <p class="mb-0"><i class="fa fa-user-edit text-primary me-2"></i>Penulis: <?php echo htmlspecialchars($data_berita['penulis'] ?? '-'); ?></p> 
+                            
+                            <?php if ($show_button): ?>
+                            <a href="<?php echo $berita_link; ?>" class="more-btn fw-bold mt-2 d-block"
+                                style="color: #FFBC3B; text-decoration: none;">
+                                Baca Selengkapnya &rarr;
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php
+                    } 
+                } else {
+                    echo "<div class='col-12'><p class='text-center'>Tidak ada berita terbaru yang tersedia.</p></div>";
+                }
+                ?>
+            </div>
+            </div>
+    </div>
+    <!-- Berita End -->
 
     <!-- Footer Start -->
     <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
