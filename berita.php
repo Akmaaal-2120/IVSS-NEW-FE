@@ -10,10 +10,19 @@ $limit = 7; // Batas item per halaman (1 Featured + 6 Other Items)
 
 // 1. Logika Pencarian (Mendapatkan kata kunci dari URL)
 if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
-    // Menggunakan pg_escape_string untuk keamanan (PostgreSQL)
     $search_query = pg_escape_string($koneksi, $_GET['keyword']);
-    // Filter hanya berdasarkan JUDUL
-    $where_clause = " WHERE judul ILIKE '%{$search_query}%' "; 
+    $where_clause = " WHERE judul ILIKE '%{$search_query}%' ";
+}
+
+// 2. Hitung total data berita (WAJIB ADA)
+$sql_count = "SELECT COUNT(*) AS total FROM berita {$where_clause}";
+$result_count = pg_query($koneksi, $sql_count);
+
+if ($result_count) {
+    $row_count = pg_fetch_assoc($result_count);
+    $total_items = (int)$row_count['total'];
+} else {
+    $total_items = 0;
 }
 
 // 3. Logika Pagination
