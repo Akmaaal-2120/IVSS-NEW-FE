@@ -4,12 +4,19 @@ $sql = "SELECT * FROM logo";
 $result = pg_query($koneksi, $sql);
 $logo_data = pg_fetch_assoc($result);
 ?>
+
+<?php
+require_once 'koneksi.php';
+$sql = "SELECT * FROM logo";
+$result = pg_query($koneksi, $sql);
+$logo_data = pg_fetch_assoc($result);
+?>
     <!-- Topbar Start -->
-    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid top-bar wow fadeIn" data-wow-delay="0.1s" style="background-color:  #FFBC3B;">
         <div class="row align-items-center h-100">
             <div class="col-lg-4 text-center text-lg-start">
                 <a href="index.html">
-                    <div class="container-fluid bg-secondary top-bar wow fadeIn" data-wow-delay="0.1s">
+                    <div class="container-fluid top-bar wow fadeIn" data-wow-delay="0.1s" style="background-color:  #FFBC3B;">
                         <div class="row align-items-center h-100">
                             <div class="col-lg-4 text-center text-lg-start">
                                 <a href="index.html">
@@ -26,9 +33,9 @@ $logo_data = pg_fetch_assoc($result);
         </div>
     </div>
     <!-- Topbar End -->
-    <div class="container-fluid bg-secondary px-0 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid px-0 wow fadeIn" data-wow-delay="0.1s" style="background-color: #1d4052;">
         <div class="nav-bar">
-            <nav class="navbar navbar-expand-lg bg-primary navbar-dark px-4 py-lg-0">
+            <nav class="navbar navbar-expand-lg navbar-dark px-4 py-lg-0" style="background-color: #1d4052;">
                 <h4 class="d-lg-none m-0">Menu</h4>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
@@ -37,11 +44,13 @@ $logo_data = pg_fetch_assoc($result);
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav me-auto">
-                        <a href="index.php" class="nav-item nav-link">Beranda</a>
-                        <a href="berita.php" class="nav-item nav-link">Berita</a>
-                        <a href="dosen.php" class="nav-item nav-link">Daftar Member</a>
+                        <a href="index.php" class="nav-item nav-link" style="color: white;">Beranda</a>
+                        <a href="berita.php" class="nav-item nav-link" style="color: white;">Berita</a>
+                        <a href="dosen.php" class="nav-item nav-link" style="color: white;">Daftar Member</a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
+
+   
