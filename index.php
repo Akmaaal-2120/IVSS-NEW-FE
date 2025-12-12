@@ -158,6 +158,65 @@ $batas_karakter = 300;
     </section>
     <!-- Fokus Riset End -->
 
+    
+    <!-- Service Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="service-title">
+                        <h1 class="display-6 mb-4">Kegiatan & Proyek</h1>
+
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-8 col-xl-9">
+                    <div class="row g-5">
+                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="service-item h-100"
+                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                <div class="btn-square bg-light mb-4">
+                                    <i class="fa fa-solid fa-cloud-meatball fa-2x text-secondary"></i>
+                                </div>
+                                <h3>Sistem Cerdas</h3>
+                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
+                                </p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
+                            <div class="service-item h-100"
+                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                <div class="btn-square bg-light mb-4">
+                                    <i class="fa fa-solid fa-layer-group fa-2x text-secondary"></i>
+                                </div>
+                                <h3>Machine Learning</h3>
+                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
+                                    menggunakan dataset nyata.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="service-item h-100"
+                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                <div class="btn-square bg-light mb-4">
+                                    <i class="fa fa-regular fa-lightbulb fa-2x text-secondary"></i>
+                                </div>
+                                <h3>Visi Komputer</h3>
+                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
+                                    mengenali objek.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
     <!-- About Start -->
     <div class="container-fluid py-5">
         <div class="container">
@@ -340,29 +399,52 @@ $batas_karakter = 300;
             </div>
 
             <div class="row g-4 justify-content-center">
-                <?php
-            while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) {
-            ?>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="team-item d-flex h-100 p-4">
+                <?php while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) { ?>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        
+                        <div class="d-flex flex-column h-100 p-4"
+                            style="border: 1px solid #eee; border-radius: 12px; 
+                                box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 
-                        <div class="team-detail pe-4">
-                            <!-- Foto fasilitas dari database -->
-                            <img class="img-fluid mb-4" src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>"
-                                alt="<?php echo $data_fasilitas['nama']; ?>">
-                            <!-- Nama fasilitas -->
-                            <h3><?php echo $data_fasilitas['nama']; ?></h3>
+                            <div style="flex-grow: 1; display: flex; flex-direction: column;">
+
+                                <!-- Gambar made same as peralatan -->
+                                <div class="position-relative mb-4"
+                                    style="height: 300px; overflow: hidden; border-radius: 10px;">
+                                    
+                                    <img src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>"
+                                        alt="<?php echo $data_fasilitas['nama']; ?>"
+                                        class="w-100 h-100"
+                                        style="object-fit: cover;">
+                                </div>
+
+                                <!-- Judul -->
+                                <h4 class="mb-2" style="color: #333;">
+                                    <?php echo $data_fasilitas['nama']; ?>
+                                </h4>
+
+                                <!-- Deskripsi kalau ada -->
+                                <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
+                                    <?php echo $data_fasilitas['deskripsi'] ?? 'Informasi fasilitas belum tersedia.'; ?>
+                                </p>
+
+                                <!-- Tombol sejajar bawah -->
+                                <a href="#!"
+                                    class="btn btn-primary w-100 py-3 mt-auto"
+                                    style="border-radius: 8px;">
+                                    Fasilitas
+                                </a>
+
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <?php
-            }
-            ?>
+                <?php } ?>
             </div>
+
         </div>
     </div>
     <!-- Fasilitas End -->
-
 
     <!-- Peralatan Start -->
     <div class="container-fluid py-5">
@@ -401,35 +483,59 @@ $batas_karakter = 300;
 
                     <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
                     <div class="carousel-item <?php echo $i === 0 ? 'active' : ''; ?>">
-                        <div class="row justify-content-center g-4">
+                    <div class="row justify-content-center g-4">
 
-                            <?php
-                                $start = $i * $perSlide;
-                                $end = min($start + $perSlide, $totalItems);
+                        <?php
+                        $start = $i * $perSlide;
+                        $end = min($start + $perSlide, $totalItems);
 
-                                for ($j = $start; $j < $end; $j++) :
-                                    $item = $items[$j];
-                                ?>
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <!-- Gambar -->
-                                    <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
-                                        alt="<?php echo $item['nama']; ?>" class="card-img-top img-fluid"
-                                        style="height: 200px; object-fit: cover;">
+                        for ($j = $start; $j < $end; $j++) :
+                            $item = $items[$j];
+                        ?>
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="d-flex flex-column h-100 p-4" 
+                                style="border: 1px solid #eee; border-radius: 12px; 
+                                    box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 
-                                    <div class="card-body text-center">
-                                        <span class="badge rounded-pill text-dark px-3 py-2 mb-2"
-                                            style="background-color: #FFBC3B;">
-                                            <?php echo $item['kategori'] ?? 'Alat'; ?>
-                                        </span>
-                                        <h5 class="card-title"><?php echo $item['nama']; ?></h5>
+                                <div style="flex-grow: 1; display: flex; flex-direction: column;">
+
+                                    <!-- Gambar FIXED SIZE -->
+                                    <div class="position-relative mb-4" 
+                                        style="height: 300px; overflow: hidden; border-radius: 10px;">
+
+                                        <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
+                                            alt="<?php echo $item['nama']; ?>"
+                                            class="w-100 h-100"
+                                            style="object-fit: cover;">
                                     </div>
-                                </div>
-                            </div>
-                            <?php endfor; ?>
 
+                                    <!-- Judul -->
+                                    <a href="#!" class="h4 d-inline-block mb-2"
+                                        style="text-decoration: none; color: #333;">
+                                        <?php echo $item['nama']; ?>
+                                    </a>
+
+                                    <!-- Deskripsi -->
+                                    <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
+                                        <?php echo $item['deskripsi'] ?? 'Klik detail untuk informasi lebih lanjut.'; ?>
+                                    </p>
+
+                                    <!-- Tombol SELALU DI BAWAH -->
+                                    <a href="#!" 
+                                        class="btn btn-primary w-100 py-3 mt-auto"
+                                        style="border-radius: 8px;">
+                                        Alat
+                                    </a>
+
+                                </div>
+
+                            </div>
                         </div>
+                        <?php endfor; ?>
+
                     </div>
+                </div>
+
                     <?php endfor; ?>
 
                 </div>
@@ -455,65 +561,6 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Peralatan End -->
-
-    <!-- Service Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="service-title">
-                        <h1 class="display-6 mb-4">Kegiatan & Proyek</h1>
-
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-8 col-xl-9">
-                    <div class="row g-5">
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-cloud-meatball fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Sistem Cerdas</h3>
-                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
-                                </p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-layer-group fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Machine Learning</h3>
-                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
-                                    menggunakan dataset nyata.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-regular fa-lightbulb fa-2x text-secondary"></i>
-                                </div>
-                                <h3>Visi Komputer</h3>
-                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
-                                    mengenali objek.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
 
     <!-- Features Start -->
     <div class="container-fluid py-5">
