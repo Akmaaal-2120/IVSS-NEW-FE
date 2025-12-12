@@ -78,6 +78,9 @@ $batas_karakter = 300;
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6"> <div class="carousel-text text-start text-white">
+                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px;">
+                            <i class="fas fa-microchip me-2 text-warning"></i> Lab IVSS
+                        </p>
 
                             <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown">
                                 Intelligent Vision & <span class="text-warning">Smart System</span>
@@ -512,7 +515,7 @@ $batas_karakter = 300;
                         for ($j = $start; $j < $end; $j++) :
                             $item = $items[$j];
                         ?>
-                        <div class="col-lg-4 col-md-6 col-12">
+                        <div class="col-lg-3 col-md-6 col-12">
                             <div class="d-flex flex-column h-100 p-4" 
                                 style="border: 1px solid #eee; border-radius: 12px; 
                                     box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
@@ -585,43 +588,38 @@ $batas_karakter = 300;
     <!-- Features Start -->
     <div class="container-fluid py-5">
         <div class="container">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
+                <h1 class="display-6 mb-4">Perkuliahan Terkait</h1>
+            </div>
             <div class="row g-5 align-items-center">
-                <div class="col-lg-6">
-                    <div class="rounded overflow-hidden">
-                        <div class="row g-0">
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="col-lg-12"> <div class="rounded overflow-hidden">
+                        
+                        <div class="d-flex flex-nowrap g-0" style="overflow-x: auto;"> 
+
+                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.1s">
                                 <div class="text-center bg-primary py-5 px-4 h-100">
                                     <i class="fa-solid fa-brain fa-3x text-secondary mb-3"></i>
                                     <h3 class="display-5 mb-0" style="font-size: 24px;">Kecerdasan Artifisial</h3>
                                     <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin
-                                        yang dapat
-                                        melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti
-                                        pengenalan pola,
-                                        pembelajaran, pemecahan masalah, dan pengambilan keputusan.</span>
+                                        yang dapat melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti
+                                        pengenalan pola, pembelajaran, pemecahan masalah, dan pengambilan keputusan.</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                            
+                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.3s">
                                 <div class="text-center bg-secondary py-5 px-4 h-100">
                                     <i class="fa fa-eye fa-3x text-primary mb-3"></i>
                                     <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra &
                                         Visi Komputer</h3>
-                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada
-                                        pengembangan algoritma yang
-                                        memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa
-                                        diprogram secara eksplisit.</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="text-center bg-secondary py-5 px-4 h-100">
-                                    <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
-                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
                                     <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video
                                         menggunakan komputer, termasuk deteksi objek,
                                         segmentasi, pengenalan pola, dan interpretasi citra untuk aplikasi seperti
                                         pengenalan wajah dan kendaraan otomatis.</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+
+                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.7s">
                                 <div class="text-center bg-primary py-5 px-4 h-100">
                                     <i class="fa fa-lightbulb fa-3x text-secondary mb-3"></i>
                                     <h1 class="display-5 mb-0" style="font-size: 24px;">Sistem Cerdas</h1>
@@ -631,12 +629,19 @@ $batas_karakter = 300;
                                         nyata, seperti robotika dan sistem pakar.</span>
                                 </div>
                             </div>
+                            
+                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.5s">
+                                <div class="text-center bg-secondary py-5 px-4 h-100">
+                                    <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
+                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
+                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada
+                                        pengembangan algoritma yang memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa
+                                        dipogram secara eksplisit.</span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <p class="section-title bg-white text-start text-primary pe-3">LAB IVSS</p>
-                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Perkuliahan Terkait</h1>
                 </div>
             </div>
         </div>

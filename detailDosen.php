@@ -64,13 +64,13 @@ $dosen_detail = pg_fetch_assoc($result);
     <?php include('inc/navbar.php');?>
     <!-- Spinner End -->
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
+    <!-- <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-4">
             <h1 class="display-3 animated slideInDown">Detail Member</h1>
             <nav aria-label="breadcrumb animated slideInDown">
             </nav>
         </div>
-    </div>
+    </div> -->
     <!-- Page Header End -->
 
     <section class="blank-section pt-5" style="min-height: 100vh; margin-top: 100px; background-color: #f8f9fa;">
@@ -205,6 +205,40 @@ $dosen_detail = pg_fetch_assoc($result);
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <div class="mb-5 p-4 bg-white rounded shadow-sm">
+                        <h4 class="fw-bold text-dark mb-3">
+                            <i class="bi bi-journal-text me-2 text-warning"></i> Riset Terkini
+                        </h4>
+
+                        <div class="card shadow-sm border-0" style="border-radius: 10px;">
+                            <table class="table mb-0">
+                                <thead style="background-color: #1A1A37;">
+                                    <tr>
+                                        <th class="text-white text-center" style="width: 10%;">No</th>
+                                        <th class="text-white">Judul Riset Terbaru</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr style="background-color: #FFBC3B;">
+                                        <td class="fw-bold text-center py-3">1.</td>
+                                        <td class="fw-bold py-3">
+                                            Pemanfaatan Wireshark untuk Sniffing Komunikasi Data Berprotokol HTTP pada Jaringan Internet
+                                        </td>
+                                    </tr>
+
+                                    <tr style="background-color: #FFE08A;">
+                                        <td class="fw-bold text-center py-3">2.</td>
+                                        <td class="fw-bold py-3">
+                                            Segmentasi berbasis k-means pada deteksi citra penyakit daun tanaman jagung
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -213,7 +247,6 @@ $dosen_detail = pg_fetch_assoc($result);
     </section>
 
     <?php include('inc/footer.php')?>
-
 
     <!-- Back to Top -->
     <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
