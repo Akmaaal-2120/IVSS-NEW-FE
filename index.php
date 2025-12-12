@@ -78,7 +78,7 @@ $batas_karakter = 300;
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6"> <div class="carousel-text text-start text-white">
-                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px;">
+                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px; color: #FFBC3B;">
                             <i class="fas fa-microchip me-2 text-warning"></i> Lab IVSS
                         </p>
 
