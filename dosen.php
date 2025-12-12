@@ -51,86 +51,78 @@ $ketua_lab = pg_fetch_assoc($result);
     <!-- Page Header -->
     <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-4">
-            <h1 class="display-3 animated slideInDown">Daftar Member</h1>
+            <h3 class="display-3 animated slideInDown">Daftar Dosen Laboratorium Visi Cerdas dan Sistem Cerdas</h3>
         </div>
     </div>
 
     <!-- Team Section -->
-    <div class="container-fluid py-5" style="margin-top: 100px;">
+    <div class="container-fluid py-5" style="margin-top: 50px;">
         <div class="container">
 
-            <!-- Ketua Lab -->
             <?php if ($ketua_lab): ?>
-            <h3 class="text-center mb-4 fw-bold text-dark">Ketua Laboratorium</h3>
+            <h2 class="text-center mb-5 display-5 fw-bolder text-dark border-bottom border-primary pb-2">
+                Ketua Laboratorium
+            </h2>
 
             <div class="row justify-content-center mb-5">
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="team-item d-flex h-100 p-4" style="min-height: 420px;">
-
-                        <div class="team-detail pe-4">
-
-                            <div class="ratio ratio-1x1 mb-4">
-                                <img src="admin/assets/img/<?php echo htmlspecialchars($ketua_lab['foto']); ?>"
-                                    alt="<?php echo htmlspecialchars($ketua_lab['nama']); ?>"
-                                    class="rounded shadow-sm object-fit-cover" style="object-position: top;">
-                            </div>
-
-                            <h3 class="fw-bold"><?php echo htmlspecialchars($ketua_lab['nama']); ?></h3>
-                            <span class="text-secondary"><?php echo htmlspecialchars($ketua_lab['jabatan']); ?></span>
+                <div class="col-sm-10 col-md-8 col-lg-5 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="card team-card border-0 shadow-lg h-100 position-relative overflow-hidden rounded-4">
+                        <div class="ratio ratio-1x1 bg-light">
+                            <img src="admin/assets/img/<?php echo htmlspecialchars($ketua_lab['foto']); ?>"
+                                alt="<?php echo htmlspecialchars($ketua_lab['nama']); ?>"
+                                
+                                class="w-100 h-100 object-fit-contain d-block" 
+                                style="object-position: top; object-fit: contain !important;"> 
                         </div>
 
-                        <div class="team-social bg-light d-flex flex-column justify-content-center p-3 rounded">
-                            <a class="btn btn-square btn-primary my-2"
-                                href="detailDosen.php?nidn=<?php echo urlencode($ketua_lab['nidn']); ?>">
-                                <i class="fas fa-user"></i>
+                        <div class="card-body team-detail text-center p-4">
+                            <h4 class="fw-bold mb-1"><?php echo htmlspecialchars($ketua_lab['nama']); ?></h4>
+                            <p class="text-primary mb-3 fw-medium"><?php echo htmlspecialchars($ketua_lab['jabatan']); ?></p>
+                            
+                            <a href="detailDosen.php?nidn=<?php echo urlencode($ketua_lab['nidn']); ?>" 
+                            class="btn btn-primary btn-lg rounded-pill px-4 mt-2">
+                                <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
             <?php endif; ?>
 
-            <hr class="my-4">
+            <h2 class="text-center mb-5 display-5 fw-bolder text-dark border-bottom border-primary pb-2">
+                Anggota Laboratorium
+            </h2>
 
-            <!-- Anggota Lab -->
-            <h3 class="text-center mb-4 fw-bold text-dark">Anggota Laboratorium</h3>
-
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 <?php foreach ($member_lab_items as $row): ?>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="team-item d-flex h-100 p-4">
-
-                        <div class="team-detail pe-4">
-
-                            <div class="ratio ratio-1x1 mb-4">
-                                <img src="admin/assets/img/<?php echo htmlspecialchars($row['foto']); ?>"
-                                    alt="<?php echo htmlspecialchars($row['nama']); ?>"
-                                    class="rounded shadow-sm object-fit-cover" style="object-position: top;">
-                            </div>
-
-                            <h3 class="fw-bold"><?php echo htmlspecialchars($row['nama']); ?></h3>
-                            <span class="text-secondary"><?php echo htmlspecialchars($row['jabatan']); ?></span>
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="card team-card border-0 shadow h-100 position-relative overflow-hidden rounded-4">
+                        <div class="ratio ratio-1x1 bg-light">
+                            <img src="admin/assets/img/<?php echo htmlspecialchars($row['foto']); ?>"
+                                alt="<?php echo htmlspecialchars($row['nama']); ?>"
+                                
+                                class="w-100 h-100 object-fit-contain d-block" 
+                                style="object-position: top; object-fit: contain !important;"> 
                         </div>
 
-                        <div class="team-social bg-light d-flex flex-column justify-content-center p-3 rounded">
-                            <a class="btn btn-square btn-primary my-2"
-                                href="detailDosen.php?nidn=<?php echo urlencode($row['nidn']); ?>">
-                                <i class="fas fa-user"></i>
+                        <div class="card-body team-detail text-center p-4">
+                            <h5 class="fw-bold mb-1"><?php echo htmlspecialchars($row['nama']); ?></h5>
+                            <p class="text-primary mb-3 fw-medium small"><?php echo htmlspecialchars($row['jabatan']); ?></p>
+                            
+                            <a href="detailDosen.php?nidn=<?php echo urlencode($row['nidn']); ?>" 
+                            class="btn btn-sm btn-primary rounded-pill px-3">
+                                <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
                     </div>
                 </div>
-
                 <?php endforeach; ?>
             </div>
 
         </div>
     </div>
 
-    <?php include('inc/footer.php'); ?>
+<?php include('inc/footer.php'); ?>
 
     <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 

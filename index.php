@@ -8,8 +8,6 @@ $query_peralatan_lab = "SELECT gambar, nama FROM fasilitas
 $query_fasilitas_umum = "SELECT gambar, nama FROM fasilitas WHERE nama = 'Area Mushola' OR nama = 'AC' OR nama = 'Whiteboard' OR nama = 'Locker'";
 $query_berita_terbaru = "SELECT * FROM berita ORDER BY berita_id DESC LIMIT 3";
 
-
-
 $result_visi = pg_query($koneksi, $query_visi);
 $result_misi = pg_query($koneksi, $query_misi);
 $result_dosen = pg_query($koneksi, $query_dosen);
@@ -32,7 +30,7 @@ $batas_karakter = 300;
 
 <head>
     <meta charset="utf-8">
-    <title>Laboratorium Visi Cerdas dan Sistem Cerdas</title>
+    <title>Charitize - Charity Organization Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -59,17 +57,17 @@ $batas_karakter = 300;
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-
+    
 </head>
 
 <body>
+    <?php include('navbar.php');?>
 
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
-    <?php include('inc/navbar.php');?>
     <!-- Spinner End -->
 
     <!-- Carousel Start -->
@@ -124,7 +122,7 @@ $batas_karakter = 300;
                             position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
                             z-index: 2; background-color: #FFBC3B">
                             <i class="fa-solid fa-eye"></i>
-                            <path fill="#343C54" />
+                            <path fill="#343C54"/>
                         </div>
                     </div>
                 </div>
@@ -141,7 +139,7 @@ $batas_karakter = 300;
                             style="width: 70px; height: 70px; font-size: 36px; 
                             position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
                             z-index: 2; background-color: #FFBC3B">
-
+                            
                             <!-- Icon Smart System -->
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +163,9 @@ $batas_karakter = 300;
 
                 <!-- Logo / Image -->
                 <div class="col-lg-6" data-wow-delay="0.2s">
-                    <img class="img-fluid" src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" alt="Image"
+                    <img class="img-fluid" 
+                        src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" 
+                        alt="Image"
                         style="max-width:500px;">
                 </div>
 
@@ -184,12 +184,12 @@ $batas_karakter = 300;
 
                     <!-- Description -->
                     <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify;">
-                        Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di
-                        bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang
+                        Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di 
+                        bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang 
                         intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
-                        dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan
-                        sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini
-                        mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu
+                        dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan 
+                        sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini 
+                        mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu 
                         mengenali, menganalisis, serta merespon lingkungan secara mandiri.
                     </p>
                 </div> <!-- End Content Column -->
@@ -208,18 +208,17 @@ $batas_karakter = 300;
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;"> 
                         <div class="card-body p-4">
 
                             <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
-                                <span class="icon-circle me-3"
-                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
-                                    <i class="fas fa-eye fa-lg"></i>
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-eye fa-lg"></i> 
                                 </span>
                                 Visi
                             </h3>
-
-                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
+                            
+                            z<hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
 
                             <p class="card-text text-dark">
                                 <?php echo nl2br($isi_visi); ?>
@@ -233,13 +232,12 @@ $batas_karakter = 300;
                         <div class="card-body p-4">
 
                             <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
-                                <span class="icon-circle me-3"
-                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
-                                    <i class="fas fa-check-circle fa-lg"></i>
+                                <span class="icon-circle me-3" style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    <i class="fas fa-check-circle fa-lg"></i> 
                                 </span>
                                 Misi
                             </h3>
-
+                            
                             <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
 
                             <ul class="list-unstyled">
@@ -265,36 +263,35 @@ $batas_karakter = 300;
         </div>
     </div>
     <!-- Visi Misi Start -->
-
+    
     <!-- SOP & Layanan Start -->
-    <div class="container-fluid banner py-5" style="background-color: #f8f9fa;">
-        <div class="container py-4">
+    <div class="container-fluid banner py-5" style="background-color: #f8f9fa;"> 
+    <div class="container py-4">
             <div class="banner-inner bg-white rounded-4 shadow-lg p-5 wow fadeIn" data-wow-delay="0.1s">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-xl-8">
                         <div class="text-center">
-
+                            
                             <h2 class="display-5 fw-bold mb-4" style="color: #1a685b;">
                                 SOP dan Layanan
                             </h2>
-
+                            
                             <p class="lead text-muted mb-5">
                                 Informasi standar operasional prosedur dan detail layanan Laboratorium.
                             </p>
-
+                            
                             <div class="row text-start g-4">
-
+                                
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
                                         <i class="fas fa-map-marker-alt fa-2x me-3" style="color: #ffac00;"></i>
                                         <div>
                                             <h5 class="fw-bold" style="color: #1a685b;">Lokasi</h5>
-                                            <p class="mb-0 text-dark">Gedung Jurusan Teknologi Informasi — Lantai 8
-                                                Barat</p>
+                                            <p class="mb-0 text-dark">Gedung Jurusan Teknologi Informasi — Lantai 8 Barat</p>
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
                                         <i class="fas fa-envelope fa-2x me-3" style="color: #ffac00;"></i>
@@ -304,24 +301,24 @@ $batas_karakter = 300;
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
                                         <i class="fas fa-clock fa-2x me-3" style="color: #ffac00;"></i>
                                         <div>
                                             <h5 class="fw-bold" style="color: #1a685b;">Jam Layanan</h5>
-                                            <div class="d-flex justify-content-between" style="width: 200px;">
-                                                <span>Mon-Fri</span>
-                                                <span>07.00 — 21.00</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between" style="width: 200px;">
-                                                <span>Sat-Sun</span>
-                                                <span>09.00 — 21.00</span>
-                                            </div>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Mon-Fri</span>
+                                                    <span>07.00 — 21.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between" style="width: 200px;">
+                                                    <span>Sat-Sun</span>
+                                                    <span>09.00 — 21.00</span>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                
                             </div>
                         </div>
                     </div>
@@ -341,23 +338,32 @@ $batas_karakter = 300;
 
             <div class="row g-4 justify-content-center">
                 <?php
-            while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) {
-            ?>
-                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="team-item d-flex h-100 p-4">
+                while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) {
+                ?>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="team-item d-flex h-100 p-4">
 
-                        <div class="team-detail pe-4">
-                            <!-- Foto fasilitas dari database -->
-                            <img class="img-fluid mb-4" src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>"
-                                alt="<?php echo $data_fasilitas['nama']; ?>">
-                            <!-- Nama fasilitas -->
-                            <h3><?php echo $data_fasilitas['nama']; ?></h3>
+                            <div class="team-detail pe-4">
+                                <!-- Foto fasilitas dari database -->
+                                <img class="img-fluid mb-4" 
+                                    src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>" 
+                                    alt="<?php echo $data_fasilitas['nama']; ?>">
+                                <!-- Nama fasilitas -->
+                                <h3><?php echo $data_fasilitas['nama']; ?></h3>
+                            </div>
+
+                            <div class="team-social bg-light d-flex flex-column justify-content-center flex-shrink-0 p-4">
+                                <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-x-twitter"></i></a>
+                                <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-primary my-2" href="#!"><i class="fab fa-youtube"></i></a>
+                            </div>
+
                         </div>
                     </div>
-                </div>
                 <?php
-            }
-            ?>
+                }
+                ?>
             </div>
         </div>
     </div>
@@ -372,7 +378,7 @@ $batas_karakter = 300;
                 <h1 class="display-6 mb-4">Peralatan Laboratorium</h1>
             </div>
 
-            <?php  
+        <?php  
         // === Ambil semua data alat ke array ===
         $items = [];
         while ($row = pg_fetch_assoc($result_peralatan_lab)) {
@@ -385,14 +391,16 @@ $batas_karakter = 300;
         $totalSlides = ceil($totalItems / $perSlide);
         ?>
 
-            <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
-
+        <div id="donationCarousel" class="carousel slide" data-bs-ride="carousel">
+    
                 <!-- Indicators otomatis -->
                 <div class="carousel-indicators">
                     <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
-                    <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="<?php echo $i; ?>"
-                        class="<?php echo $i === 0 ? 'active' : ''; ?>">
-                    </button>
+                        <button type="button"
+                                data-bs-target="#donationCarousel"
+                                data-bs-slide-to="<?php echo $i; ?>"
+                                class="<?php echo $i === 0 ? 'active' : ''; ?>">
+                        </button>
                     <?php endfor; ?>
                 </div>
 
@@ -400,55 +408,51 @@ $batas_karakter = 300;
                 <div class="carousel-inner">
 
                     <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
-                    <div class="carousel-item <?php echo $i === 0 ? 'active' : ''; ?>">
-                        <div class="row justify-content-center g-4">
+                        <div class="carousel-item <?php echo $i === 0 ? 'active' : ''; ?>">
+                            <div class="row justify-content-center g-4">
 
-                            <?php
+                                <?php
                                 $start = $i * $perSlide;
                                 $end = min($start + $perSlide, $totalItems);
 
                                 for ($j = $start; $j < $end; $j++) :
                                     $item = $items[$j];
                                 ?>
-                            <div class="col-lg-4 col-md-6 col-12">
-                                <div class="card h-100 border-0 shadow-sm">
-                                    <!-- Gambar -->
-                                    <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
-                                        alt="<?php echo $item['nama']; ?>" class="card-img-top img-fluid"
-                                        style="height: 200px; object-fit: cover;">
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <!-- Gambar -->
+                                            <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
+                                                alt="<?php echo $item['nama']; ?>"
+                                                class="card-img-top img-fluid"
+                                                style="height: 200px; object-fit: cover;">
 
-                                    <div class="card-body text-center">
-                                        <span class="badge rounded-pill text-dark px-3 py-2 mb-2"
-                                            style="background-color: #FFBC3B;">
-                                            <?php echo $item['kategori'] ?? 'Alat'; ?>
-                                        </span>
-                                        <h5 class="card-title"><?php echo $item['nama']; ?></h5>
+                                            <div class="card-body text-center">
+                                                <span class="badge rounded-pill text-dark px-3 py-2 mb-2" style="background-color: #FFBC3B;">
+                                                    <?php echo $item['kategori'] ?? 'Alat'; ?>
+                                                </span>
+                                                <h5 class="card-title"><?php echo $item['nama']; ?></h5>
+                                                <p class="card-text"><?php echo $item['deskripsi'] ?? ''; ?></p>
+                                                <a href="#!" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Detail</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <?php endfor; ?>
+                                <?php endfor; ?>
 
+                            </div>
                         </div>
-                    </div>
                     <?php endfor; ?>
 
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#donationCarousel"
-                    data-bs-slide="prev">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black"
-                        class="bi bi-chevron-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                <button class="carousel-control-prev" type="button" data-bs-target="#donationCarousel" data-bs-slide="prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                     </svg>
                 </button>
 
-                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel"
-                    data-bs-slide="next">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black"
-                        class="bi bi-chevron-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                <button class="carousel-control-next" type="button" data-bs-target="#donationCarousel" data-bs-slide="next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </button>
             </div>
@@ -456,55 +460,46 @@ $batas_karakter = 300;
     </div>
     <!-- Peralatan End -->
 
-    <!-- Service Start -->
+    <!-- Kegiatan & Proyek -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="service-title">
                         <h1 class="display-6 mb-4">Kegiatan & Proyek</h1>
-
+                        
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-8 col-xl-9">
                     <div class="row g-5">
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div class="service-item h-100" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
                                     <i class="fa fa-solid fa-cloud-meatball fa-2x text-secondary"></i>
                                 </div>
                                 <h3>Sistem Cerdas</h3>
-                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
-                                </p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
+                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div class="service-item h-100" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
                                     <i class="fa fa-solid fa-layer-group fa-2x text-secondary"></i>
                                 </div>
                                 <h3>Machine Learning</h3>
-                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
-                                    menggunakan dataset nyata.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
+                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering menggunakan dataset nyata.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                            <div class="service-item h-100"style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
                                     <i class="fa fa-regular fa-lightbulb fa-2x text-secondary"></i>
                                 </div>
                                 <h3>Visi Komputer</h3>
-                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
-                                    mengenali objek.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
-                                </div>
+                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan mengenali objek.</p>
+                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;"></div>
                             </div>
                         </div>
                     </div>
@@ -512,10 +507,9 @@ $batas_karakter = 300;
             </div>
         </div>
     </div>
-    <!-- Service End -->
+    <!-- Kegiatan & Proyek -->
 
-
-    <!-- Features Start -->
+    <!-- Perkuliahan Terkait -->
     <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -526,42 +520,33 @@ $batas_karakter = 300;
                                 <div class="text-center bg-primary py-5 px-4 h-100">
                                     <i class="fa-solid fa-brain fa-3x text-secondary mb-3"></i>
                                     <h3 class="display-5 mb-0" style="font-size: 24px;">Kecerdasan Artifisial</h3>
-                                    <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin
-                                        yang dapat
-                                        melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti
-                                        pengenalan pola,
+                                    <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin yang dapat
+                                        melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti pengenalan pola, 
                                         pembelajaran, pemecahan masalah, dan pengambilan keputusan.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="text-center bg-secondary py-5 px-4 h-100">
                                     <i class="fa fa-eye fa-3x text-primary mb-3"></i>
-                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra &
-                                        Visi Komputer</h3>
-                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada
-                                        pengembangan algoritma yang
-                                        memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa
-                                        diprogram secara eksplisit.</span>
+                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra & Visi Komputer</h3>
+                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada pengembangan algoritma yang 
+                                        memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa diprogram secara eksplisit.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
                                 <div class="text-center bg-secondary py-5 px-4 h-100">
                                     <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
                                     <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
-                                    <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video
-                                        menggunakan komputer, termasuk deteksi objek,
-                                        segmentasi, pengenalan pola, dan interpretasi citra untuk aplikasi seperti
-                                        pengenalan wajah dan kendaraan otomatis.</span>
+                                    <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video menggunakan komputer, termasuk deteksi objek,
+                                        segmentasi, pengenalan pola, dan interpretasi citra untuk aplikasi seperti pengenalan wajah dan kendaraan otomatis.</span>
                                 </div>
                             </div>
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
                                 <div class="text-center bg-primary py-5 px-4 h-100">
                                     <i class="fa fa-lightbulb fa-3x text-secondary mb-3"></i>
                                     <h1 class="display-5 mb-0" style="font-size: 24px;">Sistem Cerdas</h1>
-                                    <span class="text-dark">Pengembangan sistem yang dapat meniru atau melampaui
-                                        kemampuan kognitif manusia, seperti pengambilan
-                                        keputusan otomatis, perencanaan, dan pemrosesan informasi dalam konteks aplikasi
-                                        nyata, seperti robotika dan sistem pakar.</span>
+                                    <span class="text-dark">Pengembangan sistem yang dapat meniru atau melampaui kemampuan kognitif manusia, seperti pengambilan 
+                                        keputusan otomatis, perencanaan, dan pemrosesan informasi dalam konteks aplikasi nyata, seperti robotika dan sistem pakar.</span>
                                 </div>
                             </div>
                         </div>
@@ -570,20 +555,33 @@ $batas_karakter = 300;
                 <div class="col-lg-6">
                     <p class="section-title bg-white text-start text-primary pe-3">LAB IVSS</p>
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">Perkuliahan Terkait</h1>
+                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s">We believe in creating opportunities and empowering
+                        communities through education, healthcare, and sustainable development. Your support helps us
+                        bring smiles, hope, and a brighter future to those in need.</p>
+                    <p class="text-dark wow fadeIn" data-wow-delay="0.4s"><i
+                            class="fa fa-check text-primary me-2"></i>Justo magna erat amet</p>
+                    <p class="text-dark wow fadeIn" data-wow-delay="0.5s"><i
+                            class="fa fa-check text-primary me-2"></i>Aliqu diam amet diam et eos</p>
+                    <p class="text-dark wow fadeIn" data-wow-delay="0.6s"><i
+                            class="fa fa-check text-primary me-2"></i>Clita erat ipsum et lorem et sit</p>
+                    <div class="d-flex mt-4 wow fadeIn" data-wow-delay="0.7s">
+                        <a class="btn btn-primary py-3 px-4 me-3" href="#!">Donate Now</a>
+                        <a class="btn btn-secondary py-3 px-4" href="#!">Join Us Now</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Features End -->
-    <div class="container py-5">
+    <!-- Perkuliahan Terkait End -->
 
+    <!-- Publikasi Start -->
+    <div class="container py-5">
         <div class="row">
             <div class="col-12 text-center mb-5">
                 <h2 class="fw-bold display-5" style="color: #1A685B;">
                     <i class="fas fa-book-reader me-2"></i> Publikasi Dosen
                 </h2>
-                <div class="mx-auto" style="width: 150px; height: 5px; background-color: #FFAC00; margin-top: 10px;">
-                </div>
+                <div class="mx-auto" style="width: 150px; height: 5px; background-color: #FFAC00; margin-top: 10px;"></div>
             </div>
         </div>
 
@@ -604,22 +602,22 @@ $batas_karakter = 300;
 
                         <tbody>
                             <?php
-                        // Memastikan $result_dosen ada dan memiliki data (asumsi ini adalah logic PHP)
-                        if (isset($result_dosen) && pg_num_rows($result_dosen) > 0) {
-                            $no = 1;
-                            // Asumsi pg_result_seek diperlukan di sini jika data sudah pernah dibaca
-                            if (isset($result_dosen)) { pg_result_seek($result_dosen, 0); } 
-                            
-                            while ($data_dosen = pg_fetch_assoc($result_dosen)) {
-                                $link_scopus = $data_dosen['scopus'] ?? '#';
-                                $link_scholar = $data_dosen['google_scholar'] ?? '#';
-                                $link_sinta = $data_dosen['sinta'] ?? '#';
+                            // Memastikan $result_dosen ada dan memiliki data (asumsi ini adalah logic PHP)
+                            if (isset($result_dosen) && pg_num_rows($result_dosen) > 0) {
+                                $no = 1;
+                                // Asumsi pg_result_seek diperlukan di sini jika data sudah pernah dibaca
+                                if (isset($result_dosen)) { pg_result_seek($result_dosen, 0); } 
                                 
-                                // Kelas untuk tombol Link (Bootstrap classes)
-                                $scopus_class = ($link_scopus === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
-                                $scholar_class = ($link_scholar === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
-                                $sinta_class = ($link_sinta === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
-                        ?>
+                                while ($data_dosen = pg_fetch_assoc($result_dosen)) {
+                                    $link_scopus = $data_dosen['scopus'] ?? '#';
+                                    $link_scholar = $data_dosen['google_scholar'] ?? '#';
+                                    $link_sinta = $data_dosen['sinta'] ?? '#';
+                                    
+                                    // Kelas untuk tombol Link (Bootstrap classes)
+                                    $scopus_class = ($link_scopus === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                                    $scholar_class = ($link_scholar === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                                    $sinta_class = ($link_sinta === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
+                            ?>
                             <tr class="bg-white">
                                 <td class="text-start px-4">
                                     <span class="fw-bold me-2 text-primary"><?php echo $no++; ?>.</span>
@@ -651,129 +649,165 @@ $batas_karakter = 300;
                                 </td>
                             </tr>
                             <?php
+                                }
+                            } else {
+                                echo '<tr><td colspan="4" class="text-center text-muted py-4 small">Data dosen tidak ditemukan di database atau belum ada.</td></tr>';
                             }
-                        } else {
-                            echo '<tr><td colspan="4" class="text-center text-muted py-4 small">Data dosen tidak ditemukan di database atau belum ada.</td></tr>';
-                        }
-                        ?>
+                            ?>
                         </tbody>
 
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
+    <!-- Publikasi Start -->
 
     <!-- Berita Start -->
     <div class="container-fluid py-5">
         <div class="container">
-
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white text-center text-primary px-3">BERITA</p>
                 <h1 class="display-6 mb-4">Berita Terbaru</h1>
             </div>
-
+            
             <div class="row g-4">
-
                 <?php
-            $batas_karakter = 150;
+                $batas_karakter = 150;
 
-            if ($result_berita_terbaru && pg_num_rows($result_berita_terbaru) > 0) {
-
-                pg_result_seek($result_berita_terbaru, 0);
-
-                while ($data_berita = pg_fetch_assoc($result_berita_terbaru)) {
-
-                    $berita_id  = htmlspecialchars($data_berita['berita_id']);
-                    $berita_link = "detailBerita.php?id=" . urlencode($berita_id);
-                    $tanggal_format = date('d F Y', strtotime($data_berita['tanggal'] ?? date("Y-m-d")));
-
-                    // preview
-                    $isi_lengkap = strip_tags($data_berita['isi']);
-                    if (strlen($isi_lengkap) > $batas_karakter) {
-                        $potongan_isi = substr($isi_lengkap, 0, $batas_karakter);
-                        $potongan_isi = substr($potongan_isi, 0, strrpos($potongan_isi, ' '));
-                        $isi_tampilan = $potongan_isi . "...";
-                        $show_button = true;
-                    } else {
-                        $isi_tampilan = $isi_lengkap;
-                        $show_button = false;
-                    }
-            ?>
-
+                if ($result_berita_terbaru) {
+                    if (isset($result_berita_terbaru)) { pg_result_seek($result_berita_terbaru, 0); }
+                    
+                    while ($data_berita = pg_fetch_assoc($result_berita_terbaru)) {
+                        $berita_id = $data_berita['berita_id']; 
+                        $berita_link = "detailBerita.php?id=" . urlencode($berita_id);
+                        
+                        $tanggal_format = date('d F Y', strtotime($data_berita['tanggal']));
+                        
+                        $isi_lengkap = $data_berita['isi']; 
+                        
+                        if (strlen($isi_lengkap) > $batas_karakter) {
+                            $potongan_isi = substr($isi_lengkap, 0, $batas_karakter);
+                            $potongan_isi = substr($potongan_isi, 0, strrpos($potongan_isi, ' '));
+                            $isi_tampilan = $potongan_isi . '...';
+                            $show_button = true;
+                        } else {
+                            $isi_tampilan = $isi_lengkap;
+                            $show_button = false;
+                        }
+                ?>
+                
                 <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="event-item h-100 p-4 d-flex flex-column shadow-sm border rounded">
-
-                        <img class="img-fluid w-100 mb-3 rounded"
-                            src="admin/assets/img/<?php echo htmlspecialchars($data_berita['gambar']); ?>"
-                            alt="<?php echo htmlspecialchars($data_berita['judul']); ?>"
-                            style="height: 200px; object-fit: cover;">
-
-                        <a href="<?php echo $berita_link; ?>" class="h4 text-primary mb-2 fw-bold d-block">
+                    <div class="event-item h-100 p-4">
+                        <img class="img-fluid w-100 mb-4" 
+                            src="admin/assets/img/<?php echo htmlspecialchars($data_berita['gambar']); ?>" 
+                            alt="<?= htmlspecialchars($data_berita['judul']); ?>" 
+                            style="height: 200px; object-fit: cover;"> <a href="<?php echo $berita_link; ?>" class="h3 d-inline-block text-primary">
                             <?php echo htmlspecialchars($data_berita['judul']); ?>
                         </a>
-
-                        <p class="flex-grow-1" style="color:#495057;">
+                        
+                        <p style="color: #495057;">
                             <?php echo htmlspecialchars($isi_tampilan); ?>
                         </p>
-
-                        <div class="bg-light p-3 rounded mt-3">
-                            <p class="mb-1">
-                                <i class="fa fa-calendar-alt text-primary me-2"></i>
-                                <?php echo $tanggal_format; ?>
-                            </p>
-
-                            <p class="mb-2">
-                                <i class="fa fa-user-edit text-primary me-2"></i>
-                                Penulis: <?php echo htmlspecialchars($data_berita['penulis'] ?? "-"); ?>
-                            </p>
-
+                        
+                        <div class="bg-light p-4 mt-auto"> <p class="mb-1"><i class="fa fa-calendar-alt text-primary me-2"></i><?php echo $tanggal_format; ?></p>
+                            <p class="mb-0"><i class="fa fa-user-edit text-primary me-2"></i>Penulis: <?php echo htmlspecialchars($data_berita['penulis'] ?? '-'); ?></p> 
+                            
                             <?php if ($show_button): ?>
-                            <a href="<?php echo $berita_link; ?>" class="fw-bold d-block text-end"
-                                style="color:#FFBC3B; text-decoration:none;">
-                                Baca Selengkapnya →
+                            <a href="<?php echo $berita_link; ?>" class="more-btn fw-bold mt-2 d-block"
+                                style="color: #FFBC3B; text-decoration: none;">
+                                Baca Selengkapnya &rarr;
                             </a>
                             <?php endif; ?>
                         </div>
-
                     </div>
                 </div>
-
+                
                 <?php
-                } // end while
+                    } 
+                } else {
+                    echo "<div class='col-12'><p class='text-center'>Tidak ada berita terbaru yang tersedia.</p></div>";
+                }
+                ?>
+            </div>
+            </div>
+    </div>
+    <!-- Berita End -->
 
-            } else {
-                echo "<div class='col-12 text-center'>Tidak ada berita terbaru yang tersedia.</div>";
-            }
-            ?>
-
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5 py-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Our Office</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-x-twitter"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary me-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="#!">About Us</a>
+                    <a class="btn btn-link" href="#!">Contact Us</a>
+                    <a class="btn btn-link" href="#!">Our Services</a>
+                    <a class="btn btn-link" href="#!">Terms & Condition</a>
+                    <a class="btn btn-link" href="#!">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Business Hours</h4>
+                    <p class="mb-1">Monday - Friday</p>
+                    <h6 class="text-light">09:00 am - 07:00 pm</h6>
+                    <p class="mb-1">Saturday</p>
+                    <h6 class="text-light">09:00 am - 12:00 pm</h6>
+                    <p class="mb-1">Sunday</p>
+                    <h6 class="text-light">Closed</h6>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Gallery</h4>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-1.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-2.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid w-100" src="img/gallery-6.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright pt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="fw-semi-bold" href="#!">Your Site Name</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                        Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">HTML Codex</a>. Distributed by
+                        <a class="fw-semi-bold" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Berita End -->
 
-    <!-- Footer Start -->
-    <?php include('inc/footer.php')?>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
 
 </html>
