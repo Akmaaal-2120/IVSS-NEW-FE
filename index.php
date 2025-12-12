@@ -77,14 +77,34 @@ $batas_karakter = 300;
         <div class="owl-carousel header-carousel py-5">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="carousel-text">
-                            <h3 class="display-1 text-uppercase mb-3">Selamat Datang di Lab IVSS</h3>
-                            <p class="fs-5 mb-5">Laboratorium Visi Cerdas dan Sistem Cerdas</p>
-                            <div class="d-flex">
-                                <a class="btn btn-primary py-3 px-4 me-3" href="#!">Login</a>
-                                <a class="btn btn-secondary py-3 px-4" href="#!">Register</a>
+                    <div class="col-lg-6"> <div class="carousel-text text-start text-white">
+
+                            <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown">
+                                Intelligent Vision & <span class="text-warning">Smart System</span>
+                            </h1>
+
+                            <p class="fs-5 mb-5 fw-light animate__animated animate__fadeInUp" style="color: #777;">
+                                Pusat penelitian dan pengembangan teknologi 
+                                <b style="color: #000;">Computer Vision</b>, 
+                                <b style="color: #000;">Artificial Intelligence (AI)</b>, 
+                                dan 
+                                <b style="color: #000;">Internet of Things (IoT)</b>
+                            </p>
+
+                            <div class="d-flex align-items-center mb-5 animate__animated animate__fadeInUp">
+                                
+                                <a class="btn btn-warning py-3 px-5 me-3 fw-bold text-dark shadow-lg rounded-pill" 
+                                href="#!" role="button">
+                                <i class="fas fa-sign-in-alt me-2"></i> LOGIN
+                                </a>
+                                
+                                <a class="btn py-3 px-5 fw-bold rounded-pill" 
+                                href="#!" role="button"
+                                style="border: 2px solid #FFBC3B; color: #FFBC3B;">
+                                <i class="fas fa-user-plus me-2"></i> REGISTER
+                                </a>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -716,10 +736,12 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
 
-            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">BERITA</p>
-                <h1 class="display-6 mb-4">Berita Terbaru</h1>
+           <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="section-title bg-white text-primary px-3 mb-2">BERITA</p>
+                <h1 class="display-6 mb-3">Berita Terbaru</h1>
+                <p class="lead text-muted" style="font-size: 1rem;">Baca berita terbaru dari Laboratorium Visi Cerdas dan Sistem Cerdas.</p>
             </div>
+
 
             <div class="row g-4">
 
