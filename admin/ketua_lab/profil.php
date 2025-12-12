@@ -49,8 +49,8 @@ if (!empty($admin['foto'])) {
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <style>
       .profile-img {
-        width:150px;
-        height:150px;
+        width:130px;
+        height:180px;
         object-fit:cover;
         border-radius:8px;
         border:1px solid #e3e6f0;
@@ -103,6 +103,9 @@ if (!empty($admin['foto'])) {
 
                                 <a href="ubah_password.php?id=<?= urlencode($user_id) ?>" class="btn btn-secondary btn-sm mt-2">
                                     <i class="fas fa-key mr-1"></i> Ubah Password
+                                </a>
+                                <a href="edit_profil.php" class="btn btn-primary btn-sm mt-2">
+                                    <i class="fas fa-user-edit mr-1"></i> Edit Profil
                                 </a>
                             </div>
                         </div>

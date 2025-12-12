@@ -70,17 +70,17 @@ $ketua_lab = pg_fetch_assoc($result);
                         <div class="ratio ratio-1x1 bg-light">
                             <img src="admin/assets/img/<?php echo htmlspecialchars($ketua_lab['foto']); ?>"
                                 alt="<?php echo htmlspecialchars($ketua_lab['nama']); ?>"
-                                
-                                class="w-100 h-100 object-fit-contain d-block" 
-                                style="object-position: top; object-fit: contain !important;"> 
+                                class="w-100 h-100 object-fit-contain d-block"
+                                style="object-position: top; object-fit: contain !important;">
                         </div>
 
                         <div class="card-body team-detail text-center p-4">
                             <h4 class="fw-bold mb-1"><?php echo htmlspecialchars($ketua_lab['nama']); ?></h4>
-                            <p class="text-primary mb-3 fw-medium"><?php echo htmlspecialchars($ketua_lab['jabatan']); ?></p>
-                            
-                            <a href="detailDosen.php?nidn=<?php echo urlencode($ketua_lab['nidn']); ?>" 
-                            class="btn btn-primary btn-lg rounded-pill px-4 mt-2">
+                            <p class="text-primary mb-3 fw-medium">
+                                <?php echo htmlspecialchars($ketua_lab['jabatan']); ?></p>
+
+                            <a href="detailDosen.php?nidn=<?php echo urlencode($ketua_lab['nidn']); ?>"
+                                class="btn btn-primary btn-lg rounded-pill px-4 mt-2">
                                 <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
@@ -100,17 +100,17 @@ $ketua_lab = pg_fetch_assoc($result);
                         <div class="ratio ratio-1x1 bg-light">
                             <img src="admin/assets/img/<?php echo htmlspecialchars($row['foto']); ?>"
                                 alt="<?php echo htmlspecialchars($row['nama']); ?>"
-                                
-                                class="w-100 h-100 object-fit-contain d-block" 
-                                style="object-position: top; object-fit: contain !important;"> 
+                                class="w-100 h-100 object-fit-contain d-block"
+                                style="object-position: top; object-fit: contain !important;">
                         </div>
 
                         <div class="card-body team-detail text-center p-4">
                             <h5 class="fw-bold mb-1"><?php echo htmlspecialchars($row['nama']); ?></h5>
-                            <p class="text-primary mb-3 fw-medium small"><?php echo htmlspecialchars($row['jabatan']); ?></p>
-                            
-                            <a href="detailDosen.php?nidn=<?php echo urlencode($row['nidn']); ?>" 
-                            class="btn btn-sm btn-primary rounded-pill px-3">
+                            <p class="text-primary mb-3 fw-medium small">
+                                <?php echo htmlspecialchars($row['jabatan']); ?></p>
+
+                            <a href="detailDosen.php?nidn=<?php echo urlencode($row['nidn']); ?>"
+                                class="btn btn-sm btn-primary rounded-pill px-3">
                                 <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
@@ -121,9 +121,9 @@ $ketua_lab = pg_fetch_assoc($result);
 
         </div>
     </div>
+    <?php include('inc/footer.php')?>
 
-<?php include('inc/footer.php'); ?>
-
+    <!-- Back to Top -->
     <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JS -->

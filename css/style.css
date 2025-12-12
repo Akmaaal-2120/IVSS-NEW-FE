@@ -1,7 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --bs-tertiary: #797E88;
+    --bs-tertiary: #1d4052;
 }
+
+
 
 .back-to-top {
     position: fixed;
@@ -428,14 +430,16 @@
 .banner .banner-inner::before {
     top: 0;
     left: 0;
-    border-top: 150px solid var(--bs-primary);
+    border-top: 150px solid;
+    color: #FFBC3B;
     border-right: 150px solid transparent;
 }
 
 .banner .banner-inner::after {
     right: 0;
     bottom: 0;
-    border-bottom: 150px solid var(--bs-secondary);
+    border-bottom: 150px solid;
+    color: #1d4052;
     border-left: 150px solid transparent;
 }
 
@@ -591,6 +595,7 @@
 /*** Footer ***/
 .footer {
     color: var(--bs-tertiary);
+    background-color: #1d4052;
     background: linear-gradient(rgba(5, 19, 17, .95), rgba(5, 19, 17, .95)), url(../img/bg-footer.jpg) center center no-repeat;
     background-size: cover;
 }

@@ -19,7 +19,7 @@ if ($q && pg_num_rows($q) > 0) {
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
             <?php if ($logo_src): ?>
-                <img src="../../assets/img/<?= htmlspecialchars($logo_src) ?>" alt="Logo IVSS"style="width:40px; height:40px; object-fit:cover; border-radius:6px;">
+                <img src="../assets/img/<?= htmlspecialchars($logo_src) ?>" alt="Logo IVSS"style="width:40px; height:40px; object-fit:cover; border-radius:6px;">
             <?php else: ?>
                 <div style="width:40px; height:40px; background:#ccc; border-radius:6px;"></div>
             <?php endif; ?>

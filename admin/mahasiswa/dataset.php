@@ -2,26 +2,32 @@
 session_start();
 include '../inc/koneksi.php';
 
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
     header('Location: ../index.php');
     exit;
 }
 
 $user_id = $_SESSION['user_id'];
-$role = $_SESSION['role'];
 
-// Ambil semua dataset publik + privat milik sendiri
+// Ambil dataset:
+// - publik
+// - dataset milik mahasiswa itu sendiri
+// - dataset milik ketua (bisa dicopy)
 $q = pg_query_params($koneksi, "
-    SELECT 
+    SELECT
         d.dataset_id, d.judul, d.deskripsi, d.file_path, d.uploader_by, d.tanggal_upload, d.visibility,
+        u.role AS uploader_role,
         COALESCE(m.nama, dos.nama, u.username) AS uploader_name
     FROM dataset d
     LEFT JOIN users u ON d.uploader_by = u.user_id
     LEFT JOIN mahasiswa m ON u.user_id = m.user_id
     LEFT JOIN dosen dos ON u.user_id = dos.user_id
-    WHERE d.visibility = 'publik' OR d.uploader_by = $1
+    WHERE d.visibility = 'publik'
+        OR d.uploader_by = $1
+        OR u.role = 'ketua'
     ORDER BY d.tanggal_upload DESC
 ", [$user_id]);
+
 
 $datasets = $q ? pg_fetch_all($q) : [];
 if ($datasets === false) $datasets = [];
@@ -29,11 +35,11 @@ if ($datasets === false) $datasets = [];
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <title>Dataset</title>
-    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<meta charset="utf-8">
+<title>Dataset</title>
+<link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 <div id="wrapper">
@@ -48,7 +54,6 @@ if ($datasets === false) $datasets = [];
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <!-- Tombol Tambah di atas tabel -->
                         <div class="d-flex justify-content-between mb-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Dataset</h6>
                             <a href="tambah_dataset.php" class="btn btn-success btn-sm">
@@ -57,18 +62,13 @@ if ($datasets === false) $datasets = [];
                         </div>
 
                         <?php
-                        // Notifikasi aksi
                         if (isset($_GET['msg'])) {
                             $msg = $_GET['msg'];
-                            if ($msg === 'created') {
-                                echo '<div class="alert alert-success">Dataset berhasil ditambahkan.</div>';
-                            } elseif ($msg === 'updated') {
-                                echo '<div class="alert alert-success">Dataset berhasil diupdate.</div>';
-                            } elseif ($msg === 'deleted') {
-                                echo '<div class="alert alert-success">Dataset berhasil dihapus.</div>';
-                            } elseif ($msg === 'error') {
-                                echo '<div class="alert alert-danger">Terjadi kesalahan.</div>';
-                            }
+                            if ($msg === 'created') echo '<div class="alert alert-success">Dataset berhasil ditambahkan.</div>';
+                            elseif ($msg === 'updated') echo '<div class="alert alert-success">Dataset berhasil diupdate.</div>';
+                            elseif ($msg === 'deleted') echo '<div class="alert alert-success">Dataset berhasil dihapus.</div>';
+                            elseif ($msg === 'copied') echo '<div class="alert alert-success">Dataset berhasil dicopy.</div>';
+                            elseif ($msg === 'error') echo '<div class="alert alert-danger">Terjadi kesalahan.</div>';
                         }
                         ?>
 
@@ -105,16 +105,28 @@ if ($datasets === false) $datasets = [];
                                         <td class="text-center"><?= htmlspecialchars($d['tanggal_upload']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($d['visibility']) ?></td>
                                         <td class="text-center">
-                                            <?php if ($d['uploader_by'] == $user_id): ?>
+                                            <?php
+                                            if ($d['uploader_by'] == $user_id) {
+                                                // dataset milik mahasiswa sendiri
+                                                ?>
                                                 <a href="edit_dataset.php?id=<?= $d['dataset_id'] ?>" class="btn btn-sm btn-primary">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                                 <a href="hapus_dataset.php?id=<?= $d['dataset_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus dataset ini?')">
                                                     <i class="fas fa-trash"></i> Hapus
                                                 </a>
-                                            <?php else: ?>
-                                                <span class="text-muted">-</span>
-                                            <?php endif; ?>
+                                            <?php
+                                            } elseif ($d['uploader_role'] === 'ketua') {
+                                                // dataset milik ketua, mahasiswa bisa copy
+                                                ?>
+                                                <a href="edit_dataset.php?id=<?= $d['dataset_id'] ?>" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-copy"></i> Copy
+                                                </a>
+                                            <?php
+                                            } else {
+                                                echo '<span class="text-muted">-</span>';
+                                            }
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; endif; ?>

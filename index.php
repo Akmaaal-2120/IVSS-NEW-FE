@@ -3,10 +3,13 @@ include 'inc/koneksi.php';
 $query_visi = "SELECT isi FROM visimisi WHERE nama = 'visi' LIMIT 1";
 $query_misi = "SELECT isi FROM visimisi WHERE nama = 'misi' LIMIT 1";
 $query_dosen = "SELECT * FROM dosen";
-$query_peralatan_lab = "SELECT gambar, nama FROM fasilitas 
+$query_peralatan_lab = "SELECT gambar, nama, isi FROM fasilitas 
                         WHERE nama NOT IN ('Area Mushola', 'AC', 'Whiteboard', 'Locker')";
-$query_fasilitas_umum = "SELECT gambar, nama FROM fasilitas WHERE nama = 'Area Mushola' OR nama = 'AC' OR nama = 'Whiteboard' OR nama = 'Locker'";
+$query_fasilitas_umum = "SELECT gambar, nama, isi FROM fasilitas WHERE nama = 'Area Mushola' OR nama = 'AC' OR nama = 'Whiteboard' OR nama = 'Locker'";
 $query_berita_terbaru = "SELECT * FROM berita ORDER BY berita_id DESC LIMIT 3";
+$sql = "SELECT * FROM logo";
+$result = pg_query($koneksi, $sql);
+$logo_data = pg_fetch_assoc($result);
 
 
 
@@ -78,31 +81,31 @@ $batas_karakter = 300;
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6"> <div class="carousel-text text-start text-white">
-                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px; color: #FFBC3B;">
-                            <i class="fas fa-microchip me-2 text-warning"></i> Lab IVSS
+                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px; color:#1d4052">
+                            <i class="fas fa-microchip me-2" style="color: #1d4052;"></i> Lab IVSS
                         </p>
 
-                            <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown">
-                                Intelligent Vision & <span class="text-warning">Smart System</span>
+                            <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown" style="color: #1d4052;">
+                                Intelligent Vision & <span style="color: #FFBC3B;">Smart System</span>
                             </h1>
 
-                            <p class="fs-5 mb-5 fw-light animate__animated animate__fadeInUp" style="color: #777;">
+                            <p class="fs-5 mb-5 fw-light animate__animated animate__fadeInUp" style="color: black;">
                                 Pusat penelitian dan pengembangan teknologi 
-                                <b style="color: #000;">Computer Vision</b>, 
-                                <b style="color: #000;">Artificial Intelligence (AI)</b>, 
+                                <b style="color: black;">Computer Vision</b>, 
+                                <b style="color: black;">Artificial Intelligence (AI)</b>, 
                                 dan 
-                                <b style="color: #000;">Internet of Things (IoT)</b>
+                                <b style="color: black;">Internet of Things (IoT)</b>
                             </p>
 
                             <div class="d-flex align-items-center mb-5 animate__animated animate__fadeInUp">
                                 
-                                <a class="btn btn-warning py-3 px-5 me-3 fw-bold text-dark shadow-lg rounded-pill" 
-                                href="#!" role="button">
-                                <i class="fas fa-sign-in-alt me-2"></i> LOGIN
+                                <a class="py-3 px-5 me-3 fw-bold shadow-lg rounded-pill" 
+                                href="admin/index.php" role="button" style="background-color: #FFBC3B; color:#1d4052"> 
+                                <i class="fas fa-sign-in-alt me-2" style="color: #1d4052;"></i> LOGIN
                                 </a>
                                 
                                 <a class="btn py-3 px-5 fw-bold rounded-pill" 
-                                href="#!" role="button"
+                                href="register_mahasiswa.php" role="button"
                                 style="border: 2px solid #FFBC3B; color: #FFBC3B;">
                                 <i class="fas fa-user-plus me-2"></i> REGISTER
                                 </a>
@@ -122,13 +125,13 @@ $batas_karakter = 300;
     <!-- Carousel End -->
 
     <!-- Fokus Riset Start -->
-    <section id="fokus-riset" class="py-5" style="background-color: #ffac00;">
+    <section id="fokus-riset" class="py-5" style="background-color: #FFBC3B;">
         <div class="container">
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="fw-bold mb-3">Fokus Riset</h2>
-                    <div style="width: 100px; height: 3px; background-color: #FFBC3B; margin: 0 auto 30px;"></div>
+                    <h2 class="fw-bold mb-3" style="color: #1d4052;">Fokus Riset</h2>
+                    <div style="width: 100px; height: 3px; background-color: #1d4052; margin: 0 auto 30px;"></div>
                 </div>
             </div>
 
@@ -145,8 +148,8 @@ $batas_karakter = 300;
                         <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
                             style="width: 70px; height: 70px; font-size: 36px; 
                             position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
-                            z-index: 2; background-color: #FFBC3B">
-                            <i class="fa-solid fa-eye"></i>
+                            z-index: 2; background-color: #1d4052">
+                            <i class="fa-solid fa-eye" style="color: white;"></i>
                             <path fill="#343C54" />
                         </div>
                     </div>
@@ -163,15 +166,12 @@ $batas_karakter = 300;
                         <div class="rounded-circle text-dark d-flex align-items-center justify-content-center shadow-sm"
                             style="width: 70px; height: 70px; font-size: 36px; 
                             position: absolute; right: -25px; top: 50%; transform: translateY(-50%); 
-                            z-index: 2; background-color: #FFBC3B">
+                            z-index: 2; background-color: #1d4052; color:white">
 
                             <!-- Icon Smart System -->
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M8.61288 2.15759C10.4745 1.68444 12.3561 2.30712 13.5784 3.61827C14.5156 3.15767 15.6338 3.06578 16.6928 3.45537C18.4831 4.11402 19.5117 5.92951 19.2442 7.74502C20.4227 8.53784 21.1997 9.88466 21.1997 11.414C21.1997 13.8546 19.2212 15.8331 16.7806 15.8331H16.4983V18.249C16.4983 18.6632 16.8341 18.999 17.2483 18.999H17.7386C17.9667 18.6955 18.3297 18.4992 18.7385 18.4992H18.7485C19.4389 18.4992 19.9985 19.0589 19.9985 19.7492C19.9985 20.4396 19.4389 20.9992 18.7485 20.9992H18.7385C18.3295 20.9992 17.9663 20.8027 17.7383 20.499H17.2483C16.0057 20.499 14.9983 19.4916 14.9983 18.249V15.8331H12.7483V19.7417C13.0576 19.9692 13.2583 20.3358 13.2583 20.7492C13.2583 21.4396 12.6986 21.9992 12.0083 21.9992H11.9983C11.3079 21.9992 10.7483 21.4396 10.7483 20.7492C10.7483 20.3403 10.9447 19.9772 11.2483 19.7491V15.8331H8.99829V18.249C8.99829 19.4916 7.99093 20.499 6.74829 20.499H6.25857C6.03053 20.8027 5.66736 20.9992 5.25829 20.9992H5.24829C4.55793 20.9992 3.99829 20.4396 3.99829 19.7492C3.99829 19.0589 4.55793 18.4992 5.24829 18.4992H5.25829C5.66714 18.4992 6.03014 18.6955 6.2582 18.999H6.74829C7.1625 18.999 7.49829 18.6632 7.49829 18.249V15.8331H7.21593C4.77535 15.8331 2.79688 13.8546 2.79688 11.414C2.79688 9.85313 3.60618 8.48241 4.82582 7.69667C4.51439 5.19526 6.10638 2.79463 8.61288 2.15759Z"
-                                    fill="#343C54" />
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+  <path style="color: white" d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+</svg>
                         </div>
                     </div>
                 </div>
@@ -188,7 +188,7 @@ $batas_karakter = 300;
             <div class="row g-5">
                 <div class="col-md-12 col-lg-4 col-xl-3 wow fadeIn" data-wow-delay="0.1s">
                     <div class="service-title">
-                        <h1 class="display-6 mb-4">Kegiatan & Proyek</h1>
+                        <h1 class="display-6 mb-4" style="color: #1d4052;">Kegiatan & Proyek</h1>
 
                     </div>
                 </div>
@@ -198,12 +198,12 @@ $batas_karakter = 300;
                             <div class="service-item h-100"
                                 style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-cloud-meatball fa-2x text-secondary"></i>
+                                    <i class="fa fa-solid fa-cloud-meatball fa-2x " style="color: #1d4052;"></i>
                                 </div>
-                                <h3>Sistem Cerdas</h3>
-                                <p class="mb-2">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
+                                <h3 style="color: #FFBC3B;">Sistem Cerdas</h3>
+                                <p class="mb-2" style="color: black;">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
                                 </p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
                                 </div>
                             </div>
                         </div>
@@ -211,12 +211,12 @@ $batas_karakter = 300;
                             <div class="service-item h-100"
                                 style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-layer-group fa-2x text-secondary"></i>
+                                    <i class="fa fa-solid fa-layer-group fa-2x " style="color: #1d4052;"></i>
                                 </div>
-                                <h3>Machine Learning</h3>
-                                <p class="mb-2">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
+                                <h3 style="color: #FFBC3B;">Machine Learning</h3>
+                                <p class="mb-2" style="color: black;">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
                                     menggunakan dataset nyata.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
                                 </div>
                             </div>
                         </div>
@@ -224,12 +224,12 @@ $batas_karakter = 300;
                             <div class="service-item h-100"
                                 style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-regular fa-lightbulb fa-2x text-secondary"></i>
+                                    <i class="fa fa-regular fa-lightbulb fa-2x " style="color: #1d4052;"></i>
                                 </div>
-                                <h3>Visi Komputer</h3>
-                                <p class="mb-2">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
+                                <h3 style="color: #FFBC3B;">Visi Komputer</h3>
+                                <p class="mb-2" style="color: black;">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
                                     mengenali objek.</p>
-                                <div style="height: 3px; width: 100%; background-color: #FFAC00; margin: 10px 0 0;">
+                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
                                 </div>
                             </div>
                         </div>
@@ -247,7 +247,7 @@ $batas_karakter = 300;
 
                 <!-- Logo / Image -->
                 <div class="col-lg-6" data-wow-delay="0.2s">
-                    <img class="img-fluid" src="../../IVSS-LAB/admin/assets/img/ivss_logo_no-desc.png" alt="Image"
+                    <img class="img-fluid" src="admin/assets/img/<?php echo $logo_data['logo'] ?>" alt="Image"
                         style="max-width:500px;">
                 </div>
 
@@ -255,17 +255,17 @@ $batas_karakter = 300;
                 <div class="col-lg-6">
 
                     <!-- Section Title -->
-                    <p class="section-title bg-white text-start text-primary pe-3">
+                    <p class="section-title bg-white text-start pe-3" style="color: #FFBC3B;">
                         Profil Laboratorium
                     </p>
 
                     <!-- Main Heading -->
-                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s">
+                    <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s" style="color: #1d4052;">
                         Laboratorium Visi Cerdas dan Sistem Cerdas
                     </h1>
 
                     <!-- Description -->
-                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify;">
+                    <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify; color: black">
                         Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di
                         bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang
                         intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
@@ -285,23 +285,23 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 700px;">
-                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-3">Visi & Misi</h1>
+                <p class="section-title bg-white text-center px-3" style="color: #FFBC3B;">LAB IVSS</p>
+                <h1 class="display-6 mb-3" style="color: #1d4052;">Visi & Misi</h1>
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #FFBC3B !important;">
                         <div class="card-body p-4">
 
-                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1d4052;">
                                 <span class="icon-circle me-3"
-                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1d4052; padding: 8px 10px; border-radius: 8px;">
                                     <i class="fas fa-eye fa-lg"></i>
                                 </span>
                                 Visi
                             </h3>
 
-                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
+                            <hr style="border-top: 2px solid #FFBC3B; opacity: 0.5;">
 
                             <p class="card-text text-dark">
                                 <?php echo nl2br($isi_visi); ?>
@@ -311,34 +311,19 @@ $batas_karakter = 300;
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #ffac00 !important;">
-                        <div class="card-body p-4">
+                    <div class="card h-100 shadow-lg border-start border-5" style="border-color: #FFBC3B !important;">
+                        <div class="card-body p-4" style="color: black;">
 
-                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1a685b;">
+                            <h3 class="card-title mb-3 d-flex align-items-center" style="color: #1d4052;">
                                 <span class="icon-circle me-3"
-                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1a685b; padding: 8px 10px; border-radius: 8px;">
+                                    style="background-color: rgba(26, 104, 91, 0.1); color: #1d4052; padding: 8px 10px; border-radius: 8px;">
                                     <i class="fas fa-check-circle fa-lg"></i>
                                 </span>
                                 Misi
                             </h3>
 
-                            <hr style="border-top: 2px solid #ffac00; opacity: 0.5;">
-
-                            <ul class="list-unstyled">
-                                <?php
-                                    $misi_points = explode("\n", trim($isi_misi));
-
-                                    foreach ($misi_points as $point) {
-                                        if (!empty(trim($point))) {
-                                            echo '<li class="mb-3 d-flex align-items-start">';
-                                            // Ikon checklist warna Hijau Tua/Teal
-                                            echo ' <i class="fas fa-check-square me-3 mt-1" style="color: #1a685b; font-size: 1.2em;"></i>'; 
-                                            echo ' <span class="text-dark">' . trim($point) . '</span>';
-                                            echo '</li>';
-                                        }
-                                    }
-                                ?>
-                            </ul>
+                            <hr style="border-top: 2px solid #FFBC3B; opacity: 0.5;">
+                            <p><?php echo nl2br($isi_misi); ?></p>
 
                         </div>
                     </div>
@@ -356,11 +341,11 @@ $batas_karakter = 300;
                     <div class="col-lg-10 col-xl-8">
                         <div class="text-center">
 
-                            <h2 class="display-5 fw-bold mb-4" style="color: #1a685b;">
+                            <h2 class="display-5 fw-bold mb-4" style="color: #1d4052;">
                                 SOP dan Layanan
                             </h2>
 
-                            <p class="lead text-muted mb-5">
+                            <p class="lead mb-5" style="color: black;">
                                 Informasi standar operasional prosedur dan detail layanan Laboratorium.
                             </p>
 
@@ -368,9 +353,9 @@ $batas_karakter = 300;
 
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
-                                        <i class="fas fa-map-marker-alt fa-2x me-3" style="color: #ffac00;"></i>
+                                        <i class="fas fa-map-marker-alt fa-2x me-3" style="color: #FFBC3B;"></i>
                                         <div>
-                                            <h5 class="fw-bold" style="color: #1a685b;">Lokasi</h5>
+                                            <h5 class="fw-bold" style="color: #1d4052;">Lokasi</h5>
                                             <p class="mb-0 text-dark">Gedung Jurusan Teknologi Informasi — Lantai 8
                                                 Barat</p>
                                         </div>
@@ -379,9 +364,9 @@ $batas_karakter = 300;
 
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
-                                        <i class="fas fa-envelope fa-2x me-3" style="color: #ffac00;"></i>
+                                        <i class="fas fa-envelope fa-2x me-3" style="color: #FFBC3B;"></i>
                                         <div>
-                                            <h5 class="fw-bold" style="color: #1a685b;">Surel</h5>
+                                            <h5 class="fw-bold" style="color: #1d4052;">Surel</h5>
                                             <p class="mb-0 text-dark">—</p>
                                         </div>
                                     </div>
@@ -389,14 +374,14 @@ $batas_karakter = 300;
 
                                 <div class="col-md-4">
                                     <div class="d-flex align-items-start">
-                                        <i class="fas fa-clock fa-2x me-3" style="color: #ffac00;"></i>
+                                        <i class="fas fa-clock fa-2x me-3" style="color: #FFBC3B;"></i>
                                         <div>
-                                            <h5 class="fw-bold" style="color: #1a685b;">Jam Layanan</h5>
-                                            <div class="d-flex justify-content-between" style="width: 200px;">
+                                            <h5 class="fw-bold" style="color: #1d4052;">Jam Layanan</h5>
+                                            <div class="d-flex justify-content-between text-dark" style="width: 200px;">
                                                 <span>Mon-Fri</span>
                                                 <span>07.00 — 21.00</span>
                                             </div>
-                                            <div class="d-flex justify-content-between" style="width: 200px;">
+                                            <div class="d-flex justify-content-between text-dark" style="width: 200px;">
                                                 <span>Sat-Sun</span>
                                                 <span>09.00 — 21.00</span>
                                             </div>
@@ -417,8 +402,8 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-4">Fasilitas Laboratorium</h1>
+                <p class="section-title bg-white text-center px-3" style="color: #FFBC3B;">LAB IVSS</p>
+                <h1 class="display-6 mb-4" style="color: #1d4052;">Fasilitas Laboratorium</h1>
             </div>
 
             <div class="row g-4 justify-content-center">
@@ -442,19 +427,19 @@ $batas_karakter = 300;
                                 </div>
 
                                 <!-- Judul -->
-                                <h4 class="mb-2" style="color: #333;">
+                                <h4 class="mb-2" style="color: #1d4052;">
                                     <?php echo $data_fasilitas['nama']; ?>
                                 </h4>
 
                                 <!-- Deskripsi kalau ada -->
                                 <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
-                                    <?php echo $data_fasilitas['deskripsi'] ?? 'Informasi fasilitas belum tersedia.'; ?>
+                                    <?php echo $data_fasilitas['isi'] ?? 'Informasi fasilitas belum tersedia.'; ?>
                                 </p>
 
                                 <!-- Tombol sejajar bawah -->
                                 <a href="#!"
-                                    class="btn btn-primary w-100 py-3 mt-auto"
-                                    style="border-radius: 8px;">
+                                    class="btn  w-100 py-3 mt-auto"
+                                    style="border-radius: 8px; background-color:#FFBC3B; color:white">
                                     Fasilitas
                                 </a>
 
@@ -473,8 +458,8 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-4">Peralatan Laboratorium</h1>
+                <p class="section-title bg-white text-center px-3" style="color: #FFBC3B;">LAB IVSS</p>
+                <h1 class="display-6 mb-4" style="color: #1d4052;">Peralatan Laboratorium</h1>
             </div>
 
             <?php  
@@ -534,19 +519,19 @@ $batas_karakter = 300;
 
                                     <!-- Judul -->
                                     <a href="#!" class="h4 d-inline-block mb-2"
-                                        style="text-decoration: none; color: #333;">
+                                        style="text-decoration: none; color: #1d4052;">
                                         <?php echo $item['nama']; ?>
                                     </a>
 
                                     <!-- Deskripsi -->
                                     <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
-                                        <?php echo $item['deskripsi'] ?? 'Klik detail untuk informasi lebih lanjut.'; ?>
+                                        <?php echo $item['isi'] ?? 'Klik detail untuk informasi lebih lanjut.'; ?>
                                     </p>
 
                                     <!-- Tombol SELALU DI BAWAH -->
                                     <a href="#!" 
-                                        class="btn btn-primary w-100 py-3 mt-auto"
-                                        style="border-radius: 8px;">
+                                        class="btn w-100 py-3 mt-auto"
+                                        style="border-radius: 8px; background-color:#FFBC3B; color:white">
                                         Alat
                                     </a>
 
@@ -589,8 +574,8 @@ $batas_karakter = 300;
     <div class="container-fluid py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">LAB IVSS</p>
-                <h1 class="display-6 mb-4">Perkuliahan Terkait</h1>
+                <p class="section-title bg-white text-center px-3" style="color: #FFBC3B;">LAB IVSS</p>
+                <h1 class="display-6 mb-4" style="color:#1d4052">Perkuliahan Terkait</h1>
             </div>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-12"> <div class="rounded overflow-hidden">
@@ -598,8 +583,8 @@ $batas_karakter = 300;
                         <div class="d-flex flex-nowrap g-0" style="overflow-x: auto;"> 
 
                             <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.1s">
-                                <div class="text-center bg-primary py-5 px-4 h-100">
-                                    <i class="fa-solid fa-brain fa-3x text-secondary mb-3"></i>
+                                <div class="text-center py-5 px-4 h-100" style="background-color: #FFBC3B;">
+                                    <i class="fa-solid fa-brain fa-3x  mb-3" style="color: #1d4052;"></i>
                                     <h3 class="display-5 mb-0" style="font-size: 24px;">Kecerdasan Artifisial</h3>
                                     <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin
                                         yang dapat melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti
@@ -608,8 +593,8 @@ $batas_karakter = 300;
                             </div>
                             
                             <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.3s">
-                                <div class="text-center bg-secondary py-5 px-4 h-100">
-                                    <i class="fa fa-eye fa-3x text-primary mb-3"></i>
+                                <div class="text-center py-5 px-4 h-100" style="background-color: #1d4052;">
+                                    <i class="fa fa-eye fa-3x  mb-3" style="color: #FFBC3B;"></i>
                                     <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra &
                                         Visi Komputer</h3>
                                     <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video
@@ -620,8 +605,8 @@ $batas_karakter = 300;
                             </div>
 
                             <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.7s">
-                                <div class="text-center bg-primary py-5 px-4 h-100">
-                                    <i class="fa fa-lightbulb fa-3x text-secondary mb-3"></i>
+                                <div class="text-center  py-5 px-4 h-100" style="background-color: #FFBC3B;">
+                                    <i class="fa fa-lightbulb fa-3x  mb-3" style="color: #1d4052;"></i>
                                     <h1 class="display-5 mb-0" style="font-size: 24px;">Sistem Cerdas</h1>
                                     <span class="text-dark">Pengembangan sistem yang dapat meniru atau melampaui
                                         kemampuan kognitif manusia, seperti pengambilan
@@ -631,8 +616,8 @@ $batas_karakter = 300;
                             </div>
                             
                             <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.5s">
-                                <div class="text-center bg-secondary py-5 px-4 h-100">
-                                    <i class="fa fa-network-wired fa-3x text-primary mb-3"></i>
+                                <div class="text-center  py-5 px-4 h-100" style="background-color: #1d4052;">
+                                    <i class="fa fa-network-wired fa-3x  mb-3" style="color: #FFBC3B;"></i>
                                     <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
                                     <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada
                                         pengembangan algoritma yang memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa
@@ -651,10 +636,10 @@ $batas_karakter = 300;
 
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold display-5" style="color: #1A685B;">
+                <h2 class="fw-bold display-5" style="color: #1d4052;">
                     <i class="fas fa-book-reader me-2"></i> Publikasi Dosen
                 </h2>
-                <div class="mx-auto" style="width: 150px; height: 5px; background-color: #FFAC00; margin-top: 10px;">
+                <div class="mx-auto" style="width: 150px; height: 5px; background-color: #FFBC3B; margin-top: 10px;">
                 </div>
             </div>
         </div>
@@ -663,9 +648,9 @@ $batas_karakter = 300;
             <div class="col-lg-10 col-md-12">
                 <div class="table-responsive">
                     <table class="table table-hover table-borderless align-middle rounded-4 overflow-hidden"
-                        style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); border: 1px solid #dee2e6;">
+                        style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); border: 1px solid #1d4052;">
 
-                        <thead style="background-color: #1A685B;">
+                        <thead style="background-color: #1d4052;">
                             <tr class="text-white text-uppercase small">
                                 <th scope="col" class="py-3 px-4 text-start">Dosen / Peneliti</th>
                                 <th scope="col" class="py-3 text-center">Scopus</th>
@@ -693,15 +678,15 @@ $batas_karakter = 300;
                                 $sinta_class = ($link_sinta === '#') ? 'btn-outline-secondary disabled' : 'btn-warning text-dark fw-bold';
                         ?>
                             <tr class="bg-white">
-                                <td class="text-start px-4">
-                                    <span class="fw-bold me-2 text-primary"><?php echo $no++; ?>.</span>
+                                <td class=" px-4" style="color: black;">
+                                    <span class="fw-bold me-2 " style="color: black;"><?php echo $no++; ?>.</span>
                                     <?php echo htmlspecialchars($data_dosen['nama'] ?? 'Nama Dosen Tidak Ada'); ?>
                                 </td>
 
                                 <td class="text-center">
                                     <a href="<?php echo $link_scopus; ?>" target="_blank"
                                         class="btn btn-sm <?php echo $scopus_class; ?>"
-                                        style="<?php echo ($link_scopus !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                        style="<?php echo ($link_scopus !== '#') ? 'background-color: #FFBC3B; border-color: #FFBC3B;' : ''; ?>">
                                         <i class="fas fa-external-link-alt me-1"></i> Detail
                                     </a>
                                 </td>
@@ -709,7 +694,7 @@ $batas_karakter = 300;
                                 <td class="text-center">
                                     <a href="<?php echo $link_scholar; ?>" target="_blank"
                                         class="btn btn-sm <?php echo $scholar_class; ?>"
-                                        style="<?php echo ($link_scholar !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                        style="<?php echo ($link_scholar !== '#') ? 'background-color: #FFBC3B; border-color: #FFBC3B;' : ''; ?>">
                                         <i class="fas fa-external-link-alt me-1"></i> Detail
                                     </a>
                                 </td>
@@ -717,7 +702,7 @@ $batas_karakter = 300;
                                 <td class="text-center">
                                     <a href="<?php echo $link_sinta; ?>" target="_blank"
                                         class="btn btn-sm <?php echo $sinta_class; ?>"
-                                        style="<?php echo ($link_sinta !== '#') ? 'background-color: #FFAC00; border-color: #FFAC00;' : ''; ?>">
+                                        style="<?php echo ($link_sinta !== '#') ? 'background-color: #FFBC3B; border-color: #FFBC3B;' : ''; ?>">
                                         <i class="fas fa-external-link-alt me-1"></i> Detail
                                     </a>
                                 </td>
@@ -742,9 +727,9 @@ $batas_karakter = 300;
         <div class="container">
 
            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-primary px-3 mb-2">BERITA</p>
-                <h1 class="display-6 mb-3">Berita Terbaru</h1>
-                <p class="lead text-muted" style="font-size: 1rem;">Baca berita terbaru dari Laboratorium Visi Cerdas dan Sistem Cerdas.</p>
+                <p class="section-title bg-white px-3 mb-2" style="color:#FFBC3B;">BERITA</p>
+                <h1 class="display-6 mb-3" style="color: #1d4052;">Berita Terbaru</h1>
+                <p class="lead " style="font-size: 1rem; color: black">Baca berita terbaru dari Laboratorium Visi Cerdas dan Sistem Cerdas.</p>
             </div>
 
 
@@ -784,22 +769,22 @@ $batas_karakter = 300;
                             alt="<?php echo htmlspecialchars($data_berita['judul']); ?>"
                             style="height: 200px; object-fit: cover;">
 
-                        <a href="<?php echo $berita_link; ?>" class="h4 text-primary mb-2 fw-bold d-block">
+                        <a href="<?php echo $berita_link; ?>" class="h4  mb-2 fw-bold d-block" style="color:#FFBC3B;">
                             <?php echo htmlspecialchars($data_berita['judul']); ?>
                         </a>
 
-                        <p class="flex-grow-1" style="color:#495057;">
+                        <p class="flex-grow-1" style="color:black;">
                             <?php echo htmlspecialchars($isi_tampilan); ?>
                         </p>
 
                         <div class="bg-light p-3 rounded mt-3">
-                            <p class="mb-1">
-                                <i class="fa fa-calendar-alt text-primary me-2"></i>
+                            <p class="mb-1" style="color: #1d4052;">
+                                <i class="fa fa-calendar-alt  me-2" style="color:#FFBC3B;"></i>
                                 <?php echo $tanggal_format; ?>
                             </p>
 
-                            <p class="mb-2">
-                                <i class="fa fa-user-edit text-primary me-2"></i>
+                            <p class="mb-2" style="color: #1d4052;">
+                                <i class="fa fa-user-edit  me-2" style="color: #FFBC3B;"></i>
                                 Penulis: <?php echo htmlspecialchars($data_berita['penulis'] ?? "-"); ?>
                             </p>
 
@@ -832,9 +817,6 @@ $batas_karakter = 300;
     <?php include('inc/footer.php')?>
     <!-- Footer End -->
 
-
-    <!-- Back to Top -->
-    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

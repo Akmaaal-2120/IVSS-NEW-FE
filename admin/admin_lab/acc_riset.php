@@ -2,12 +2,11 @@
 session_start();
 include '../inc/koneksi.php';
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'ketua') {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../index.php');
     exit;
 }
 
-$user_id = $_SESSION['user_id'];
 $alert = '';
 
 // ACTION: Approve/Reject
@@ -15,16 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['ris
     $riset_id = intval($_POST['riset_id']);
 
     if ($_POST['action'] === 'approve') {
-        // Update status to 'approve_ketua_lab' (Final) and record who approved
+        // Update status to 'approve_dosen_pembimbing' (waiting for Ketua)
         $update = pg_query_params($koneksi, "
             UPDATE riset 
-            SET status = 'approve_ketua_lab', approved_ketua_by = $1
-            WHERE riset_id = $2 AND status = 'approve_dosen_pembimbing'
-        ", [$user_id, $riset_id]);
+            SET status = 'approve_dosen_pembimbing'
+            WHERE riset_id = $1 AND status = 'pending'
+        ", [$riset_id]);
 
         if ($update && pg_affected_rows($update) > 0) {
             $alert = '<div class="alert alert-success alert-dismissible fade show">
-                <i class="fas fa-check-circle"></i> Riset berhasil disetujui (Final).
+                <i class="fas fa-check-circle"></i> Riset berhasil disetujui (Lanjut ke Ketua Lab).
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
             </div>';
         } else {
@@ -36,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['ris
     } elseif ($_POST['action'] === 'reject') {
         $update = pg_query_params($koneksi, "
             UPDATE riset 
-            SET status = 'rejected', approved_ketua_by = $1
-            WHERE riset_id = $2 AND status = 'approve_dosen_pembimbing'
-        ", [$user_id, $riset_id]);
+            SET status = 'rejected'
+            WHERE riset_id = $1 AND status = 'pending'
+        ", [$riset_id]);
 
         if ($update && pg_affected_rows($update) > 0) {
             $alert = '<div class="alert alert-warning alert-dismissible fade show">
@@ -54,22 +53,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['ris
     }
 }
 
-// Get Research List expecting Ketua Approval (status 'approve_dosen_pembimbing')
-// Supports both Mahasiswa and Dosen(Admin Lab) creators
-$q = pg_query($koneksi, "
+// Get Pending Research List (Filtered by Dosen Pembimbing)
+// Hanya tampilkan riset yang approved_dosen_by-nya adalah User ID yang sedang login
+$q = pg_query_params($koneksi, "
     SELECT r.riset_id, r.judul, r.deskripsi, r.tanggal_mulai, r.tanggal_selesai, r.created_at,
-           u.role AS creator_role,
-           COALESCE(m.nama, d_creator.nama) AS nama_pemohon,
-           COALESCE(m.nim, d_creator.nip) AS id_pemohon,
-           d.nama AS admin_approval_name
+           m.nama AS mahasiswa_nama, m.nim
     FROM riset r
     JOIN users u ON r.creator_id = u.user_id
-    LEFT JOIN mahasiswa m ON u.user_id = m.user_id
-    LEFT JOIN dosen d_creator ON u.user_id = d_creator.user_id
-    LEFT JOIN dosen d ON r.approved_dosen_by = d.user_id
-    WHERE r.status = 'approve_dosen_pembimbing'
+    JOIN mahasiswa m ON u.user_id = m.user_id
+    WHERE r.status = 'pending' AND r.approved_dosen_by = $1
     ORDER BY r.created_at ASC
-");
+", [$_SESSION['user_id']]);
 $list = $q ? pg_fetch_all($q) : [];
 if ($list === false)
     $list = [];
@@ -79,7 +73,7 @@ if ($list === false)
 
 <head>
     <meta charset="utf-8">
-    <title>Approval Riset - Ketua Lab</title>
+    <title>Approval Riset - Admin Lab</title>
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -92,7 +86,7 @@ if ($list === false)
             <div id="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
                     <span class="h5 mb-0 text-primary font-weight-bold">
-                        <i class="fas fa-user-tie mr-2"></i>Approval Riset (Ketua Lab)
+                        <i class="fas fa-tasks mr-2"></i>Approval Riset (Admin Lab)
                     </span>
                 </nav>
 
@@ -101,8 +95,7 @@ if ($list === false)
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Pengajuan Riset Menunggu Persetujuan
-                                Ketua</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Pengajuan Riset Pending</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -111,7 +104,7 @@ if ($list === false)
                                     <thead class="thead-light">
                                         <tr>
                                             <th>No</th>
-                                            <th>Pemohon</th>
+                                            <th>Mahasiswa</th>
                                             <th>Judul Riset</th>
                                             <th>Tanggal Pengajuan</th>
                                             <th>Aksi</th>
@@ -121,22 +114,15 @@ if ($list === false)
                                         <?php if (empty($list)): ?>
                                             <tr>
                                                 <td colspan="5" class="text-center text-muted">Tidak ada pengajuan riset
-                                                    menunggu approval ketua.</td>
+                                                    pending.</td>
                                             </tr>
                                         <?php else:
-                                            foreach ($list as $i => $r):
-                                                $role_badge = ($r['creator_role'] === 'mahasiswa')
-                                                    ? '<span class="badge badge-primary">Mahasiswa</span>'
-                                                    : '<span class="badge badge-success">Dosen</span>';
-                                                $id_label = ($r['creator_role'] === 'mahasiswa') ? 'NIM' : 'NIP';
-                                                ?>
+                                            foreach ($list as $i => $r): ?>
                                                 <tr>
                                                     <td class="text-center"><?= $i + 1 ?></td>
                                                     <td>
-                                                        <strong><?= htmlspecialchars($r['nama_pemohon']) ?></strong>
-                                                        <?= $role_badge ?><br>
-                                                        <small><?= $id_label ?>:
-                                                            <?= htmlspecialchars($r['id_pemohon']) ?></small>
+                                                        <strong><?= htmlspecialchars($r['mahasiswa_nama']) ?></strong><br>
+                                                        <small><?= htmlspecialchars($r['nim']) ?></small>
                                                     </td>
                                                     <td><?= htmlspecialchars($r['judul']) ?></td>
                                                     <td class="text-center"><?= date('d/m/Y', strtotime($r['created_at'])) ?>
@@ -163,19 +149,11 @@ if ($list === false)
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div class="alert alert-info">
-                                                                    <i class="fas fa-info-circle"></i> Riset ini telah disetujui
-                                                                    (Approved Dosen).
-                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-6">
-                                                                        <p><strong>Pemohon:</strong>
-                                                                            <?= htmlspecialchars($r['nama_pemohon']) ?>
-                                                                        </p>
-                                                                        <p><strong>Role:</strong>
-                                                                            <?= ucfirst($r['creator_role']) ?>
-                                                                            (<?= $id_label ?>:
-                                                                            <?= htmlspecialchars($r['id_pemohon']) ?>)</p>
+                                                                        <p><strong>Mahasiswa:</strong>
+                                                                            <?= htmlspecialchars($r['mahasiswa_nama']) ?>
+                                                                            (<?= htmlspecialchars($r['nim']) ?>)</p>
                                                                         <p><strong>Judul:</strong>
                                                                             <?= htmlspecialchars($r['judul']) ?></p>
                                                                     </div>
@@ -205,8 +183,8 @@ if ($list === false)
                                                                     </button>
                                                                     <button type="submit" name="action" value="approve"
                                                                         class="btn btn-success"
-                                                                        onclick="return confirm('Setujui riset sebagai FINAL?')">
-                                                                        <i class="fas fa-check-circle"></i> Setujui Final
+                                                                        onclick="return confirm('Setujui riset ini? Riset akan diteruskan ke Ketua Lab.')">
+                                                                        <i class="fas fa-check"></i> Setujui
                                                                     </button>
                                                                 </form>
                                                                 <button type="button" class="btn btn-secondary"

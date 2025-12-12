@@ -17,7 +17,9 @@ $nama_mhs = ($res && pg_num_rows($res) > 0) ? pg_fetch_result($res, 0, 'nama') :
 
 // ambil summary counts
 $totalMahasiswa = pg_fetch_result(pg_query($koneksi, "SELECT COUNT(*) FROM mahasiswa"), 0, 0);
-$totalDosen     = pg_fetch_result(pg_query($koneksi, "SELECT COUNT(*) FROM dosen"), 0, 0);
+$totalFasilitas = pg_fetch_result(pg_query($koneksi, "SELECT COUNT(*) FROM fasilitas"), 0, 0);
+$totalDatasetPublik = pg_fetch_result(pg_query($koneksi, "SELECT COUNT(*) FROM dataset WHERE visibility = 'publik'"), 0, 0);
+
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +68,31 @@ $totalDosen     = pg_fetch_result(pg_query($koneksi, "SELECT COUNT(*) FROM dosen
                                     <div class="h5 mb-0 font-weight-bold text-gray-800"><?= (int)$totalMahasiswa ?></div>
                                 </div>
                                 <i class="fas fa-user-graduate text-primary card-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: Total Fasilitas -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Fasilitas Lab</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= (int)$totalFasilitas ?></div>
+                                </div>
+                                <i class="fas fa-building text-success card-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: Total Dataset Publik -->
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Dataset Publik</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= (int)$totalDatasetPublik ?></div>
+                                </div>
+                                <i class="fas fa-database text-warning card-icon"></i>
                             </div>
                         </div>
                     </div>

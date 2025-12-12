@@ -30,11 +30,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'ketua') {
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <span class="h5 mb-0 text-primary font-weight-bold">Data Mahasiswa</span>
+                <span class="h5 mb-0 text-primary font-weight-bold">Data Member dan Dosen</span>
             </nav>
 
             <div class="container-fluid">
-                <h1 class="h3 mb-4 text-gray-800">Manajemen Mahasiswa</h1>
+                <h1 class="h3 mb-4 text-gray-800">List Member dan Dosen</h1>
                 <div class="mb-3 text-right">
                 </div>
 
@@ -47,21 +47,23 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'ketua') {
                     if ($m === 'error') echo '<div class="alert alert-danger">Terjadi kesalahan.</div>';
                 }
 
-                $sql = '
-                    SELECT m.nim, m.nama, m.jenis_kelamin, m.no_telp, m.email, m.keperluan,
-                            m.dosen_pembimbing, d.nama AS pembimbing_nama,
-                            m.status_mahasiswa, m.status_pendaftaran, m.tanggal_daftar, m.user_id,
-                            u.username
-                    FROM mahasiswa m
-                    LEFT JOIN dosen d ON d.nip = m.dosen_pembimbing
-                    LEFT JOIN users u ON u.user_id = m.user_id
-                    ORDER BY m.nama ASC
-                ';
+                $sql = "
+                        SELECT m.nim, m.nama, m.jenis_kelamin, m.no_telp, m.email, m.keperluan,
+                                m.dosen_pembimbing, d.nama AS pembimbing_nama,
+                                m.status_mahasiswa, m.status_pendaftaran, m.tanggal_daftar, m.user_id,
+                                u.username
+                        FROM mahasiswa m
+                        LEFT JOIN dosen d ON d.nip = m.dosen_pembimbing
+                        LEFT JOIN users u ON u.user_id = m.user_id
+                        where m.status_mahasiswa = 'member'
+                        ORDER BY m.nama ASC
+                ";
+
                 $res = pg_query($koneksi, $sql);
                 ?>
 
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Daftar Mahasiswa</h6></div>
+                    <div class="card-header py-3"><h6 class="m-0 font-weight-bold text-primary">Daftar Member</h6></div>
                     <div class="card-body">
                         <div class="table-responsive">
                         <table class="table table-bordered" id="mahasiswaTable" width="100%" cellspacing="0">
@@ -70,13 +72,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'ketua') {
                                 <th>No</th>
                                 <th>NIM</th>
                                 <th>Nama</th>
-                                <th>JK</th>
-                                <th>Email</th>
-                                <th>No. Telp</th>
                                 <th>Pembimbing</th>
                                 <th>Status Mahasiswa</th>
-                                <th>User</th>
-                                <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -90,21 +87,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'ketua') {
 
                                 <td><?= htmlspecialchars($row['nim']) ?></td>
                                 <td><?= htmlspecialchars($row['nama']) ?></td>
-                                <td class="text-center"><?= htmlspecialchars($row['jenis_kelamin'] ?? '-') ?></td>
-                                <td><?= htmlspecialchars($row['email'] ?? '-') ?></td>
-                                <td><?= htmlspecialchars($row['no_telp'] ?? '-') ?></td>
                                 <td><?= htmlspecialchars($row['pembimbing_nama'] ?? '-') ?></td>
                                 <td class="text-center"><?= htmlspecialchars($row['status_mahasiswa'] ?? '-') ?></td>
-                                <td>
-                                    <?= htmlspecialchars($row['username'] ?? ('user_id:' . ($row['user_id'] ?? '-'))) ?>
-                                </td>
-
-                                <td class="text-center">
-                                    <a href="edit_mahasiswa.php?nim=<?= urlencode($row['nim']) ?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Edit</a>
-                                    <a href="hapus_mahasiswa.php?nim=<?= urlencode($row['nim']) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Hapus mahasiswa <?= addslashes(htmlspecialchars($row['nama'])) ?> ?');">
-                                        <i class="fas fa-trash"></i> Hapus
-                                    </a>
-                                </td>
                             </tr>
                             <?php
                                 endwhile;

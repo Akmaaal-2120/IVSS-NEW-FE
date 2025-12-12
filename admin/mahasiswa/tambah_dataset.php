@@ -64,10 +64,8 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Visibility</label>
-                                <select name="visibility" class="form-control">
-                                    <option value="publik">Publik</option>
-                                    <option value="privat">Privat</option>
-                                </select>
+                                <input type="text" class="form-control" value="Privat" readonly>
+                                <input type="hidden" name="visibility" value="privat">
                             </div>
                             <button type="submit" name="submit" class="btn btn-success"><i class="fas fa-plus"></i> Tambah</button>
                             <a href="dataset.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>

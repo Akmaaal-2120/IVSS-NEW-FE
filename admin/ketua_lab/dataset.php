@@ -7,21 +7,110 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$user_id = $_SESSION['user_id'];
-$role = $_SESSION['role'];
+$user_id = (int) ($_SESSION['user_id']);
+$role = $_SESSION['role'] ?? '';
 
-// Ambil semua dataset publik + privat milik sendiri
-$q = pg_query_params($koneksi, "
-    SELECT 
-        d.dataset_id, d.judul, d.deskripsi, d.file_path, d.uploader_by, d.tanggal_upload, d.visibility,
-        COALESCE(m.nama, dos.nama, u.username) AS uploader_name
-    FROM dataset d
-    LEFT JOIN users u ON d.uploader_by = u.user_id
-    LEFT JOIN mahasiswa m ON u.user_id = m.user_id
-    LEFT JOIN dosen dos ON u.user_id = dos.user_id
-    WHERE d.visibility = 'publik' OR d.uploader_by = $1
-    ORDER BY d.tanggal_upload DESC
-", [$user_id]);
+// ---------- Handler: set visibility to publik (approve) ----------
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'set_public') {
+    // only ketua allowed
+    if ($role !== 'ketua') {
+        header('Location: dataset.php?msg=forbidden'); exit;
+    }
+
+    $dataset_id = (int) ($_POST['dataset_id'] ?? 0);
+    if ($dataset_id <= 0) {
+        header('Location: dataset.php?msg=error'); exit;
+    }
+
+    // cek apakah dataset ada, visibility privat, dan uploader adalah mahasiswa
+    $q = pg_query_params($koneksi, "
+        SELECT d.dataset_id, d.visibility, m.user_id AS mahasiswa_user_id
+        FROM dataset d
+        LEFT JOIN users u ON d.uploader_by = u.user_id
+        LEFT JOIN mahasiswa m ON u.user_id = m.user_id
+        WHERE d.dataset_id = $1
+    ", [$dataset_id]);
+
+    if (!$q || pg_num_rows($q) === 0) {
+        header('Location: dataset.php?msg=error'); exit;
+    }
+
+    $row = pg_fetch_assoc($q);
+
+    if ($row['visibility'] !== 'privat') {
+        header('Location: dataset.php?msg=already_public'); exit;
+    }
+
+    if (empty($row['mahasiswa_user_id'])) {
+        // uploader bukan mahasiswa -> forbidden
+        header('Location: dataset.php?msg=forbidden_uploader'); exit;
+    }
+
+    // update jadi publik
+    $u = pg_query_params($koneksi, "UPDATE dataset SET visibility = 'publik' WHERE dataset_id = $1", [$dataset_id]);
+    if ($u) {
+        header('Location: dataset.php?msg=set_public_ok'); exit;
+    } else {
+        header('Location: dataset.php?msg=error'); exit;
+    }
+}
+
+// - Untuk ketua: semua publik OR privat yg diunggah oleh mahasiswa
+// - Untuk user lain: publik OR milik user itu sendiri
+if ($role === 'ketua') {
+    $q = pg_query($koneksi, "
+        SELECT
+            d.dataset_id,
+            d.judul,
+            d.deskripsi,
+            d.file_path,
+            d.uploader_by,
+            d.tanggal_upload,
+            d.visibility,
+            u.username,
+            m.nama AS mahasiswa_nama,
+            dos.nama AS dosen_nama,
+            COALESCE(m.nama, dos.nama, u.username) AS uploader_name,
+            CASE 
+                WHEN m.user_id IS NOT NULL THEN 'mahasiswa'
+                WHEN dos.user_id IS NOT NULL THEN 'dosen'
+                ELSE 'user'
+            END AS uploader_type
+        FROM dataset d
+        LEFT JOIN users u ON d.uploader_by = u.user_id
+        LEFT JOIN mahasiswa m ON u.user_id = m.user_id
+        LEFT JOIN dosen dos ON u.user_id = dos.user_id
+        WHERE d.visibility = 'publik'
+            OR (d.visibility = 'privat' AND m.user_id IS NOT NULL)
+        ORDER BY d.tanggal_upload DESC
+    ");
+} else {
+    $q = pg_query_params($koneksi, "
+        SELECT
+            d.dataset_id,
+            d.judul,
+            d.deskripsi,
+            d.file_path,
+            d.uploader_by,
+            d.tanggal_upload,
+            d.visibility,
+            u.username,
+            m.nama AS mahasiswa_nama,
+            dos.nama AS dosen_nama,
+            COALESCE(m.nama, dos.nama, u.username) AS uploader_name,
+            CASE
+                WHEN m.user_id IS NOT NULL THEN 'mahasiswa'
+                WHEN dos.user_id IS NOT NULL THEN 'dosen'
+                ELSE 'user'
+            END AS uploader_type
+        FROM dataset d
+        LEFT JOIN users u ON d.uploader_by = u.user_id
+        LEFT JOIN mahasiswa m ON u.user_id = m.user_id
+        LEFT JOIN dosen dos ON u.user_id = dos.user_id
+        WHERE d.visibility = 'publik' OR d.uploader_by = $1
+        ORDER BY d.tanggal_upload DESC
+    ", [$user_id]);
+}
 
 $datasets = $q ? pg_fetch_all($q) : [];
 if ($datasets === false) $datasets = [];
@@ -48,7 +137,6 @@ if ($datasets === false) $datasets = [];
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <!-- Tombol Tambah di atas tabel -->
                         <div class="d-flex justify-content-between mb-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Dataset</h6>
                             <a href="tambah_dataset.php" class="btn btn-success btn-sm">
@@ -66,6 +154,14 @@ if ($datasets === false) $datasets = [];
                                 echo '<div class="alert alert-success">Dataset berhasil diupdate.</div>';
                             } elseif ($msg === 'deleted') {
                                 echo '<div class="alert alert-success">Dataset berhasil dihapus.</div>';
+                            } elseif ($msg === 'set_public_ok') {
+                                echo '<div class="alert alert-success">Dataset berhasil diset menjadi publik.</div>';
+                            } elseif ($msg === 'forbidden') {
+                                echo '<div class="alert alert-warning">Aksi tidak diizinkan. Hanya ketua yang boleh melakukan ini.</div>';
+                            } elseif ($msg === 'forbidden_uploader') {
+                                echo '<div class="alert alert-warning">Aksi tidak diizinkan. Hanya dataset yang diunggah oleh mahasiswa dapat diset publik.</div>';
+                            } elseif ($msg === 'already_public') {
+                                echo '<div class="alert alert-info">Dataset sudah publik.</div>';
                             } elseif ($msg === 'error') {
                                 echo '<div class="alert alert-danger">Terjadi kesalahan.</div>';
                             }
@@ -101,7 +197,10 @@ if ($datasets === false) $datasets = [];
                                                 <span class="text-muted">-</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?= htmlspecialchars($d['uploader_name']) ?></td>
+                                        <td>
+                                            <?= htmlspecialchars($d['uploader_name']) ?>
+                                            <small class="text-muted">(<?= htmlspecialchars($d['uploader_type']) ?>)</small>
+                                        </td>
                                         <td class="text-center"><?= htmlspecialchars($d['tanggal_upload']) ?></td>
                                         <td class="text-center"><?= htmlspecialchars($d['visibility']) ?></td>
                                         <td class="text-center">
@@ -113,7 +212,18 @@ if ($datasets === false) $datasets = [];
                                                     <i class="fas fa-trash"></i> Hapus
                                                 </a>
                                             <?php else: ?>
-                                                <span class="text-muted">-</span>
+                                                <?php
+                                                // Tombol "Set Publik" hanya muncul untuk ketua, dataset privat, uploader mahasiswa
+                                                $canSetPublic = ($role === 'ketua' && $d['visibility'] === 'privat' && $d['uploader_type'] === 'mahasiswa');
+                                                if ($canSetPublic): ?>
+                                                    <form method="POST" action="dataset.php" style="display:inline-block;" onsubmit="return confirm('Set dataset ini menjadi publik?')">
+                                                        <input type="hidden" name="action" value="set_public">
+                                                        <input type="hidden" name="dataset_id" value="<?= (int)$d['dataset_id'] ?>">
+                                                        <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-globe"></i> Set Publik</button>
+                                                    </form>
+                                                <?php else: ?>
+                                                    <span class="text-muted">-</span>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

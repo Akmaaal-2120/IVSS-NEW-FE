@@ -49,8 +49,8 @@ if (!empty($admin['foto'])) {
     <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
     <style>
       .profile-img {
-        width:150px;
-        height:150px;
+        width:130px;
+        height:180px;
         object-fit:cover;
         border-radius:8px;
         border:1px solid #e3e6f0;

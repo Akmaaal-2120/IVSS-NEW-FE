@@ -73,8 +73,8 @@ if ($beritas === false) $beritas = [];
                                                 <span class="text-muted small">-</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td class="truncate" title="<?= htmlspecialchars($b['isi']) ?>">
-                                            <?= htmlspecialchars(mb_strimwidth($b['isi'],0,120,'...')) ?>
+                                        <td>
+                                            <?= ($b['isi']) ?>
                                         </td>
                                         <td><?= htmlspecialchars($b['penulis'] ?? '-') ?></td>
                                         <td class="text-center"><?= htmlspecialchars($b['tanggal']) ?></td>

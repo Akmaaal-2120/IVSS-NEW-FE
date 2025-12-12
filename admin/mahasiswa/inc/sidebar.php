@@ -19,13 +19,16 @@ if ($q && pg_num_rows($q) > 0) {
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon">
             <?php if ($logo_src): ?>
-                <img src="../../assets/img/<?= htmlspecialchars($logo_src) ?>" alt="Logo IVSS"style="width:40px; height:40px; object-fit:cover; border-radius:6px;">
+                <img src="../assets/img/<?= htmlspecialchars($logo_src) ?>" alt="Logo IVSS"
+                    style="width:40px; height:40px; object-fit:cover; border-radius:6px;">
             <?php else: ?>
                 <div style="width:40px; height:40px; background:#ccc; border-radius:6px;"></div>
             <?php endif; ?>
         </div>
         <div class="sidebar-brand-text mx-3">Lab IVSS Admin</div>
     </a>
+
+    
 
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -38,14 +41,14 @@ if ($q && pg_num_rows($q) > 0) {
         </a>
     </li>
 
-    <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- List ACC -->
-    <div class="sidebar-heading">Persetujuan Bimbingan</div>
+    <!-- Riset Saya -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <div class="sidebar-heading">Riset</div>
     <li class="nav-item">
-        <a class="nav-link" href="listacc.php">
-            <i class="fas fa-tasks"></i>
-            <span>Daftar ACC Riset</span>
+        <a class="nav-link" href="riset.php">
+            <i class="fas fa-flask"></i>
+            <span>Riset Saya</span>
         </a>
     </li>
 

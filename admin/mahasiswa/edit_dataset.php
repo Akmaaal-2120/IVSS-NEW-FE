@@ -2,7 +2,8 @@
 session_start();
 include '../inc/koneksi.php';
 
-if (!isset($_SESSION['user_id'])) {
+// Pastikan hanya mahasiswa
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'mahasiswa') {
     header('Location: ../index.php');
     exit;
 }
@@ -14,32 +15,59 @@ if (!$dataset_id) {
     exit;
 }
 
-// Ambil dataset untuk dicek ownership
-$q = pg_query_params($koneksi, "SELECT * FROM dataset WHERE dataset_id = $1", [$dataset_id]);
+// Ambil dataset
+$q = pg_query_params($koneksi, "SELECT d.*, u.role AS uploader_role FROM dataset d LEFT JOIN users u ON d.uploader_by = u.user_id WHERE d.dataset_id = $1", [$dataset_id]);
 $dataset = pg_fetch_assoc($q);
 
-if (!$dataset || $dataset['uploader_by'] != $user_id) {
+if (!$dataset) {
     header('Location: dataset.php');
     exit;
 }
+
+$alert = '';
 
 if (isset($_POST['submit'])) {
     $judul = trim($_POST['judul']);
     $deskripsi = trim($_POST['deskripsi']);
     $file_path = trim($_POST['file_path']);
-    $visibility = $_POST['visibility'];
+    $visibility_from_form = $_POST['visibility'];
 
-    $update = pg_query_params($koneksi, "
-        UPDATE dataset
-        SET judul = $1, deskripsi = $2, file_path = $3, visibility = $4
-        WHERE dataset_id = $5 AND uploader_by = $6
-    ", [$judul, $deskripsi, $file_path, $visibility, $dataset_id, $user_id]);
+    // Cek apakah dataset milik mahasiswa sendiri
+    $is_owner = ($dataset['uploader_by'] == $user_id);
 
-    if ($update) {
-        header('Location: dataset.php?msg=updated');
-        exit;
+    if ($is_owner) {
+        // Update dataset milik mahasiswa sendiri
+        $update = pg_query_params($koneksi, "
+            UPDATE dataset
+            SET judul = $1, deskripsi = $2, file_path = $3, visibility = $4
+            WHERE dataset_id = $5 AND uploader_by = $6
+        ", [$judul, $deskripsi, $file_path, $visibility_from_form, $dataset_id, $user_id]);
+
+        if ($update) {
+            header('Location: dataset.php?msg=updated');
+            exit;
+        } else {
+            $alert = '<div class="alert alert-danger">Gagal update dataset.</div>';
+        }
     } else {
-        $alert = '<div class="alert alert-danger">Gagal update dataset.</div>';
+        // Dataset milik ketua (copy)
+        if ($dataset['uploader_role'] === 'ketua') {
+            $insert = pg_query_params($koneksi, "
+                INSERT INTO dataset (judul, deskripsi, file_path, uploader_by, visibility)
+                VALUES ($1, $2, $3, $4, $5)
+            ", [$judul, $deskripsi, $file_path, $user_id, $visibility_from_form]);
+
+            if ($insert) {
+                header('Location: dataset.php?msg=copied');
+                exit;
+            } else {
+                $alert = '<div class="alert alert-danger">Gagal membuat copy dataset.</div>';
+            }
+        } else {
+            // Bukan owner dan bukan dataset ketua
+            header('Location: dataset.php');
+            exit;
+        }
     }
 }
 ?>
@@ -62,7 +90,7 @@ if (isset($_POST['submit'])) {
             <div class="container-fluid">
                 <div class="card shadow mb-4">
                     <div class="card-body">
-                        <?= $alert ?? '' ?>
+                        <?= $alert ?>
                         <form method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Judul</label>
@@ -78,12 +106,14 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Visibility</label>
-                                <select name="visibility" class="form-control">
-                                    <option value="publik" <?= $dataset['visibility']=='publik'?'selected':'' ?>>Publik</option>
-                                    <option value="privat" <?= $dataset['visibility']=='privat'?'selected':'' ?>>Privat</option>
-                                </select>
+                                <input type="text" class="form-control"
+                                    value="<?= ucfirst(htmlspecialchars($dataset['visibility'])) ?>"
+                                    readonly>
+                                <input type="hidden" name="visibility" value="<?= htmlspecialchars($dataset['visibility']) ?>">
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+                            <button type="submit" name="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> <?= ($dataset['uploader_by'] == $user_id) ? 'Update' : 'Copy' ?>
+                            </button>
                             <a href="dataset.php" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
                         </form>
                     </div>
