@@ -61,9 +61,9 @@ include 'backEnd/prosesBerita.php';
                             <input type="text" class="form-control border-0 p-3" placeholder="Cari berita..."
                                 name="keyword" value="<?= htmlspecialchars($search_query); ?>" aria-label="Cari berita"
                                 style="background-color: #FFBC3B;">
-                            <button class="btn text-white px-4 fw-bold" type="submit"
-                                style="background-color: #1A1A37;">
-                                <i class="lni lni-search-alt"></i> Cari
+                            <button class="btn  px-4 fw-bold" type="submit"
+                                style="background-color: #1d4052; color: white">
+                                <i class="lni lni-search-alt" style="color: white;"></i> Cari
                             </button>
                         </div>
                     </div>

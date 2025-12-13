@@ -52,33 +52,34 @@ include './backEnd/prosesIndex.php';
         <div class="owl-carousel header-carousel py-5">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
-                    <div class="col-lg-6"> <div class="carousel-text text-start text-white">
-                        <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px; color:#1d4052">
-                            <i class="fas fa-microchip me-2" style="color: #1d4052;"></i> Lab IVSS
-                        </p>
+                    <div class="col-lg-6">
+                        <div class="carousel-text text-start text-white">
+                            <p class="mb-3 text-uppercase fw-semibold" style="letter-spacing: 2px; color:#1d4052">
+                                <i class="fas fa-microchip me-2" style="color: #1d4052;"></i> Lab IVSS
+                            </p>
 
-                            <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown" style="color: #1d4052;">
+                            <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown"
+                                style="color: #1d4052;">
                                 <?php echo $hero_judul; ?>
                             </h1>
 
-                            <p class="fs-5 mb-5 fw-light animate__animated animate__fadeInUp" style="color: black;">
+                            <p class="fs-5 mb-5  animate__animated animate__fadeInUp">
                                 <?php echo $hero_isi; ?>
                             </p>
 
                             <div class="d-flex align-items-center mb-5 animate__animated animate__fadeInUp">
-                                
-                                <a class="py-3 px-5 me-3 fw-bold shadow-lg rounded-pill" 
-                                href="admin/index.php" role="button" style="background-color: #FFBC3B; color:#1d4052"> 
-                                <i class="fas fa-sign-in-alt me-2" style="color: #1d4052;"></i> LOGIN
+
+                                <a class="py-3 px-5 me-3 fw-bold shadow-lg rounded-pill" href="admin/index.php"
+                                    role="button" style="background-color: #FFBC3B; color:#1d4052">
+                                    <i class="fas fa-sign-in-alt me-2" style="color: #1d4052;"></i> LOGIN
                                 </a>
-                                
-                                <a class="btn py-3 px-5 fw-bold rounded-pill" 
-                                href="register_mahasiswa.php" role="button"
-                                style="border: 2px solid #FFBC3B; color: #FFBC3B;">
-                                <i class="fas fa-user-plus me-2"></i> REGISTER
+
+                                <a class="btn py-3 px-5 fw-bold rounded-pill" href="register_mahasiswa.php"
+                                    role="button" style="border: 2px solid #FFBC3B; color: #FFBC3B;">
+                                    <i class="fas fa-user-plus me-2"></i> REGISTER
                                 </a>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -137,8 +138,10 @@ include './backEnd/prosesIndex.php';
                             z-index: 2; background-color: #1d4052; color:white">
 
                             <!-- Icon Smart System -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
-                                <path style="color: white" d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor"
+                                class="bi bi-cpu" viewBox="0 0 16 16">
+                                <path style="color: white"
+                                    d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0m-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z" />
                             </svg>
                         </div>
                     </div>
@@ -149,7 +152,7 @@ include './backEnd/prosesIndex.php';
     </section>
     <!-- Fokus Riset End -->
 
-    
+
     <!-- Service Start -->
     <div class="container-fluid py-5">
         <div class="container">
@@ -162,46 +165,37 @@ include './backEnd/prosesIndex.php';
                 </div>
                 <div class="col-md-12 col-lg-8 col-xl-9">
                     <div class="row g-5">
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
+                        <?php while ($data = pg_fetch_assoc($result_proyek)): ?>
+
+                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="<?= 0.1 + ($i * 0.2) ?>s">
                             <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+
+                                <!-- ICON DARI ARRAY -->
                                 <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-cloud-meatball fa-2x " style="color: #1d4052;"></i>
+                                    <i class="fa <?= $icons[$i] ?> fa-2x" style="color:#1d4052;"></i>
                                 </div>
-                                <h3 style="color: #FFBC3B;">Sistem Cerdas</h3>
-                                <p class="mb-2" style="color: black;">Integrasi AI dengan sistem nyata untuk membantu pengambilan keputusan.
+
+                                <!-- JUDUL -->
+                                <h3 style="color:#FFBC3B;">
+                                    <?= htmlspecialchars(strip_tags($data['judul']), ENT_QUOTES, 'UTF-8'); ?>
+                                </h3>
+
+                                <!-- ISI -->
+                                <p class="mb-2" style="color:black;">
+                                    <?= htmlspecialchars(strip_tags($data['isi']), ENT_QUOTES, 'UTF-8'); ?>
                                 </p>
-                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
-                                </div>
+
+                                <div style="height:3px; width:100%; background-color:#1d4052; margin-top:10px;"></div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-solid fa-layer-group fa-2x " style="color: #1d4052;"></i>
-                                </div>
-                                <h3 style="color: #FFBC3B;">Machine Learning</h3>
-                                <p class="mb-2" style="color: black;">Pembelajaran mesin untuk klasifikasi, regresi, dan clustering
-                                    menggunakan dataset nyata.</p>
-                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="service-item h-100"
-                                style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-                                <div class="btn-square bg-light mb-4">
-                                    <i class="fa fa-regular fa-lightbulb fa-2x " style="color: #1d4052;"></i>
-                                </div>
-                                <h3 style="color: #FFBC3B;">Visi Komputer</h3>
-                                <p class="mb-2" style="color: black;">Penerapan teknik AI pada pengolahan citra/video untuk mendeteksi dan
-                                    mengenali objek.</p>
-                                <div style="height: 3px; width: 100%; background-color: #1d4052; margin: 10px 0 0;">
-                                </div>
-                            </div>
-                        </div>
+
+                        <?php 
+                            $i++;
+                            endwhile; 
+                        ?>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -229,18 +223,12 @@ include './backEnd/prosesIndex.php';
 
                     <!-- Main Heading -->
                     <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.2s" style="color: #1d4052;">
-                        Laboratorium Visi Cerdas dan Sistem Cerdas
+                        <?= htmlspecialchars(strip_tags($data_profil['judul']), ENT_QUOTES, 'UTF-8'); ?>
                     </h1>
 
                     <!-- Description -->
                     <p class="mb-4 wow fadeIn" data-wow-delay="0.3s" style="text-align: justify; color: black">
-                        Laboratorium Visi Cerdas dan Sistem Cerdas merupakan pusat riset dan pengembangan di
-                        bawah Jurusan Teknologi Informasi Politeknik Negeri Malang yang berfokus pada bidang
-                        intelligent vision dan smart system. Laboratorium ini menjadi wadah bagi dosen
-                        dan mahasiswa untuk melakukan penelitian, pembelajaran, serta pelatihan dalam pengembangan
-                        sistem cerdas berbasis pengolahan citra dan kecerdasan buatan. Penelitian di laboratorium ini
-                        mengintegrasikan computer vision, AI, dan IoT untuk menciptakan solusi inovatif yang mampu
-                        mengenali, menganalisis, serta merespon lingkungan secara mandiri.
+                        <?= htmlspecialchars(strip_tags($data_profil['isi']), ENT_QUOTES, 'UTF-8'); ?>
                     </p>
                 </div> <!-- End Content Column -->
 
@@ -376,45 +364,42 @@ include './backEnd/prosesIndex.php';
 
             <div class="row g-4 justify-content-center">
                 <?php while ($data_fasilitas = pg_fetch_assoc($result_fasilitas_umum)) { ?>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        
-                        <div class="d-flex flex-column h-100 p-4"
-                            style="border: 1px solid #eee; border-radius: 12px; 
+                <div class="col-lg-4 col-md-6 col-12">
+
+                    <div class="d-flex flex-column h-100 p-4" style="border: 1px solid #eee; border-radius: 12px; 
                                 box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 
-                            <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <div style="flex-grow: 1; display: flex; flex-direction: column;">
 
-                                <!-- Gambar made same as peralatan -->
-                                <div class="position-relative mb-4"
-                                    style="height: 300px; overflow: hidden; border-radius: 10px;">
-                                    
-                                    <img src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>"
-                                        alt="<?php echo $data_fasilitas['nama']; ?>"
-                                        class="w-100 h-100"
-                                        style="object-fit: cover;">
-                                </div>
+                            <!-- Gambar made same as peralatan -->
+                            <div class="position-relative mb-4"
+                                style="height: 300px; overflow: hidden; border-radius: 10px;">
 
-                                <!-- Judul -->
-                                <h4 class="mb-2" style="color: #1d4052;">
-                                    <?php echo $data_fasilitas['nama']; ?>
-                                </h4>
-
-                                <!-- Deskripsi kalau ada -->
-                                <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
-                                    <?php echo $data_fasilitas['isi'] ?? 'Informasi fasilitas belum tersedia.'; ?>
-                                </p>
-
-                                <!-- Tombol sejajar bawah -->
-                                <a href="#!"
-                                    class="btn  w-100 py-3 mt-auto"
-                                    style="border-radius: 8px; background-color:#FFBC3B; color:white">
-                                    Fasilitas
-                                </a>
-
+                                <img src="admin/assets/img/<?php echo $data_fasilitas['gambar']; ?>"
+                                    alt="<?php echo $data_fasilitas['nama']; ?>" class="w-100 h-100"
+                                    style="object-fit: cover;">
                             </div>
 
+                            <!-- Judul -->
+                            <h4 class="mb-2" style="color: #1d4052;">
+                                <?php echo $data_fasilitas['nama']; ?>
+                            </h4>
+
+                            <!-- Deskripsi kalau ada -->
+                            <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
+                                <?php echo $data_fasilitas['isi'] ?? 'Informasi fasilitas belum tersedia.'; ?>
+                            </p>
+
+                            <!-- Tombol sejajar bawah -->
+                            <a href="#!" class="btn  w-100 py-3 mt-auto"
+                                style="border-radius: 8px; background-color:#FFBC3B; color:white">
+                                Fasilitas
+                            </a>
+
                         </div>
+
                     </div>
+                </div>
                 <?php } ?>
             </div>
 
@@ -459,58 +444,55 @@ include './backEnd/prosesIndex.php';
 
                     <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
                     <div class="carousel-item <?php echo $i === 0 ? 'active' : ''; ?>">
-                    <div class="row justify-content-center g-4">
+                        <div class="row justify-content-center g-4">
 
-                        <?php
+                            <?php
                         $start = $i * $perSlide;
                         $end = min($start + $perSlide, $totalItems);
 
                         for ($j = $start; $j < $end; $j++) :
                             $item = $items[$j];
                         ?>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="d-flex flex-column h-100 p-4" 
-                                style="border: 1px solid #eee; border-radius: 12px; 
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <div class="d-flex flex-column h-100 p-4" style="border: 1px solid #eee; border-radius: 12px; 
                                     box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 
-                                <div style="flex-grow: 1; display: flex; flex-direction: column;">
+                                    <div style="flex-grow: 1; display: flex; flex-direction: column;">
 
-                                    <!-- Gambar FIXED SIZE -->
-                                    <div class="position-relative mb-4" 
-                                        style="height: 300px; overflow: hidden; border-radius: 10px;">
+                                        <!-- Gambar FIXED SIZE -->
+                                        <div class="position-relative mb-4"
+                                            style="height: 300px; overflow: hidden; border-radius: 10px;">
 
-                                        <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
-                                            alt="<?php echo $item['nama']; ?>"
-                                            class="w-100 h-100"
-                                            style="object-fit: cover;">
+                                            <img src="admin/assets/img/<?php echo $item['gambar']; ?>"
+                                                alt="<?php echo $item['nama']; ?>" class="w-100 h-100"
+                                                style="object-fit: cover;">
+                                        </div>
+
+                                        <!-- Judul -->
+                                        <a href="#!" class="h4 d-inline-block mb-2"
+                                            style="text-decoration: none; color: #1d4052;">
+                                            <?php echo $item['nama']; ?>
+                                        </a>
+
+                                        <!-- Deskripsi -->
+                                        <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
+                                            <?php echo $item['isi'] ?? 'Klik detail untuk informasi lebih lanjut.'; ?>
+                                        </p>
+
+                                        <!-- Tombol SELALU DI BAWAH -->
+                                        <a href="#!" class="btn w-100 py-3 mt-auto"
+                                            style="border-radius: 8px; background-color:#FFBC3B; color:white">
+                                            Alat
+                                        </a>
+
                                     </div>
 
-                                    <!-- Judul -->
-                                    <a href="#!" class="h4 d-inline-block mb-2"
-                                        style="text-decoration: none; color: #1d4052;">
-                                        <?php echo $item['nama']; ?>
-                                    </a>
-
-                                    <!-- Deskripsi -->
-                                    <p style="color: #555; font-size: 0.95rem; flex-grow: 1;">
-                                        <?php echo $item['isi'] ?? 'Klik detail untuk informasi lebih lanjut.'; ?>
-                                    </p>
-
-                                    <!-- Tombol SELALU DI BAWAH -->
-                                    <a href="#!" 
-                                        class="btn w-100 py-3 mt-auto"
-                                        style="border-radius: 8px; background-color:#FFBC3B; color:white">
-                                        Alat
-                                    </a>
-
                                 </div>
-
                             </div>
-                        </div>
-                        <?php endfor; ?>
+                            <?php endfor; ?>
 
+                        </div>
                     </div>
-                </div>
 
                     <?php endfor; ?>
 
@@ -546,56 +528,46 @@ include './backEnd/prosesIndex.php';
                 <h1 class="display-6 mb-4" style="color:#1d4052">Perkuliahan Terkait</h1>
             </div>
             <div class="row g-5 align-items-center">
-                <div class="col-lg-12"> <div class="rounded overflow-hidden">
-                        
-                        <div class="d-flex flex-nowrap g-0" style="overflow-x: auto;"> 
+                <div class="col-lg-12">
+                    <div class="row g-0">
 
-                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.1s">
-                                <div class="text-center py-5 px-4 h-100" style="background-color: #FFBC3B;">
-                                    <i class="fa-solid fa-brain fa-3x  mb-3" style="color: #1d4052;"></i>
-                                    <h3 class="display-5 mb-0" style="font-size: 24px;">Kecerdasan Artifisial</h3>
-                                    <span class="text-dark">Teknologi yang fokus pada pengembangan sistem atau mesin
-                                        yang dapat melakukan tugas-tugas yang biasanya memerlukan kecerdasan manusia, seperti
-                                        pengenalan pola, pembelajaran, pemecahan masalah, dan pengambilan keputusan.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.3s">
-                                <div class="text-center py-5 px-4 h-100" style="background-color: #1d4052;">
-                                    <i class="fa fa-eye fa-3x  mb-3" style="color: #FFBC3B;"></i>
-                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Pengolahan Citra &
-                                        Visi Komputer</h3>
-                                    <span class="text-white">Teknik untuk mengolah dan menganalisis gambar atau video
-                                        menggunakan komputer, termasuk deteksi objek,
-                                        segmentasi, pengenalan pola, dan interpretasi citra untuk aplikasi seperti
-                                        pengenalan wajah dan kendaraan otomatis.</span>
-                                </div>
-                            </div>
+                        <?php while ($data = pg_fetch_assoc($result_perkuliahan)): ?>
+                        <?php
+                            $isEven = ($i % 2 == 1);
 
-                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.7s">
-                                <div class="text-center  py-5 px-4 h-100" style="background-color: #FFBC3B;">
-                                    <i class="fa fa-lightbulb fa-3x  mb-3" style="color: #1d4052;"></i>
-                                    <h1 class="display-5 mb-0" style="font-size: 24px;">Sistem Cerdas</h1>
-                                    <span class="text-dark">Pengembangan sistem yang dapat meniru atau melampaui
-                                        kemampuan kognitif manusia, seperti pengambilan
-                                        keputusan otomatis, perencanaan, dan pemrosesan informasi dalam konteks aplikasi
-                                        nyata, seperti robotika dan sistem pakar.</span>
-                                </div>
-                            </div>
-                            
-                            <div class="col-3 wow fadeIn flex-shrink-0" data-wow-delay="0.5s">
-                                <div class="text-center  py-5 px-4 h-100" style="background-color: #1d4052;">
-                                    <i class="fa fa-network-wired fa-3x  mb-3" style="color: #FFBC3B;"></i>
-                                    <h3 class="display-5 text-white mb-0" style="font-size: 24px;">Machine Learning</h3>
-                                    <span class="text-white">Cabang dari kecerdasan artifisial yang fokus pada
-                                        pengembangan algoritma yang memungkinkan mesin belajar dari data untuk membuat prediksi atau keputusan tanpa
-                                        dipogram secara eksplisit.</span>
-                                </div>
-                            </div>
+                            $bgColor   = $isEven ? '#FFBC3B' : '#1d4052';
+                            $textClass = $isEven ? 'text-dark' : 'text-white';
+                            $iconColor = $isEven ? '#1d4052' : '#FFBC3B';
+                            $icon      = $icons[$i % count($icons)];
+                        ?>
 
+                        <div class="col-md-3 wow fadeIn">
+                            <div class="text-center py-4 px-3 h-100 rounded" style="background-color: <?= $bgColor ?>;">
+
+                                <!-- ICON -->
+                                <i class="fa <?= $icon ?> fa-3x mb-3" style="color: <?= $iconColor ?>;"></i>
+
+                                <!-- JUDUL -->
+                                <h4 class="mb-2" style="font-size:22px; color: <?= $isEven ? '#1d4052' : '#ffffff' ?>;">
+                                    <?= htmlspecialchars(strip_tags($data['judul']), ENT_QUOTES, 'UTF-8'); ?>
+                                </h4>
+
+                                <!-- ISI -->
+                                <p class="mb-0"
+                                    style="font-size:14px; line-height:1.6; color: <?= $isEven ? '#1d4052' : '#ffffff' ?>;">
+                                    <?= htmlspecialchars(strip_tags($data['isi']), ENT_QUOTES, 'UTF-8'); ?>
+                                </p>
+
+                            </div>
                         </div>
+                        <?php 
+                            $i++;
+                            endwhile; 
+                        ?>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -694,10 +666,11 @@ include './backEnd/prosesIndex.php';
     <div class="container-fluid py-5">
         <div class="container">
 
-           <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white px-3 mb-2" style="color:#FFBC3B;">BERITA</p>
                 <h1 class="display-6 mb-3" style="color: #1d4052;">Berita Terbaru</h1>
-                <p class="lead " style="font-size: 1rem; color: black">Baca berita terbaru dari Laboratorium Visi Cerdas dan Sistem Cerdas.</p>
+                <p class="lead " style="font-size: 1rem; color: black">Baca berita terbaru dari Laboratorium Visi Cerdas
+                    dan Sistem Cerdas.</p>
             </div>
 
 
