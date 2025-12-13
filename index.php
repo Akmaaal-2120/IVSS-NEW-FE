@@ -58,15 +58,11 @@ include './backEnd/prosesIndex.php';
                         </p>
 
                             <h1 class="display-3 text-uppercase fw-bolder mb-4 animate__animated animate__fadeInDown" style="color: #1d4052;">
-                                Intelligent Vision & <span style="color: #FFBC3B;">Smart System</span>
+                                <?php echo $hero_judul; ?>
                             </h1>
 
                             <p class="fs-5 mb-5 fw-light animate__animated animate__fadeInUp" style="color: black;">
-                                Pusat penelitian dan pengembangan teknologi 
-                                <b style="color: black;">Computer Vision</b>, 
-                                <b style="color: black;">Artificial Intelligence (AI)</b>, 
-                                dan 
-                                <b style="color: black;">Internet of Things (IoT)</b>
+                                <?php echo $hero_isi; ?>
                             </p>
 
                             <div class="d-flex align-items-center mb-5 animate__animated animate__fadeInUp">
