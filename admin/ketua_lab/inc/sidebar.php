@@ -28,7 +28,7 @@ if ($q && pg_num_rows($q) > 0) {
         <div class="sidebar-brand-text mx-3">Lab IVSS Admin</div>
     </a>
 
-    
+
 
 
     <hr class="sidebar-divider d-none d-md-block">
@@ -148,6 +148,13 @@ if ($q && pg_num_rows($q) > 0) {
         <a class="nav-link" href="visimisi.php">
             <i class="fas fa-bullseye"></i>
             <span>Visi & Misi</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="hero_section.php">
+            <i class="fas fa-desktop"></i>
+            <span>Hero Section</span>
         </a>
     </li>
 
