@@ -12,23 +12,23 @@ include './backEnd/proses.php';
     <title>Laboratorium Visi Cerdas dan Sistem Cerdas</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
-        rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
+    rel="stylesheet">
 
-    <!-- Bootstrap Icons & FontAwesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 
-    <!-- Libraries -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Bootstrap & Template CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -43,7 +43,7 @@ include './backEnd/proses.php';
     <!-- Page Header -->
     <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-4">
-            <h3 class="display-3 animated slideInDown">Daftar Dosen Laboratorium Visi Cerdas dan Sistem Cerdas</h3>
+            <h3 class="display-3 animated slideInDown" style="color: #1d4052;">Daftar Dosen Laboratorium Visi Cerdas dan Sistem Cerdas</h3>
         </div>
     </div>
 
@@ -72,7 +72,7 @@ include './backEnd/proses.php';
                                 <?php echo htmlspecialchars($ketua_lab['jabatan']); ?></p>
 
                             <a href="detailDosen.php?nidn=<?php echo urlencode($ketua_lab['nidn']); ?>"
-                                class="btn btn-primary btn-lg rounded-pill px-4 mt-2">
+                                class="btn  btn-lg rounded-pill px-4 mt-2" style="background-color: #FFBC3B; color:#1d4052">
                                 <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
@@ -102,7 +102,7 @@ include './backEnd/proses.php';
                                 <?php echo htmlspecialchars($row['jabatan']); ?></p>
 
                             <a href="detailDosen.php?nidn=<?php echo urlencode($row['nidn']); ?>"
-                                class="btn btn-sm btn-primary rounded-pill px-3">
+                                class="btn btn-sm  rounded-pill px-3" style="background-color: #FFBC3B; color:#1d4052">
                                 <i class="fas fa-user me-2"></i> Lihat Profil
                             </a>
                         </div>
@@ -115,14 +115,15 @@ include './backEnd/proses.php';
     </div>
     <?php include('inc/footer.php')?>
 
-    <!-- Back to Top -->
-    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+
     <script src="js/main.js"></script>
 
 </body>

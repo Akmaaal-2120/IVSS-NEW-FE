@@ -77,13 +77,10 @@ include './backEnd/proses.php';
                             <h5 class="fw-bold text-dark mb-3 border-bottom pb-2">
                                 <i class="bi bi-person-lines-fill me-2 text-warning"></i> Kontak
                             </h5>
-
                             <ul class="list-unstyled mb-0">
-
                                 <?php if (!empty($dosen_detail['email'])): ?>
                                     <li class="d-flex align-items-center mb-2">
-                                        <i class="bi bi-envelope-fill me-3 text-secondary fs-5"></i>
-
+                                        <i class="bi bi-envelope-fill me-3  fs-5" style="color: #1d4052;"></i>
                                         <div class="flex-grow-1">
                                             <small class="text-muted d-block">Email</small>
                                             <a href="mailto:<?php echo htmlspecialchars($dosen_detail['email']); ?>"
@@ -94,18 +91,15 @@ include './backEnd/proses.php';
                                         </div>
                                     </li>
                                 <?php endif; ?>
-
                                 <?php if (!empty($dosen_detail['linkedin'])): ?>
-                                    <li class="d-flex align-items-center mb-2">
-                                        <i class="bi bi-linkedin me-3 text-secondary fs-5"></i>
-
+                                    <li class="d-flex align-items-center mb-2" >
+                                        <i class="bi bi-linkedin me-3  fs-5"  style="color: #1d4052;"></i>
                                         <div class="flex-grow-1">
                                             <small class="text-muted d-block">LinkedIn</small>
-
                                             <a href="https://<?php echo htmlspecialchars($dosen_detail['linkedin']); ?>"
                                             target="_blank"
                                             class="btn btn-primary btn-sm rounded-pill fw-bold"
-                                            style="background-color: #14123A; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
+                                            style="background-color: #1d4052; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
                                             Kunjungi Profil
                                             </a>
                                         </div>
@@ -125,7 +119,7 @@ include './backEnd/proses.php';
                             <?php echo htmlspecialchars($dosen_detail['nama']); ?>
                         </h1>
 
-                        <p class="lead text-secondary mb-4">
+                        <p class="lead text-dark mb-4">
                             <?php echo htmlspecialchars($dosen_detail['jabatan']); ?>
                         </p>
 
@@ -187,19 +181,19 @@ include './backEnd/proses.php';
                             <div class="d-flex flex-wrap gap-2">
                                 <?php if (!empty($dosen_detail['scopus'])): ?>
                                 <a href="<?php echo htmlspecialchars($dosen_detail['scopus']); ?>" target="_blank" class="btn rounded-pill fw-bold"
-                                style="background-color: #14123A; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
+                                style="background-color: #1d4052; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
                                     <i class="bi bi-link-45deg me-1"></i> Scopus Profile
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($dosen_detail['google_scholar'])): ?>
                                 <a href="<?php echo htmlspecialchars($dosen_detail['google_scholar']); ?>" target="_blank" class="btn rounded-pill fw-bold"
-                                style="background-color: #14123A; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
+                                style="background-color: #1d4052; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
                                     <i class="bi bi-link-45deg me-1"></i> Google Scholar Profile
                                 </a>
                                 <?php endif; ?>
                                 <?php if (!empty($dosen_detail['sinta'])): ?>
                                 <a href="<?php echo htmlspecialchars($dosen_detail['sinta']); ?>" target="_blank" class="btn rounded-pill fw-bold"
-                                style="background-color: #14123A; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
+                                style="background-color: #1d4052; color: #fff; border: none; pointer-events: auto; text-decoration: none; font-size: 0.85rem; padding: 4px 18px;">
                                     <i class="bi bi-link-45deg me-1"></i> Sinta Profile
                                 </a>
                                 <?php endif; ?>
@@ -215,7 +209,7 @@ include './backEnd/proses.php';
                             <div class="card shadow border-0" style="border-radius: 10px;">
                                 <table class="table mb-0">
                                     
-                                    <thead style="background-color: #1A1A37;">
+                                    <thead style="background-color: #1d4052;">
                                         <tr>
                                             <th scope="col" class="text-white text-center" style="width: 10%;">No</th>
                                             <th scope="col" class="text-white">Judul Riset Terbaru</th>
@@ -246,10 +240,6 @@ include './backEnd/proses.php';
         </div>
 
     <?php include('inc/footer.php')?>
-
-    <!-- Back to Top -->
-    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

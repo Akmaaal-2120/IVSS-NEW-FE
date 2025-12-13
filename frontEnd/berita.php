@@ -69,17 +69,17 @@ include './backEnd/prosesBerita.php';
     <?php include('inc/navbar.php');?>
     <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-4">
-            <h1 class="display-3 animated slideInDown">Berita & Artikel Terbaru</h1>
+            <h1 class="display-3 animated slideInDown" style="color: #1d4052;">Berita & Artikel Terbaru</h1>
             <nav aria-label="breadcrumb animated slideInDown">
             </nav>
         </div>
     </div>
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid  mb-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: #FFBC3B;">
         <div class="container">
             <div class="row g-0">
                 <div class="col-lg-12">
                     <div class="h-100 py-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <h3 class="text-white mb-4">Cari Berita Terbaru dari Lab IVSS</h3>
+                        <h3 class=" mb-4" style="color:#1d4052">Cari Berita Terbaru dari Lab IVSS</h3>
 
                         <form action="" method="get" class="w-75">
                             <div class="input-group shadow-sm">
@@ -88,7 +88,7 @@ include './backEnd/prosesBerita.php';
                                     value="<?php echo htmlspecialchars(isset($_GET['keyword']) ? $_GET['keyword'] : ''); ?>"
                                     aria-label="Kata kunci pencarian berita">
 
-                                <button class="btn btn-secondary px-4 text-white" type="submit">
+                                <button class="btn  px-4 text-white" type="submit" style="background-color: #1d4052;">
                                     <i class="fa fa-search me-2"></i> Cari Berita
                                 </button>
                             </div>
@@ -101,8 +101,8 @@ include './backEnd/prosesBerita.php';
     <section class="container-fluid py-5" id="news-content-section">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="section-title bg-white text-center text-primary px-3">Berita</p>
-                <h1 class="display-6 mb-4">Berita Terbaru</h1>
+                <p class="section-title bg-white text-center  px-3" style="color: #FFBC3B;">Berita</p>
+                <h1 class="display-6 mb-4" style="color: #1d4052;">Berita Terbaru</h1>
             </div>
 
             <div class="py-5">
@@ -124,9 +124,9 @@ include './backEnd/prosesBerita.php';
                                 <div class="col-lg-6 d-flex align-items-center">
                                     <div class="card-body p-5">
                                         <div class="d-flex flex-wrap gap-3 mb-3 text-muted" style="font-size: 0.85rem;">
-                                            <span><i class="lni lni-calendar text-primary me-1"></i>
+                                            <span><i class="lni lni-calendar  me-1" style="color: #FFBC3B;"></i>
                                                 <?= $featured['tanggal_formatted']; ?></span>
-                                            <span><i class="lni lni-pencil text-primary me-1"></i>
+                                            <span><i class="lni lni-pencil  me-1" style="color: #FFBC3B;"></i>
                                                 penulis: <?= htmlspecialchars($featured['penulis']); ?></span>
                                         </div>
                                         <h2 class="h3 fw-bold mb-3">
@@ -225,7 +225,7 @@ include './backEnd/prosesBerita.php';
                             ?>
                             <li class="page-item <?= ($i == $current_page) ? 'active' : ''; ?>">
                                 <a class="page-link" href="<?= $page_link; ?>"
-                                    style="<?= ($i == $current_page) ? 'background-color: #FFBC3B; border-color: #FFBC3B; color: white;' : 'color: #1A1A37;'; ?>">
+                                    style="<?= ($i == $current_page) ? 'background-color: #FFBC3B; border-color: #FFBC3B; color: white;' : 'color: #1d4052;'; ?>">
                                     <?= $i; ?>
                                 </a>
                             </li>

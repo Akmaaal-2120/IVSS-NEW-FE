@@ -41,7 +41,7 @@ include './backEnd/prosesBerita.php';
     <?php include('inc/navbar.php');?>
     <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center py-4">
-            <h1 class="display-3 animated slideInDown">Berita</h1>
+            <h1 class="display-3 animated slideInDown" style="color: #1d4052;">Berita</h1>
             <nav aria-label="breadcrumb animated slideInDown">
             </nav>
         </div>
@@ -65,14 +65,14 @@ include './backEnd/prosesBerita.php';
             <div class="d-flex align-items-center gap-4 mb-4 text-dark">
 
                 <div class="d-flex align-items-center">
-                    <i class="lni lni-user me-2" style="font-size:20px; color:#1A1A37;"></i>
+                    <i class="lni lni-user me-2" style="font-size:20px; color:#FFBC3B;"></i>
                     <span class="fw-semibold">
                         <?= htmlspecialchars($berita['penulis']); ?>
                     </span>
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <i class="lni lni-calendar me-2" style="font-size:20px; color:#1A1A37;"></i>
+                    <i class="lni lni-calendar me-2" style="font-size:20px; color:#FFBC3B;"></i>
                     <span><?= $berita['tanggal_format']; ?></span>
                 </div>
 
@@ -86,7 +86,7 @@ include './backEnd/prosesBerita.php';
 
             <!-- Tombol Kembali -->
             <a href="berita.php" class="btn px-4 py-2 mt-4"
-                style="background:#FFBC3B; color:#1A1A37; font-weight:600; border-radius:50px;">
+                style="background:#FFBC3B; color:#1d4052; font-weight:600; border-radius:50px;">
                 Kembali Ke Daftar Berita
             </a>
 
