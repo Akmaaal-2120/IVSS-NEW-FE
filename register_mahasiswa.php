@@ -121,9 +121,9 @@ include './backEnd/prosesRegisterMahasiswa.php';
                                         </div>
                                         
                                         <ol style="padding-left: 20px;">
-                                            <li class="mb-2">1. Pendaftaran Anda akan direview oleh <b>Dosen Pembimbing</b> yang telah Anda pilih.</li>
-                                            <li class="mb-2">2. Setelah disetujui oleh Dosen Pembimbing, pengajuan akan dilanjutkan untuk direview oleh <b>Ketua Laboratorium</b> </li>
-                                            <li>3. Setelah mendapatkan persetujuan dari kedua pihak, akun Anda akan diaktifkan sehingga Anda dapat melakukan <b>login</b>.</li>
+                                            <li class="mb-2">Pendaftaran Anda akan direview oleh <b>Dosen Pembimbing</b> yang telah Anda pilih.</li>
+                                            <li class="mb-2">Setelah disetujui oleh Dosen Pembimbing, pengajuan akan dilanjutkan untuk direview oleh <b>Ketua Laboratorium</b> </li>
+                                            <li>Setelah mendapatkan persetujuan dari kedua pihak, akun Anda akan diaktifkan sehingga Anda dapat melakukan <b>login</b>.</li>
                                         </ol>
 
                                     </div>
