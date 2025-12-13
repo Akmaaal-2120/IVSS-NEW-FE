@@ -1,36 +1,9 @@
 <?php
-include './backEnd/prosesBerita.php';
+include 'backEnd/prosesBerita.php';
 ?>
 
 <?php if ($mode === 'list'): ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>Laboratorium Visi Cerdas dan Sistem Cerdas</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <link href="img/favicon.ico" rel="icon">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
-        rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
-
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-</head>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,38 +40,39 @@ include './backEnd/prosesBerita.php';
         <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
     <?php include('inc/navbar.php');?>
-    <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container text-center py-4">
-            <h1 class="display-3 animated slideInDown" style="color: #1d4052;">Berita & Artikel Terbaru</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-            </nav>
-        </div>
-    </div>
-    <div class="container-fluid  mb-5 wow fadeIn" data-wow-delay="0.1s" style="background-color: #FFBC3B;">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-12">
-                    <div class="h-100 py-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <h3 class=" mb-4" style="color:#1d4052">Cari Berita Terbaru dari Lab IVSS</h3>
-
-                        <form action="" method="get" class="w-75">
-                            <div class="input-group shadow-sm">
-                                <input type="text" class="form-control p-3 border-0" placeholder="Cari disini..."
-                                    name="keyword"
-                                    value="<?php echo htmlspecialchars(isset($_GET['keyword']) ? $_GET['keyword'] : ''); ?>"
-                                    aria-label="Kata kunci pencarian berita">
-
-                                <button class="btn  px-4 text-white" type="submit" style="background-color: #1d4052;">
-                                    <i class="fa fa-search me-2"></i> Cari Berita
-                                </button>
-                            </div>
-                        </form>
+    <section class="text-white py-5"
+            style="padding-top: 100px !important; padding-bottom: 100px !important; position: relative; overflow: hidden; background-color: #F3EAE0">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-10 mx-auto text-center">
+                        <h1 class="fw-bold display-5 mb-3" style="color: #1d4052;">Berita & Artikel Terbaru</h1>
+                        <p class="fs-5 " style="color: #1d4052;">Ikuti perkembangan terbaru dari Laboratorium Visi Cerdas dan Sistem
+                            Cerdas.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <section class="container-fluid py-5" id="news-content-section">
+        </section>
+
+        <section class="py-4" style="margin-top: -50px; margin-bottom: 60px;">
+            <div class="container">
+                <form action="" method="GET">
+                    <div class="mx-auto" style="max-width: 600px;">
+                        <div class="input-group shadow-lg rounded-pill overflow-hidden">
+                            <input type="text" class="form-control border-0 p-3" placeholder="Cari berita..."
+                                name="keyword" value="<?= htmlspecialchars($search_query); ?>" aria-label="Cari berita"
+                                style="background-color: #FFBC3B;">
+                            <button class="btn text-white px-4 fw-bold" type="submit"
+                                style="background-color: #1A1A37;">
+                                <i class="lni lni-search-alt"></i> Cari
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+    <section class="container-fluid py-2" id="news-content-section">
         <div class="container">
             <div class="text-center mx-auto wow fadeIn" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="section-title bg-white text-center  px-3" style="color: #FFBC3B;">Berita</p>

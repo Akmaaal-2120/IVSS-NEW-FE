@@ -49,7 +49,7 @@ switch ($mode) {
         $offset = ($current_page - 1) * $limit;
 
         // 4. Query data
-        $sql_data = "SELECT * FROM berita {$where_clause} ORDER BY berita_id DESC LIMIT {$limit} OFFSET {$offset}";
+        $sql_data = "SELECT * FROM berita {$where_clause} ORDER BY tanggal DESC LIMIT {$limit} OFFSET {$offset}";
         $result_data = pg_query($koneksi, $sql_data);
 
         $paginated_items = [];
@@ -95,24 +95,46 @@ switch ($mode) {
             echo "<h3>Berita tidak ditemukan.</h3>";
             exit;
         }
-
+    
         $id = intval($_GET['id']);
-
+    
+        /* ===============================
+        1. AMBIL DETAIL BERITA
+        =============================== */
         $sql = "
             SELECT *,
                 TO_CHAR(tanggal, 'DD Month YYYY') AS tanggal_format
             FROM berita 
             WHERE berita_id = $id
         ";
-
+    
         $result = pg_query($koneksi, $sql);
         $berita = pg_fetch_assoc($result);
-
+    
         if (!$berita) {
             echo "<h3>Berita tidak ditemukan.</h3>";
             exit;
         }
-
+    
+        /* ===============================
+        2. AMBIL BERITA TERBARU (SIDEBAR)
+        =============================== */
+        $latestBerita = [];
+    
+        $q = pg_query($koneksi, "
+            SELECT berita_id, judul, gambar,
+            TO_CHAR(tanggal, 'DD Mon YYYY') AS tanggal_format
+            FROM berita
+            WHERE berita_id != $id
+            ORDER BY tanggal DESC
+            LIMIT 5
+        ");
+    
+        while ($row = pg_fetch_assoc($q)) {
+            $latestBerita[] = $row;
+        }
+    
         break;
+    
 }
 ?>

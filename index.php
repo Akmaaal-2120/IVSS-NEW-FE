@@ -453,7 +453,7 @@ include './backEnd/prosesIndex.php';
                 <div class="carousel-indicators">
                     <?php for ($i = 0; $i < $totalSlides; $i++) : ?>
                     <button type="button" data-bs-target="#donationCarousel" data-bs-slide-to="<?php echo $i; ?>"
-                        class="<?php echo $i === 0 ? 'active' : ''; ?>">
+                        class="<?php echo $i === 0 ? 'active' : ''; ?>" style="background-color:#FFC53B">
                     </button>
                     <?php endfor; ?>
                 </div>

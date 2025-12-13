@@ -1,5 +1,5 @@
 <?php
-include './backEnd/proses.php';
+include 'backEnd/prosesDosen.php';
 ?>
 
 <?php if ($mode === 'detail'): ?>
