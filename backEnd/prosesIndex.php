@@ -23,7 +23,17 @@ $result_berita_terbaru = pg_query($koneksi, $query_berita_terbaru);
 $data_visi = pg_fetch_assoc($result_visi);
 $data_misi = pg_fetch_assoc($result_misi);
 $data_dosen = pg_fetch_assoc($result_dosen);
+$data_dosen = pg_fetch_assoc($result_dosen);
 $dosen_id_url = $data_dosen['nidn'];
+
+// Query Hero Section
+$query_hero = "SELECT * FROM hero_section LIMIT 1";
+$result_hero = pg_query($koneksi, $query_hero);
+$data_hero = pg_fetch_assoc($result_hero);
+
+// Default hero values (fallback if DB is empty)
+$hero_judul = $data_hero['judul'] ?? 'Intelligent Vision & <span style="color: #FFBC3B;">Smart System</span>';
+$hero_isi = $data_hero['isi'] ?? 'Pusat penelitian dan pengembangan teknologi Computer Vision, Artificial Intelligence (AI), dan Internet of Things (IoT)';
 
 $isi_visi = $data_visi['isi'] ?? "Visi belum tersedia di database.";
 $isi_misi = $data_misi['isi'] ?? "Misi belum tersedia di database.";
