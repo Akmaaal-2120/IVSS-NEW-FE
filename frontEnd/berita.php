@@ -1,91 +1,37 @@
 <?php
-// Pastikan file koneksi.php sudah terhubung dengan database PostgreSQL
-include 'inc/koneksi.php';
-
-$search_query = "";
-$where_clause = "";
-$batas_karakter = 500;
-// BATAS TELAH DIUBAH:
-$limit = 7; // Batas item per halaman (1 Featured + 6 Other Items)
-
-// 1. Logika Pencarian (Mendapatkan kata kunci dari URL)
-if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
-    $search_query = pg_escape_string($koneksi, $_GET['keyword']);
-    $where_clause = " WHERE judul ILIKE '%{$search_query}%' ";
-}
-
-// 2. Hitung total data berita (WAJIB ADA)
-$sql_count = "SELECT COUNT(*) AS total FROM berita {$where_clause}";
-$result_count = pg_query($koneksi, $sql_count);
-
-if ($result_count) {
-    $row_count = pg_fetch_assoc($result_count);
-    $total_items = (int)$row_count['total'];
-} else {
-    $total_items = 0;
-}
-
-// 3. Logika Pagination
-// total_pages hanya akan > 0 jika total_items > 0
-$total_pages = $total_items > 0 ? ceil($total_items / $limit) : 1; 
-
-// Menentukan halaman saat ini
-$current_page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-
-// Validasi halaman saat ini
-if ($current_page < 1) {
-    $current_page = 1;
-} elseif ($current_page > $total_pages) {
-    $current_page = $total_pages;
-}
-
-$offset = ($current_page - 1) * $limit;
-
-// 4. Query untuk Mengambil Data Halaman Saat Ini (menggunakan LIMIT dan OFFSET)
-$sql_data = "SELECT * FROM berita {$where_clause} ORDER BY berita_id DESC LIMIT {$limit} OFFSET {$offset}";
-
-$result_data = pg_query($koneksi, $sql_data);
-
-$paginated_items = [];
-if ($result_data) {
-    while ($row = pg_fetch_assoc($result_data)) {
-        // Memformat tanggal
-        $row['tanggal_formatted'] = date('d M Y', strtotime($row['tanggal']));
-        $paginated_items[] = $row;
-    }
-} else {
-    // Log error jika query database gagal
-    error_log("Database Data Query Error: " . pg_last_error($koneksi));
-}
-
-$featured = null;
-$other_items = [];
-
-// 5. Logika Item Unggulan (Hanya item pertama pada HALAMAN PERTAMA)
-if (!empty($paginated_items)) {
-    if ($current_page == 1 && $total_items > 0) {
-        $featured = $paginated_items[0]; 
-        
-        // Bersihkan tag HTML dari isi featured sebelum dipotong
-        $isi_featured_clean = strip_tags($featured['isi']); 
-        
-        if (strlen($isi_featured_clean) > $batas_karakter) {
-            $potongan_isi = substr($isi_featured_clean, 0, $batas_karakter);
-            // Pastikan pemotongan dilakukan pada kata terakhir yang utuh
-            $featured['isi_tampilan'] = substr($potongan_isi, 0, strrpos($potongan_isi, ' ')) . '...';
-        } else {
-            $featured['isi_tampilan'] = $isi_featured_clean;
-        }
-
-        // Item lainnya adalah semua item di halaman ini kecuali yang pertama (featured)
-        // Jika limit = 7, maka other_items akan berisi 6 item
-        $other_items = array_slice($paginated_items, 1);
-    } else {
-        // Jika bukan halaman pertama, semua item di halaman ini dianggap 'other_items'
-        $other_items = $paginated_items;
-    }
-}
+include './backEnd/prosesBerita.php';
 ?>
+
+<?php if ($mode === 'list'): ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Laboratorium Visi Cerdas dan Sistem Cerdas</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Open+Sans&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -330,3 +276,4 @@ if (!empty($paginated_items)) {
 </body>
 
 </html>
+<?php endif; ?>

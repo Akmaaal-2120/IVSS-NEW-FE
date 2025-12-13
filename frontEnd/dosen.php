@@ -1,17 +1,9 @@
 <?php
-include 'inc/koneksi.php';
-
-// Ambil data Member Lab 
-$member_lab_res = pg_query($koneksi, "SELECT * FROM dosen WHERE jabatan!='Kepala Lab' ORDER BY nama ASC");
-$member_lab_items = [];
-while ($row = pg_fetch_assoc($member_lab_res)) {
-    $member_lab_items[] = $row;
-}
-
-// Ambil data Ketua Lab
-$result = pg_query($koneksi, "SELECT * FROM dosen WHERE jabatan='Kepala Lab' LIMIT 1");
-$ketua_lab = pg_fetch_assoc($result);
+include './backEnd/proses.php';
 ?>
+
+<?php if ($mode === 'list'): ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,3 +128,4 @@ $ketua_lab = pg_fetch_assoc($result);
 </body>
 
 </html>
+<?php endif; ?>

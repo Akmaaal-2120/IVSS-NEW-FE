@@ -1,26 +1,8 @@
 <?php
-include 'inc/koneksi.php';
-
-// Data detail dosen yang akan ditampilkan di halaman ini
-// AMBIL ID DARI URL
-$nidn = isset($_GET['nidn']) ? $_GET['nidn'] : '';
-
-if (empty($nidn)) {
-    die("NIDN dosen tidak valid");
-}
-
-
-$sql = "SELECT * FROM dosen WHERE nidn = $1";
-$result = pg_query_params($koneksi, $sql, [$nidn]);
-
-if (!$result) {
-    die("Query error: " . pg_last_error($koneksi));
-}
-
-// Ambil data
-$dosen_detail = pg_fetch_assoc($result);
-
+include './backEnd/proses.php';
 ?>
+
+<?php if ($mode === 'detail'): ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -283,3 +265,4 @@ $dosen_detail = pg_fetch_assoc($result);
 </body>
 
 </html>
+<?php endif; ?>

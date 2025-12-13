@@ -1,27 +1,8 @@
 <?php
-        include 'inc/koneksi.php';
-
-        if (!isset($_GET['id'])) {
-            echo "<h3>Berita tidak ditemukan.</h3>";
-            exit;
-        }
-
-        $id = intval($_GET['id']);
-
-        $sql = "
-            SELECT *,
-                TO_CHAR(tanggal, 'DD Month YYYY') AS tanggal_format
-            FROM berita 
-            WHERE berita_id = $id
-        ";
-        $result = pg_query($koneksi, $sql);
-        $berita = pg_fetch_assoc($result);
-
-        if (!$berita) {
-            echo "<h3>Berita tidak ditemukan.</h3>";
-            exit;
-        }
+include './backEnd/prosesBerita.php';
 ?>
+
+<?php if ($mode === 'list'): ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,3 +109,4 @@
 </body>
 
 </html>
+<?php endif; ?>

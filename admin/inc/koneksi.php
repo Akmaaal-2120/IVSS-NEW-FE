@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $user = "postgres"; // default user PostgreSQL
-$pass = "1234"; // ganti dengan password PostgreSQL kamu
-$db   = "pbl_ivss"; // ganti dengan nama database kamu
+$pass = "nauraPostgreSQL"; // ganti dengan password PostgreSQL kamu
+$db   = "pbl_ivss";
 $port = "5432"; // port default PostgreSQL
 
 // Membuat koneksi ke PostgreSQL
