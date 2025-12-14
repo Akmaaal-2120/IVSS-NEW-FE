@@ -26,6 +26,16 @@ $data_dosen = pg_fetch_assoc($result_dosen);
 $data_dosen = pg_fetch_assoc($result_dosen);
 $dosen_id_url = $data_dosen['nidn'];
 
+$query_proyek = "SELECT judul, isi FROM kegiatan_proyek ORDER BY id ASC";
+$result_proyek = pg_query($koneksi, $query_proyek);
+
+$query_profil = "SELECT judul, isi FROM profil_lab";
+$result_profil = pg_query($koneksi, $query_profil);
+$data_profil = pg_fetch_assoc($result_profil);
+
+$query_perkuliahan = "SELECT judul, isi FROM perkuliahan_terkait ORDER BY id ASC";
+$result_perkuliahan = pg_query($koneksi, $query_perkuliahan);
+
 // Query Hero Section
 $query_hero = "SELECT * FROM hero_section LIMIT 1";
 $result_hero = pg_query($koneksi, $query_hero);
@@ -38,4 +48,20 @@ $hero_isi = $data_hero['isi'] ?? 'Pusat penelitian dan pengembangan teknologi Co
 $isi_visi = $data_visi['isi'] ?? "Visi belum tersedia di database.";
 $isi_misi = $data_misi['isi'] ?? "Misi belum tersedia di database.";
 $batas_karakter = 300;
+
+
+$icons = [
+    'fa-solid fa-cloud-meatball',
+    'fa-solid fa-layer-group',
+    'fa-regular fa-lightbulb'
+];
+$i = 0;
+
+$icons = [
+    'fa-brain',
+    'fa-eye',
+    'fa-lightbulb',
+    'fa-network-wired'
+];
+
 ?>
