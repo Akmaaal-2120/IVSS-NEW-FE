@@ -63,7 +63,7 @@ include 'backEnd/prosesDosen.php';
                         <!-- Foto -->
                         <div class="text-center mb-4">
                             <div class="mb-4 shadow-sm rounded-3 overflow-hidden d-inline-flex"
-                                style="width: 250px; height: 300px; justify-content:center; align-items:center; border: 3px solid #dee2e6;">
+                                style="width: 250px; height: 300px; justify-content:center; align-items:center; border: 3px solid #1d4052;">
 
                                 <img src="admin/assets/img/<?php echo htmlspecialchars($dosen_detail['foto'] ?? 'default.png'); ?>"
                                     alt="<?php echo htmlspecialchars($dosen_detail['nama'] ?? 'Dosen'); ?>"
@@ -217,17 +217,25 @@ include 'backEnd/prosesDosen.php';
                                     </thead>
                                     
                                     <tbody>
-                                        <tr style="background-color: #FFBC3B;">
-                                            <td class="fw-bold text-center pt-3 pb-3" style="color: #000;">1.</td>
-                                            <td class="fw-bold pt-3 pb-3" style="color: #000;">Pemanfaatan Wireshark untuk Sniffing Komunikasi Data Berprotokol HTTP pada Jaringan Internet</td>
-                                        </tr>
-                                        
-                                        <tr style="background-color: #FFBC3B;">
-                                            <td class="fw-bold text-center pt-3 pb-3" style="color: #000;">2.</td>
-                                            <td class="fw-bold pt-3 pb-3" style="color: #000;">Segmentasi berbasis k-means pada deteksi citra penyakit daun tanaman jagung</td>
-                                        </tr>
-                                        
-                                        </tbody>
+<?php if (empty($riset_terkini)): ?>
+    <tr>
+        <td colspan="2" class="text-center fw-bold text-muted py-4">
+            Belum ada data riset terkini.
+        </td>
+    </tr>
+<?php else: ?>
+    <?php foreach ($riset_terkini as $index => $riset): ?>
+        <tr style="background-color: #FFBC3B;">
+            <td class="fw-bold text-center pt-3 pb-3" style="color: #000;">
+                <?= $index + 1 ?>.
+            </td>
+            <td class="fw-bold pt-3 pb-3" style="color: #000;">
+                <?= htmlspecialchars($riset['judul']) ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php endif; ?>
+</tbody>
                                 </table>
                             </div>
 

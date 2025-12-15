@@ -27,27 +27,66 @@ switch ($mode) {
        MODE: DETAIL DOSEN
     =============================== */
     case 'detail':
-        // Data detail dosen yang akan ditampilkan di halaman ini
-        // AMBIL ID DARI URL
-        $nidn = isset($_GET['nidn']) ? $_GET['nidn'] : '';
 
+        // =========================
+        // 1. Ambil NIDN dari URL
+        // =========================
+        $nidn = isset($_GET['nidn']) ? $_GET['nidn'] : '';
+    
         if (empty($nidn)) {
             die("NIDN dosen tidak valid");
         }
-
-
+    
+        // =========================
+        // 2. Ambil Data Dosen
+        // =========================
         $sql = "SELECT * FROM dosen WHERE nidn = $1";
         $result = pg_query_params($koneksi, $sql, [$nidn]);
-
+    
         if (!$result) {
-            die("Query error: " . pg_last_error($koneksi));
+            die("Query error dosen: " . pg_last_error($koneksi));
         }
-
-        // Ambil data
+    
         $dosen_detail = pg_fetch_assoc($result);
     
+        // =========================
+        // 3. Ambil Riset Terkini
+        // =========================
+        $riset_terkini = [];
+
+        if ($dosen_detail) {
+
+            // ambil user_id dosen yang diklik
+            $user_id_dosen = $dosen_detail['user_id'];
+
+            $sqlRiset = "
+                SELECT
+                    r.riset_id,
+                    r.judul,
+                    r.status,
+                    u.role,
+                    d.nidn,
+                    d.nama AS nama_dosen
+                FROM riset r
+                JOIN users u ON r.creator_id = u.user_id
+                JOIN dosen d ON u.user_id = d.user_id
+                WHERE r.status = 'approve_ketua_lab'
+                AND r.creator_id = $1
+                ORDER BY r.riset_id DESC
+                LIMIT 3
+            ";
+
+            $resultRiset = pg_query_params($koneksi, $sqlRiset, [$user_id_dosen]);
+
+            if ($resultRiset) {
+                while ($row = pg_fetch_assoc($resultRiset)) {
+                    $riset_terkini[] = $row;
+                }
+            }
+        }
+    
         break;
+    
 
     }
 ?>
-
